@@ -1,1 +1,1 @@
-This repository contains the lecture notes of [Dr. Suvrat Raju's QFT course] (https://youtu.be/9kqScPIkkRU?si=UH9KUZaF0YiDwxdu)
+This repository contains the lecture notes of [Dr. Suvrat Raju's QFT course](https://youtu.be/9kqScPIkkRU?si=UH9KUZaF0YiDwxdu)
