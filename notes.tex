@@ -799,11 +799,122 @@
         \e^{i\int_R f(x)\phi(x) dx}\ket{0} = \left(1 + i\int_R f(x)\phi(x) dx + \frac{1}{2}i\iint_R f(x)f(y)\phi(x)\phi(y) dxdy + \cdots \right)\ket{0}
     \end{equation*}
     the localised excitation is always a superposition of states of all possible particle numbers. 
+
     \newpage
     \section{Interlude — Symmetries}
 
+    What we mean when we say that the action has symmetry is that when we make a change in the fields \(\phi_i(x) \to \phi_i(x) + \lambda D\phi_i(x)\), (where \(D\phi_i\) is just a notation and can denote any function, but is usually a function of original \(\phi_i\)s and \(\lambda\) is a parameter to keep track of order of terms), the action remains invariant. \\
+    For this to be true, the Lagrangian density should transform as 
+    \begin{equation*}
+        \ld \to \ld + \del_\mu K^\mu
+    \end{equation*}
+    Now this invariance should hold for all the field configurations, and not just some special ones, i.e.\ the configurations which satisfy the equations of motion. For the configurations which satisfy the equations of motion, the requirement is identically satisfied, since we define the equations of motion as those configurations for which the small variations of fields do not change the action.\\ 
 
+    \subsection{Noether's Theorem}
+    When \(\ld\) has a symmetry, there is a conserved current of the form
+    \begin{equation*}
+        \del_\mu j^\mu = 0
+    \end{equation*} 
+    \textit{only for the solutions of the equations of motion}.\\
 
+    Proof —\\
+    Under the above transformation,
+    \begin{align*}
+        &\delta \ld = \left( \frac{\delta \ld}{\delta \phi_i} D\phi_i  + \frac{\delta \ld}{\delta \del_\mu \phi_i} \del_\mu D\phi_i \right) = \del_\mu K^\mu \\
+        \implies & \left( \frac{\delta \ld}{\delta \phi_i} D\phi_i  -\del_\mu \frac{\delta \ld}{\delta \del_\mu \phi_i} D\phi_i + \del_\mu \left( \frac{\delta \ld}{\delta \del_\mu \phi_i} D\phi_i \right)  \right) = \del_\mu K^\mu 
+    \end{align*}
+    When we are on-shell (i.e. when \(\phi\) satisfies the equation of motion), the first two term sum to 0, and we are left with 
+    \begin{equation*}
+        \del_\mu \left( \frac{\delta \ld}{\delta \del_\mu \phi_i} D\phi_i \right) = \del_\mu K^\mu
+    \end{equation*}
+    which implies that  
+    \begin{equation*}
+        \del_\mu j^\mu(x) =0, ~\text{ where  } j^\mu = \frac{\delta \ld}{\delta \del_\mu \phi_i} D\phi_i  - K^\mu 
+    \end{equation*}
+
+    Noether's current is not something new, it is just re-expressing the equations of motion. Noether's current has inherent ambiguity in definition, because we can always add a divergence free \(4-\)vector to it, i.e.\ we can add terms of the form \(\epsilon^{\mu\nu} \del_\nu \phi\) where \(\epsilon\) is antisymmetric tensor, since \(\del_\mu \epsilon^{\mu\nu} \del_\nu \phi = 0\). But nevertheless this is a powerful statement and allows us to derive conclusions without having to do tedious calculations.\\
+
+    When we have a conserved current, we have a conserved charge.
+    \begin{equation*}
+        \del_0 \int j^0 d^3\textbf{x} + \int d^3\textbf{x} \del_i j^i = 0 \implies \del_t \int j^0 d^3\textbf{x} = 0
+    \end{equation*}
+    since the second term is a total divergence. What this tells is that the quantity 
+    \begin{equation*}
+        Q = \int j^0 d^3\textbf{x}
+    \end{equation*} 
+    is conserved. All conservation of laws that we have known so far arise in this very fashion, and are consequences of the Noether's theorem.\\
+
+    There is another derivation of the Noether's theorem, which is at the level of action. Suppose we have a symmetry under 
+    \begin{equation*}
+        \phi \to \phi + \lambda D\phi
+    \end{equation*}
+    which does not change \(S\).\\
+    Now imagine a spacetime dependent variation, 
+    \begin{equation*}
+        \phi \to \phi + \lambda(x) D\phi
+    \end{equation*}
+    The action is not invarient under this transformation. The Lagrangian, upto first order in \(\lambda\) changes as 
+    \begin{equation*}
+        \ld \to \ld + \lambda(x) \del_\mu(K^\mu) + \del_\mu(\lambda(x)) P^\mu
+    \end{equation*}
+    since these are the only terms that are Lorentz invariant and first order in \(\lambda\).\\
+    The action transforms as 
+    \begin{align*}
+        S \to &S + \int d^4x~ \lambda(x) \del_\mu(K^\mu) + \del_\mu(\lambda(x)) P^\mu\\
+        = & S + \int d^4x ~ \lambda(x) \del_\mu (K^\mu - P^\mu)
+    \end{align*}
+    On solutions to equations of motions, the action should be invariant under these transformations too. Therefore 
+    \begin{equation*}
+        \del_\mu (K^\mu - P^\mu) = 0
+    \end{equation*}
+    Now what is \(P^\mu\)? \\
+    Under the given transformation, the Lagrangian changes as 
+    \begin{equation*}
+        \ld \to \ld + \left( \frac{\delta \ld}{\delta \phi}\lambda(X) D\phi +  \frac{\delta \ld}{\delta \del_\mu \phi} \del_\mu(\lambda(x) D\phi) \right)
+    \end{equation*}
+    from which we can see that \(P^\mu\) is simply the part that multiplies to \(\del_\mu \lambda(x)\), which is 
+    \begin{equation*}
+        P^\mu = \frac{\delta \ld}{\delta \del_\mu \phi} D\phi
+    \end{equation*}
+
+    \subsection{Applications}
+    Let us look at some applications of the Noether's theorem
+    \subsubsection{Spacetime translations}
+    Consider \(x^\mu \to x^\mu + a^\mu\).\\
+    When \(\ld\) doesn't explicitly depend on position, this is a symmetry. In the language of fields, this transformation is 
+    \begin{equation*}
+        \phi \to \phi + \lambda \del_\mu \phi^\mu 
+    \end{equation*}
+    where \(\lambda\) is just to keep track of orders.\\
+
+    Since \(\ld\) is a Lorentz scalar, 
+    \begin{equation*}
+        \ld \to \ld + \lambda a^\mu \del_\mu \ld \implies K^\mu =  a^\mu \ld
+    \end{equation*}
+
+    Therefore, the conserved current is 
+    \begin{equation*}
+        j^\mu = \frac{\delta \ld}{\delta \del_\mu \phi}a^\nu  \del_\nu \phi  - a^\nu \delta_\nu^\mu \ld
+    \end{equation*}
+    Now this current is conserved for all possible \(a^\mu\) which means that 
+    \begin{equation*}
+        T_\nu^\mu = \frac{\delta \ld}{\delta \del_\mu \phi} \del_\nu \phi  -  \delta_\nu^\mu \ld \implies T^{\mu\nu} = \frac{\delta \ld}{\delta \del_\mu \phi} \del^\nu \phi  -  \eta^{\mu\nu} \ld
+    \end{equation*}
+    must be conserved. This is called stress-energy tensor and this is conserved. Let us check what this is for few cases 
+    \begin{equation*}
+        T^{00} = \frac{\delta \ld}{\delta \dot{\phi}}  \dot{\phi} - \ld = \mathcal{H}
+    \end{equation*}
+    which is the Hamiltonian density. Integrating this over all space gives the Hamiltonian which is the energy, and this shows that energy is conserved.
+    \begin{equation*}
+        T^{0i} = \frac{\delta \ld}{\delta \dot{\phi}} \del^i \phi
+    \end{equation*}
+    the corresponding conserved charge is 
+    \begin{equation*}
+        P^i =  \int d^3\textbf{x} \frac{\delta \ld}{\delta \dot{\phi}} \del^i \phi
+    \end{equation*}
+    which is nothing but the spatial momentum in \(i\)th direction as we had defined previously. The stress tensor therefore gives \(4\) conserved charges (we need to keep \(\mu = 0\) and integrate, and there are \(4\) choice of \(\nu\)) which are energy and the three components of momentum.\\ 
+
+    The formula for stress-tensor is not manifestly symmetric in \(\mu\) and \(\nu\), but we can use the ambiguity that we discussed to subtract the antisymmetric part and make it symmetric. But in most cases of physical interest, stress-tensor is explicitly symmetric.
 
     
 
