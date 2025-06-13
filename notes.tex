@@ -3,11 +3,12 @@
 \usepackage[margin=0.75in]{geometry}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{tensor}
 
 \usepackage{setspace}
 \usepackage{braket}
 \usepackage{tikz-feynman}
-\usetikzlibrary{patterns, decorations.markings}
+\usetikzlibrary{patterns, decorations.markings, positioning}
 
 \usepackage{xcolor}
 \usepackage[colorlinks=true, urlcolor=blue, linkcolor=blue]{hyperref}
@@ -916,6 +917,228 @@
 
     The formula for stress-tensor is not manifestly symmetric in \(\mu\) and \(\nu\), but we can use the ambiguity that we discussed to subtract the antisymmetric part and make it symmetric. But in most cases of physical interest, stress-tensor is explicitly symmetric.
 
-    
+    \subsubsection{Lorentz transformation}
+    Lorentz transformation 
+    \begin{equation*}
+        \tilde{x}^\mu = \Lambda\indices{^\mu_\nu} x^\nu
+    \end{equation*}
+    The requirement is that the transformation preserves vector inner products 
+    \begin{equation*}
+        \tilde{x}^\mu\tilde{y}^\nu \eta_{\mu\nu} = x^\mu y^\nu \eta_{\mu\nu} \implies \Lambda\indices{^\rho_\mu} \Lambda\indices{^\sigma_\nu} \eta_{\rho\sigma} =\eta_{\mu\nu} 
+    \end{equation*}
+
+    An infinitesimal transformation of \(x\) would be 
+    \begin{equation*}
+        x^\mu \to x^\mu + \lambda \epsilon\indices{^\mu_\nu} x^\nu
+    \end{equation*}
+    For this to be a Lorentz transformation 
+    \begin{align*}
+        &(x^\mu + \lambda \epsilon\indices{^\mu_\nu} x^\nu)(y_\mu + \lambda \epsilon\indices{_\mu_\nu} y^\nu) = x^\mu y_\mu \\
+        \implies & x^\mu y_\mu + \lambda \epsilon\indices{^\mu_\nu} x^\nu y_\mu + \lambda\epsilon_{\mu\nu}x^\mu y^\nu + O(\lambda^2) = x^\mu y_\mu\\
+        \implies & \epsilon_{\mu\nu}x^\nu y^\mu + \epsilon_{\mu\nu} x^\mu y^\nu = 0
+    \end{align*}
+    Now since in the first term, \(\mu\) and \(\nu\) are dummy indices, we can interchange them to get 
+    \begin{equation*}
+        \left(\epsilon_{\nu\mu}+ \epsilon_{\mu\nu}\right) x^\mu y^\nu = 0\implies  \epsilon_{\nu\mu}= - \epsilon_{\mu\nu}
+    \end{equation*}
+    Which implies that the \(\epsilon_{\mu\nu}\) is an antisymmetric tensor. (Notice that this would not work if we compare tensors with one upper and one upper index). There are 6 components to the antisymmetric tensor, and therefore 6 conserved currents — three for boosts and three for rotations. As an example consider \(\epsilon_{01} = 1,~\epsilon_{10} = -1\) rest all 0. Under this 
+    \begin{equation*}
+        \delta x^0 = \lambda x^1,~~\delta x^1 = \lambda x^0
+    \end{equation*}
+    which are infinitesimal boosts. If \(\epsilon_{12} = 1,~\epsilon_{21} = -1\), then 
+    \begin{equation*}
+        \delta x^1 = -\lambda x^2,~~\delta x^2 = \lambda x^1
+    \end{equation*}
+    This is an infinitesimal rotation. \\
+
+    Under Lorentz transformation, the fields transform as 
+    \begin{equation*}
+        \delta x^\mu = \lambda \epsilon\indices{^\mu_\nu} x^\nu \implies \delta \phi =\lambda \del_\mu \phi \epsilon\indices{^\mu_\nu} x^\nu
+    \end{equation*}
+
+    Under this kind of transformation, the lagrangian density also transforms as 
+    \begin{equation*}
+        \delta \ld = \lambda (\del_\mu \ld) \epsilon\indices{^\mu_\nu} x^\nu 
+    \end{equation*}
+    Now since \(\del_\mu (\epsilon\indices{^\mu_\nu} x^\nu) = \delta\indices{^\nu_\mu}\epsilon\indices{^\mu_\nu} = \eta^{\mu\nu}\epsilon_{\mu\nu} = 0\) (\(\because\) \(eta\) is symmetric and \(\epsilon\) is antisymmetric) \textcolor{red}{(another way to look at this is that \(\delta\indices{^\nu_\mu}\epsilon\indices{^\mu_\nu} = \mathrm{Tr}\epsilon = 0\))} we can add this term to make the change in lagrangian density a total derivative 
+    \begin{equation*}
+        \delta ld = \lambda \del_\mu (\ld \epsilon\indices{^\mu_\nu} x^\nu)
+    \end{equation*}
+    To proceed, let us consider an explicit example of a theory, the lagrangian density we have already considered. For this theory, 
+    \begin{equation*}
+        \frac{\delta \ld}{\delta \del_\mu \phi} = \del^\mu \phi
+    \end{equation*}
+    and therefore, 
+    \begin{equation*}
+        j^\mu = \del^\mu \phi \del_\rho \phi \epsilon\indices{^\rho_\nu}x^\nu - \ld \epsilon\indices{^\mu_\nu} x^\nu
+    \end{equation*}
+    Since this should be conserved for all \(\epsilon\), we need to pull it out of the equation as 
+    \begin{equation*}
+        j^\mu = (\del^\mu \phi \del^\rho \phi x^\nu - \ld \eta\indices{^\rho^\mu} x^\nu)\epsilon\indices{_\rho_\nu}
+    \end{equation*}
+    The conserved current is therefore the antisymmetric part of 
+    \begin{equation*}
+        \del^\mu \phi \del^\rho \phi x^\nu - \ld \eta\indices{^\rho^\mu} x^\nu
+    \end{equation*}
+    since the derivative of the symmetric part is identically zero, owing to the presence of \(\epsilon\). Therefore the conserved current is 
+    \begin{equation*}
+        M^{\mu\nu\rho} = (\del^\mu \phi \del^\rho \phi x^\nu - \ld \eta\indices{^\rho^\mu} x^\nu) - (\rho\leftrightarrow \nu)
+    \end{equation*}
+    There are 6 possible choices of \(\rho\) and \(\nu\) for the antisymmetric part, and therefore 6 conserved currents. \\
+
+    The above quantity is exactly equal to 
+    \begin{equation*}
+        M^{\mu\nu\rho} = x^\nu T^{\mu\rho} - x^\rho T^{\mu\nu}
+    \end{equation*}
+    where \(T\) is the stress tensor. The six conserved charges are 
+    \begin{equation*}
+        Q^{\nu\rho} = \int  x^\nu T^{0\rho} - x^\rho T^{0\nu} d^3\textbf{x}
+    \end{equation*}
+
+    The different cases —\\
+    \begin{equation*}
+        Q^{ij} = \int  x^i T^{0j} - x^j T^{0i} d^3\textbf{x}
+    \end{equation*}
+    This is angular momentum associated with the plane of rotation \(ij\).
+    \begin{equation*}
+        Q^{0i} = \int  x^0 T^{0i} - x^i T^{00} d^3\textbf{x}
+    \end{equation*}
+    Let us write it in a slightly different way. \(\int T^{01} d^3\textbf{x} = P^i\), meaning 
+    \begin{equation*}
+        Q^{0i} = tP^i - \int x^i T^{00} d^\textbf{x}
+    \end{equation*}
+    Differentiating with respect to time (and using momentum is conserved),
+    \begin{equation*}
+        P^i - \frac{d}{dt} \int x^i T^{tt} d^3\textbf{x} = 0 \implies P^i - \left(\int  T^{tt}d^3\textbf{x} \right)\times \frac{d}{dt} \frac{\int x^i T^{tt} d^3\textbf{x}}{\int  T^{tt} d^3\textbf{x}}
+    \end{equation*}
+    Since \(T^{tt}\) is simply the mass density, the integral in the brackets is simply the total mass, and the object getting differentiated is the position of the center of mass. That is 
+    \begin{equation*}
+        P^i = M\frac{d}{dt} x^i_{COM}
+    \end{equation*}
+    which is just the classical defninition of momentum. 
+
+    \subsubsection{Internal Symmetries}
+    So far we discussed transformations in \(\phi\) due to changes to spacetime. Now we will discuss something different. Consider a theory with two fields, 
+    \begin{equation*}
+        \ld = \frac{1}{2} (\del_\mu \phi_1)^2 + \frac{1}{2} (\del_\mu \phi_1)^2 - \frac{m^2}{2} \phi_1^2-\frac{m^2}{2} \phi_2^2
+    \end{equation*} 
+    This theory has a continous symmetry under rotations of \(\phi_1\) into \(\phi_2\), i.e. 
+    \begin{equation*}
+        \phi_1 \to \cos\theta \phi_1 - \sin\theta \phi_2,~~ \phi_2\to \cos\theta \phi_2 + \sin\theta \phi_1
+    \end{equation*}
+    This transformation leaves the lagrangian density unchanged. \\
+    infinitesimally, the above transformation looks like 
+    \begin{equation*}
+        \delta \phi_1 = - \phi_2,~~\delta \phi_2 = \phi_1
+    \end{equation*}
+    The associated current is 
+    \begin{equation*}
+        j^\mu =  \phi_1 \del^\mu \phi_2 - \phi_2 \del^\mu \phi_1
+    \end{equation*}
+    The associated charge is 
+    \begin{equation*}
+        Q = \int \phi_1 \del^0 \phi_2 - \phi_2 \del^0 \phi_1 d^3\textbf{x}
+    \end{equation*}
+    Charges like electric charge etc.\ are of this form. \\
+
+    These fields are real fields. However we can combine these two into one complex object as
+    \begin{equation*}
+        \chi = (\phi_1 + i\phi_2)\frac{1}{\sqrt{2}},~~\chi^* = (\phi_1 - i\phi_2)\frac{1}{\sqrt{2}}
+    \end{equation*}
+    With this, 
+    \begin{equation*}
+        \frac{1}{2}(\phi_1^2 + \phi_2^2) = |\chi|^2
+    \end{equation*}
+    and 
+    \begin{equation*}
+        \frac{1}{2} ((\del_\mu \phi_1)^2 + (\del_\mu \phi_2)^2) = |\del_\mu \chi|^2
+    \end{equation*}
+    Therefore, the Lagrangian density becomes
+    \begin{equation*}
+        \ld = |\del_\mu \chi|^2 - m^2 |\chi|^2
+    \end{equation*}
+    In this language, the symmetry is
+    \begin{equation*}
+        \chi \to \e^{i\alpha} \chi,~~\chi^* \to \e^{-i\alpha}\chi^*
+    \end{equation*}
+    The corresponding current is 
+    \begin{equation*}
+        j^\mu = i((\del_\mu \chi^*) \chi - (\del_\mu\chi)\chi^*)
+    \end{equation*}
+    Since \(phi_1\) and \(\phi_2\) transformed into each other, they are not the fields corresponding to particles of positive and negative charges.\ \(\chi\) and \(\chi^*\) are the fields that correspond to particles of positive and negative charges. This is an example of \(U(1)\) internal symmetry. We can have theories with more elaborate symmetries like \(SU(N), Sp(N)\) etc.
+
+    \newpage 
+    \section{The Interaction Picture}
+    So far, we discussed free field theories, and we want to extend our discussions interacting theories. Before that, let us discuss what kind of questions can we ask in the presence of interactions. \\
+
+    The most general kind of question would be 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[>=Latex,node distance=5.5cm]
+            \node[draw, rectangle, minimum width=3cm, minimum height=1cm] (A) {Prepare a state \(\ket{\psi}\)};
+            \node[draw, rectangle, right of=A, minimum width=3cm, minimum height=1cm] (B) {Create a disturbance at \(x\)};
+            \node[draw, rectangle, right of=B, minimum width=3cm, minimum height=1cm] (C) {Measure its effect at \(y\)};
+
+            % Draw the arrows
+            \draw[->] (A) -- (B);
+            \draw[->] (B) -- (C);
+
+        \end{tikzpicture}
+    \end{figure}
+
+    However, it turns out that in QFT, although we can ask these questions, a lot of focus is on slightly \textit{simpler} questions.\\
+    The simpler question is 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[>=Latex, every node/.style={font=\small, align=center}]
+
+            % Left and right text
+            \node (in) at (-6.5,0) {Prepare free particles\\in far past};
+            \node (out) at ( 6.5,0) {Some free particles \\in far future};
+
+            \draw[dashed] (-4.5, -1.5) -- (-4.5, 1.5);
+            \draw[dashed] (4.5, -1.5) -- (4.5, 1.5);
+
+            \node[ellipse, draw, thick,
+                minimum width=5cm, minimum height=2.5cm] (proc) 
+            at (0,0) {Allow to interact};
+
+            % Converging arrows (left → centre)
+            %   start at (-6, +2),(-6,0),(-6,-2)
+            %   end at proc.west + (0,+1),(0,0),(0,-1)
+            \foreach \sy/\ey in {1.5/0.75, 0/0, -1.5/-0.75} {
+                \draw[->] (-4,\sy) -- ($(proc.west)+(0,\ey)$);
+            }
+
+            % Diverging arrows (centre → right)
+            %   start at proc.east + (0,+1),(0,0),(0,-1)
+            %   end at (6,+2),(6,0),(6,-2)
+            \foreach \ey/\sy in {0.75/1.5, 0/0, -0.75/-1.5} {
+                \draw[->] ($(proc.east)+(0,\ey)$) -- (4,\sy);
+            }
+
+        \end{tikzpicture}
+    \end{figure}
+
+    That is, we create free particles in far past, let them evolve and interect, and ask what are the free particles and their properties in far future. This kind of question is answered by something called the \(S\) matrix. One might think that this is less general than the other question, but in fact it turns out that it has all the information we want to have about the theory. \\
+
+    Why we talk about \(S\) matrix?
+    \begin{enumerate}
+        \item Experiments — most physics we learn from experiments is from this kind of experiments. 
+        \item Theoretical reasons — two theoretical reasons \begin{itemize}
+            \item \(S\) matrix is an unambigously decided observable. That is if we ask the question like what is the correlator 
+            \begin{equation*}
+                \braket{\psi | \phi(x_1) \cdots \phi(x_n)| \psi}
+            \end{equation*}
+            this is very ambigous. This is because in interacting theory, there is no unambigous \textit{definition} of field. One can always redefine the fields at the cost of adding interaction terms, without altering the physical content of the theory. When the fields are free and don't interact, there is 'a' free field, and field redefinitions do not obey the equations of motions whereas the original field obeys. But in case of interacting theories, no fields obey the equation of motion, and therefore there is no more unique field.\\
+            There is a class of field theories called conformal field theories, where there are other principles that allows one to uniquely identify field variables even in the case of interactions, and there we can talk about the first type of questions. But in general \(S\) matrix is unambigously defined since all we talk about is free theories in far past and future.
+            \item In Quantum Gravity, maybe only the \(S\) matrix makes sense. The reason for that is that the first type of questions involve some local questions about what happens in some local regions of spacetime, and when the metric itself is fluctuating and spacetime itself is fluctuating, such questions are not well defined. But when we ask the second type of questions, in far past and future, where such fluctuations are not present, it is perfectly well defined. 
+        \end{itemize}
+    \end{enumerate}
+
+    Therefore there are good reasons to consider the \(S\) matrix. Now we develop the machinery needed to calculate these \(S\) matrices.
+
+
+
 
 \end{document}
