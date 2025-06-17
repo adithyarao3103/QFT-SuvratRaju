@@ -1068,8 +1068,13 @@
     Since \(phi_1\) and \(\phi_2\) transformed into each other, they are not the fields corresponding to particles of positive and negative charges.\ \(\chi\) and \(\chi^*\) are the fields that correspond to particles of positive and negative charges. This is an example of \(U(1)\) internal symmetry. We can have theories with more elaborate symmetries like \(SU(N), Sp(N)\) etc.
 
     \newpage 
-    \section{The Interaction Picture}
-    So far, we discussed free field theories, and we want to extend our discussions interacting theories. Before that, let us discuss what kind of questions can we ask in the presence of interactions. \\
+    \section{Interactions}
+
+    \textcolor{red}{Free field theory — theory whose Lagrangian density has only terms that are quadratic in fields. These are exactly solvable, as we did previously. Interacting theory — introducing any other in the Lagrangian will lead to interactions between the different fields or with itself.}\\
+
+    So far, we discussed free field theories, and we want to extend our discussions interacting theories. Before that, let us discuss what kind of questions can we ask in the presence of interactions. 
+
+    \subsection{The \(S-\)matrix}
 
     The most general kind of question would be 
     \begin{figure}[h]
@@ -1085,6 +1090,8 @@
 
         \end{tikzpicture}
     \end{figure}
+    
+    Such questions are answered by computing the correlators of the form — \(\braket{0|\phi(x_1)\cdots\phi(x_n)|0 }\).\\
 
     However, it turns out that in QFT, although we can ask these questions, a lot of focus is on slightly \textit{simpler} questions.\\
     The simpler question is 
@@ -1136,9 +1143,214 @@
         \end{itemize}
     \end{enumerate}
 
-    Therefore there are good reasons to consider the \(S\) matrix. Now we develop the machinery needed to calculate these \(S\) matrices.
+    Therefore there are good reasons to consider the \(S\) matrix. Now we develop the machinery needed to calculate these \(S\) matrices. 
 
+    \subsection{The Interaction Hamiltonian}
+    For an interacting theory, the Hamiltonian looks like 
+    \begin{equation*}
+        H = H_0 + H_{\text{int}}
+    \end{equation*}
+    where \(H_0\) is the free part, and \(H_{\text{int}}\) is the interacting part. \\
+    To make the intuition more precise, one can also consider adding a \textit{turning on-off function} \(f(t)\) such that 
+    \begin{equation*}
+        H = H_0 + f(t) H_{\text{int}}
+    \end{equation*}
+    and \(f(t)\) is such that it starts at \(0\) at \(-\infty\) and it rapidly rises to \(1\), stays \(1\) for a long time, and then dies off rapidly to \(0\) again at \(\infty\). The purpose of this function is to make the Hamiltonian free in far past and far future, while keeping the interactions turned on in between. It is often not necessary to think of this turning on-off function if we talk about the right initial and final states, i.e.\ if we discuss about particles that separate sufficiently as we go in the far future/past, the \textit{turning off} of interactions automatically happens.\\
 
+    If we call fields in the far past \(\phi_{in}\) and fields in far future \(\phi_{out}\), we can take these fields and act them on the vacuum, we can create free particles in far past and far future. We get two Fock spaces, corresponding to \(\phi_{in}\) and \(\phi_{out}\)
+    \begin{align*}
+        &\mathbb{H}_{in} = \mathrm{span} \{ \ket{0}, \ket{\textbf{k}}, \ket{\textbf{k}_1, \textbf{k}_2}, \cdots \}\\
+        &\mathbb{H}_{out} = \mathrm{span} \{ \ket{0}, \ket{\textbf{k}}, \ket{\tilde{\textbf{k}}_1, \tilde{\textbf{k}}_2}, \cdots \}
+    \end{align*}
+    The vacuum in both the spaces are the same as they both are the vacuum of the same \(H_0\). The one particle states are also the same, as required by the conservation of momentum. However, the higher particle states are not necessarily the same. That is, if we started with a single particle in the far past with momentum \(\textbf{k}\), it is necessary that in the far future the momentum is still \(\textbf{k}\). But this is not the case in case of multi-particle states, where a state with momentum \((\textbf{k}_1, \textbf{k}_2, \cdots)\) can transform into the state \((\tilde{\textbf{k}}_1, \tilde{\textbf{k}}_2, \cdots)\) as long as the energy-momentum is conserved. \\
+    We can immediately see that 
+    \begin{equation*}
+        \indices{_{in}}\braket{0|0}_{out} = 1
+    \end{equation*}
+    \begin{equation*}
+        \indices{_{in}}\braket{\textbf{k} | \tilde{\textbf{k}}}_{out} = (2\pi)^3\delta(\textbf{k} - \tilde{\textbf{k}})
+    \end{equation*} 
+    and there the non-trivial matrix elements are 
+    \begin{equation*}
+       \indices{_{in}}\braket{\textbf{k}_1, \textbf{k}_2, \cdots | \tilde{\textbf{k}}_1, \tilde{\textbf{k}}_2, \cdots}_{out}
+    \end{equation*}
+    where the number of momenta in the in states need not be equal to the number of momenta in the out space. That is, we can have a one particle state going to a two particle state and so on too. \\
+
+    These two \(\mathbb{H}\) spaces should be related by unitary transformation, since we have one description that describes all degrees of freedom in far past and another description for the far future, it is necessary, for the probabilities to be conserved, that they both are related by a unitary transformation. If we tell all the matrix elements we discussed above, we know what the unitary transformation is. And it is this matrix that is called the \(S-\)matrix. The \(S-\)matrix is a particular limit of the correlation functions \(\braket{0|\phi(x_1) \cdots \phi(x_n)|0}\), with some \(t\) taken to \(-\infty\) and some to \(+\infty\), and this limit is given by the LSZ formula. \\
+
+    To compute the \(S-\)matrix, we need the time evolution operator, \(U(-\infty, \infty)\). Obtaining this operator exactly is not possible in most interacting field theories, and therefore we need to resort to a perturbation theory. One tool we use to calculate this is called the interaction picture. 
+
+    \subsection{The Interaction Picture}
+    In the Schrodinger picture, the observables do not evolve, but the states evolve. That is 
+    \begin{align*}
+        \ket{\psi} &\to \e^{-iHt}\ket{\psi}\\
+        O &\to O 
+    \end{align*}
+    In QFT, the observables are the fields, and terefore, we fix a time slice, lets say \(t=0\) and call all the fields \(\phi(0, \textbf{x})\) in this time slice as observables. \\
+
+    In the Heisenberg picture, which is little more natural in field theory, and therefore is the picture in which we had our discussions so far, the states do not evolve, but the operators do. 
+    \begin{align*}
+        \ket{\psi} &\to \ket{\psi}\\
+        O &\to \e^{iHt}O\e^{-iHt}
+    \end{align*}
+    In this description, as we have already seen, the operators are \(\phi(t, \textbf{x}) \equiv \phi(x)\). This is more natural because we are concerned with observations in different times, and for someone at a later time \(t\), it doesn't make sense to discuss observations in terms of the operators \(\phi(0, \textbf{x})\). \\
+
+    In the interaction picture, we solve exactly for the free part of the Hamiltonian and perturbatively for the interacting part. In this picture, we introduce a new operator 
+    \begin{equation*}
+        O_I (t) = \e^{iH_0 t}O(0) \e^{-iH_0 t}
+    \end{equation*}
+    which evolves according to the free Hamiltonian.\\
+
+    To find its relation to the Heisenberg picture operator, we first undo the evolution by free Hamiltonian and then evolve it according to the full Hamiltonian, i.e.
+    \begin{equation*}
+        O_H(t) =
+        \underbrace{e^{i H t} e^{-i H_0 t} }_{U_I^\dagger(t)}
+        \;
+        \overbrace{e^{i H_0 t}O(0)e^{-i H_0 t}}^{O_I(t)}
+        \;
+        \underbrace{ e^{i H_0 t} e^{-i H t}}_{U_I(t)}
+    \end{equation*}
+    \(U_I(t)\) is a unitary operator, but is different from the regular time evolution operator. To see why this is useful, see that the equation of motion it follows is
+    \begin{equation*}
+        \frac{d}{dt}U_I(t) = \e^{iH_0t}(iH_0)\e^{-iHt} + \e^{iH_0t} (-iH) \e^{-iHt}
+    \end{equation*}
+    (notice that \(H\) and \(H_0\) do not necessarily commute, also \(H_0\) and \(H_{\text{int}}\) are time independent. It is \((H_0)_I\) and \((H_{\text{int}})_I\) that are time dependent).\\
+    This is equal to 
+    \begin{align*}
+        \frac{d}{dt}U_I(t)&= -i\e^{iH_0t} (H- H_0) \e^{-iHt}\\
+        &=-i\e^{iH_0t} (H- H_0) \e^{-iH_0t} \e^{iH_0t}\e^{-iHt}\\
+        &=-i(H_{\text{int}})_I(t) U_I(t)
+    \end{align*}
+    This equation is similar to the one satisfied by the regular time evolution operator, but with \(H_{\text{int}}\) instead of the full Hamiltonian. \\
+
+    To see why this is a very important picture, let us consider adding a term \(\lambda\phi^4(x)\). When we make the split between \(H_0\) and \(H_{\text{int}}\), we need to choose a specific time, since these terms can mix with time when evolved under the full Hamiltonian. Let us therefore consider the splitting at time \(t=0\)
+    \begin{equation*}
+        H_{\text{int}} = \int d^3\textbf{x} ~\lambda \phi(0, \textbf{x})^4
+    \end{equation*}
+
+    For this interaction, 
+    \begin{equation*}
+        i\frac{d}{dt}U_I(t) = \lambda \e^{iH_0t}  \int d^3\textbf{x} ~\lambda \phi(0, \textbf{x})^4 \e^{-iH_0t} U_I(t)
+    \end{equation*}
+    But 
+    \begin{equation*}
+        \e^{iH_0t}  \int d^3\textbf{x} ~\lambda \phi(0, \textbf{x})^4 \e^{-iH_0t} = \int d^3\textbf{x}~\lambda \phi(t, \textbf{x})^4
+    \end{equation*}
+    where now the fields evolve according to the free Hamiltonian, and we already know the explicit expression for the interaction picture fields at time \(t\). That is, this equation converts everything in terms of interaction picture at time \(t\).\\
+
+    But there is a problem, the equation of motion for the actual time evolution operator depends on \(H\) which is the full Hamiltonian, and is therefore a time independent quantity. But in the above equation \((H_{\text{int}})_I(t)\) is also a time dependent quantity, and therefore we need to treat it carefully.
+
+    \subsection{The Time Evolution Operator}
+    In the case of the complete Hamiltonian, the actual time evolution operator also follows
+    \begin{equation*}
+        \frac{d}{dt}U(t) = -iHU(t)
+    \end{equation*}
+    In this case, the \(H\) is time independent, and the equation has a solution 
+    \begin{equation*}
+        U(t) = \e^{-i\int_0^t Hdt'} = \e^{-iHt} \because ~H \text{ is time independent.}
+    \end{equation*}
+    Let us try to solve the previously discussed equation by (wrongly) assuming that the solution in this case too is an exponential, and seeing where it goes wrong. Let us guess (from now on we simply write \(H_I(t)\) for \((H_\text{int})_I(t)\))
+    \begin{equation*}
+        U^g(t) = \e^{-i\int_0^{t} H_I(t') dt'}
+    \end{equation*} 
+    where the superscript \(g\) stands for guess. Expanding this in Taylor series, 
+    \begin{equation*}
+        U^g(t) = 1 - i\int_0^t H_I(t') dt' - \frac{1}{2} \int_0^t H_I(t') dt' \int_0^t H_I(t'') dt'' + \cdots
+    \end{equation*}
+    We can now check if this satisfies the above equation by taking the time derivative
+    \begin{equation*}
+        \frac{d}{dt}U^g(t) = -iH_I(t) - \frac{1}{2} H_I(t) \left(\int_0^t H_I(t')dt'\right) - \frac{1}{2} \left(\int_0^t H_I(t') dt'\right) H_I(t) + \cdots
+    \end{equation*}
+    Now if \(H_I(t)\) commuted with \(H_I(t')\), we could have moved the \(H_I(t)\) to the left in the third term and add it to the second term to form \(H_I(t) \int_0^t H_I(t')dt'\), and this expression would be the right expression for \(U_I\). But since they do not commute, we cannot do such a manipulation. We face similar problems for all higher order powers, and therefore our guess for the time evolution operator is not the right one.\\
+
+    We can fix this by considering the following expression
+    \begin{align*}
+        U_I(t) = 1 + (-i)\int_0^t H_I(t') dt' &+ (-i)^2 \int_0^t H_I(t') \int_0^{t'} H_I(t'') dt''dt' \\
+        &+ (-i)^3 \int_0^t H_I(t') \int_0^{t'} H_I(t'') \int_0^{t''} H_I(t''')dt'''  dt''dt' \cdots
+    \end{align*}
+    (The individual integral limits are now changed, they are not all \(t\) anymore. Also there are no \(\frac{1}{n!}\) accompanying each terms). \\
+    When differentiating this, we get 
+    \begin{align*}
+        \frac{d}{dt}U_I(t) &= -i H_I(t) + (-i)^2 H_I(t) \int_0^t H(t'')dt'' + (-i)^3 H_I(t) \int_0^{t} H_I(t'') \int_0^{t''} H_I(t''')dt''' \cdots\\
+        &= -iH_I(t) U_I(t)
+    \end{align*}
+    which is the required equation. \\
+
+    We can rewrite this in a slightly compact way by introducing \textit{time ordering}. The above equation has the property that operators later in time are on the left, i.e. if \(t' > t''\), then in the expansion \(H(t')\) will always be to the left of \(H(t'')\). \\
+    
+    \textcolor{red}{
+        To see this explicitly, consider a discretized version of the double integral of the above form 
+        \begin{equation*}
+            \sum_0^t H(a) \sum_0^a H(b)
+        \end{equation*}
+        Upon expanding the series we get 
+        \begin{equation*}
+            H(0)H(0) + H(1)[H(0) + H(1)] + H(2)[H(0) + H(1) + H(2)] + \cdots + H(t)[H(0) + \cdots + H(t)]
+        \end{equation*}
+        See that at no point in the entire expansion we had a term of the form \(H(a) H(b)\) with \(a<b\).\\
+    }
+
+    It is convenient to introduce the notion of time ordering which is defined as 
+    \begin{equation*}
+        T(A(t_1, \textbf{x})B(t_2, \textbf{y})) = \begin{cases}
+            A(t_1, \textbf{x})B(t_2, \textbf{y}) &: t_1 > t_2\\
+            B(t_2, \textbf{y})A(t_1, \textbf{x}) &: t_2 > t_1
+        \end{cases}
+    \end{equation*}
+    Using this, we can write the above expression as 
+    \begin{equation*}
+        U_I(t) = 1 - i\int_0^t T(H(t')) dt' + (-i)^2 \int_0^t \int_0^{t'} T(H(t')H(t''))dt''dt' + \cdots
+    \end{equation*}
+    This is the expression we already had above, it was already time ordered, we just made it explicit here, without changing anything. We can see that (considering specifically the double integral), the integral runs \(dt'\) from \(0\) to \(t\), and \(t''\) from \(0\) to \(t'\). That is, we are integrating over the region 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[scale=0.85]
+            % axes
+            \draw[->] (0,0) -- (5,0) node[right] {$t'$};
+            \draw[->] (0,0) -- (0,5) node[above] {$t''$};
+            % t'=t'' line
+            \draw[thick] (0,0) -- (4,4) node[above right] {$t'=t''$};
+            % define base length t (adjust as needed)
+            \def\t{3}
+            % shaded triangle using vertical line pattern
+            \draw[pattern=vertical lines,pattern color=black] (0,0) -- (\t,0) -- (\t,\t) -- cycle;
+            % optional: mark point at (t,0) and (t,t)
+            \filldraw (\t,0) circle (1pt) node[below] {$(t,0)$};
+            \filldraw (\t,\t) circle (1pt) node[right] {$(t,t)$};
+        \end{tikzpicture}
+    \end{figure}
+
+    We can also have the \(t''\) integration to go from \(0\) to \(t\), since we are explicitly enforcing time ordering, we will get the same expression but twice. (Think carefully about this, if there were no time ordering, this manipulation would not be possible, since for the upper triangle, we would be having the products wrongly ordered. The presence of time ordering allows one to extend the integral without altering its value.) Similarly, we can extend all the integrals to \(t\), while being reassured by the time ordering that we are getting consistent results, while dividing by \(n!\) which removes the factor of adding over all the possible arrangements of the \(n\) dummy variables. Therefore, we can write the above also as 
+    \begin{equation*}
+        U_I(t) = 1 - i\int_0^t T(H(t')) dt' + (-i)^2 \frac{1}{2!}\int_0^t \int_0^t T(H(t')H(t''))dt''dt' + \cdots
+    \end{equation*}
+
+    \textcolor{red}{
+        Let us again explicitly see this in the case of the discrete sum 
+        which now would be rewritten as 
+        \begin{equation*}
+            \sum_0^t \sum_0^t T(H(a) H(b))
+        \end{equation*}
+        This would be equal to 
+        \begin{align*}
+            &\sum_{a>b} H(a)H(b) + \sum_{a<b}H(b)H(a) + \sum_{a=b}H(a)^2
+        \end{align*}
+        Since the first two sums are equal, we get 
+        \begin{equation*}
+            2\sum_{a>b} H(a)H(b) + \sum_{a=b}H(a)^2
+        \end{equation*}
+        In continuum, the diagonal term has zero measure and drops out, and therefore, we will be left with twice the intended integral as expected.\\
+    }
+
+    Therefore 
+    \begin{equation*}
+        U_I(t) = \sum_{n=0}^\infty \frac{(-i)^n}{n!} \left(\int_0^t\right)^n T(H(t_1) H(t_2) \cdots H(t_n)) ~dt_1 dt_2 \cdots dt_n 
+    \end{equation*}
+    and there is a formal way to write this, called the Dyson's formula
+    \begin{equation*}
+        U_I(t) = T\left\{ \e^{-i\int_0^t H_I(t')dt'}  \right\}
+    \end{equation*}
+    What this means is that we expand the exponential in its Taylor series and then apply the time ordering to very term.
 
 
 \end{document}
