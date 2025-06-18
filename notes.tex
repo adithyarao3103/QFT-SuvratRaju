@@ -5,6 +5,8 @@
 \usepackage{amsmath}
 \usepackage{tensor}
 
+\usepackage{simpler-wick}
+
 \usepackage{setspace}
 \usepackage{braket}
 \usepackage{tikz-feynman}
@@ -1350,7 +1352,328 @@
     \begin{equation*}
         U_I(t) = T\left\{ \e^{-i\int_0^t H_I(t')dt'}  \right\}
     \end{equation*}
-    What this means is that we expand the exponential in its Taylor series and then apply the time ordering to very term.
+    What this means is that we expand the exponential in its Taylor series and then apply the time ordering to very term.\\
+
+    Given an operator in terms of the free fields \(\phi_I(t,\textbf{x})\), the above derived \(U_I(t)\) gives us a way to obtain the full Heisenberg picture operators. An inherent advantage is that this formula is already in the form of a power series in \(H_I\), and therefore naturally provides a perturbative series.
+
+    \newpage
+    \section{Wick's Theorem}
+    In general, what we want to compute is what the matrix elements of the above derived \(U_I(t)\) are, since this gives us the amplitudes for some in states going to some out states. In computing these matrix elements, we have to compute the matrix elements of the kind 
+    \begin{equation*}
+        \braket{\psi_1 | T[H_I(t_1),\cdots,H_I(t_n)]|\psi_2}
+    \end{equation*}
+    where \(\ket{\psi_1}\) and \(\ket{\psi_2}\) are the in and out states (we will later formulate these only in terms of vacuum expectation values, but it is more physically relevant to talk about these matrix elements). Once we know all these elements, we can sum them according to the Dyson's formula to get the matrix element of \(U_I\) which gives us the \(S-\)matrix. \\
+
+    The \(H_I(t)\) is some polynomial in \(\phi_I(t, \textbf{x})\), and therefore, the above expectation values reduce to calculating elements of the form 
+    \begin{equation*}
+        \braket{\psi_1 | T[\phi_I(x_1),\cdots,\phi_I(x_n)]|\psi_2}
+    \end{equation*}
+
+    Remember that the interaction picture fields are simply
+    \begin{equation*}
+        \phi_I(t,\textbf{x}) = \int \a{p}\e^{-ip\cdot x} + \adag{p}\e^{ip\cdot x} \frac{d^3\textbf{p}}{(2\pi)^3 \sqrt{2\w_\textbf{p}}}
+    \end{equation*}
+    and the above matrix values are simply matrix elements of the time ordered products of the fields of this kind. But see that the time ordered product is going to be a mess, to see why consider a simple case of three field insertions 
+    \begin{align*}
+        T[\phi(x_1)\phi(x_2)\phi(x_3)] =& ~\theta(x_1^0 - x_2^0)\theta(x_1^0 - x_3^0)\theta(x_2^0 - x_3^0) \phi(x_1)\phi(x_2)\phi(x_3) \\
+        &+  \theta(x_2^0 - x_1^0)\theta(x_2^0 - x_3^0)\theta(x_1^0 - x_3^0) \phi(x_2)\phi(x_1)\phi(x_3) \\
+        &+ \text{ 4 other terms}
+    \end{align*}
+    Each of the term above has further \(2^3\) terms since each field insertion has a creation and annihilation operator, and therefore the product of \(n\) such field insertions has \(2^n\) terms. This expression only gets more complicated for polynomials with more field insertions, which is natural in such interaction Hamiltonians, and therefore the entire matrix element is a mess. The tool that is used to simplify this mess is called the Wick's theorem.
+
+    \subsection{Contractions}
+
+    Earlier, we had encountered the normal ordering, which was simply an instruction to place all the annihilation operators on the right. We can extend this definition to the interaction picture field operators by expanding them in terms of creation and annihilation operators and normal order it. That is, 
+    \begin{equation*}
+        \phi_I(x) = \phi_I^+(x) + \phi_I^-(x)
+    \end{equation*}
+    where 
+    \begin{equation*}
+        \phi_I^+(x) = \int \a{p}\e^{-ip\cdot x} \frac{d^3\textbf{p}}{(2\pi)^3 \sqrt{2\w_\textbf{p}}}~~~~\&~~~~\phi_I^-(x) = \int \adag{p}\e^{ip\cdot x} \frac{d^3\textbf{p}}{(2\pi)^3 \sqrt{2\w_\textbf{p}}}
+    \end{equation*}
+    (which is taken by convention — positive frequency contains the annihilation operators and negative frequency contains the creation operators) then, 
+    \begin{align*}
+        \normord{\phi_I(x_1) \phi_I(x_2)} &= \normord{\phi_I^+(x_1)\phi_I^+(x_2)} + \normord{\phi_I^+(x_1)\phi_I^-(x_2)} + \normord{\phi_I^-(x_1)\phi_I^+(x_2)} + \normord{\phi_I^-(x_1)\phi_I^-(x_2)}\\
+        &= \phi_I^+(x_1)\phi_I^+(x_2) + \phi_I^-(x_2)\phi_I^+(x_1) + \phi_I^-(x_1)\phi_I^+(x_2) + \phi_I^-(x_1)\phi_I^-(x_2)
+    \end{align*}
+    (where only the second term is different from the regular product)
+    Notice that normal ordered product is NOT defined for operators in Heisenberg picture since in Heisrnberg picture in the presence of interactions, there is no splitting of the field into creation and annihilation operators. This ordering is only valid for interactin picture fields\\
+
+    We define a contraction as 
+    \begin{equation*}
+        \wick{\c \phi_I(x_1) \c \phi_I(x_2)} = T[\phi_I(x_1) \phi_I(x_2)] - \normord{\phi_I(x_1) \phi_I(x_2)}
+    \end{equation*}
+    The normal ordered product and time ordered product are operators, but contraction is just a number. We know that 
+    \begin{equation*}
+        T[\phi_I(x_1) \phi_I(x_2)] = \theta(x_1^0 - x_2^0) \phi_I(x_1) \phi_I(x_2) + \theta(x_2^0 - x_1^0) \phi_I(x_2) \phi_I(x_1)
+    \end{equation*}
+    and the normal ordered product is 
+    \begin{equation*}
+        \normord{\phi_I(x_1) \phi_I(x_2)} = \phi_I^+(x_1)\phi_I^+(x_2) + \phi_I^-(x_2)\phi_I^+(x_1) + \phi_I^-(x_1)\phi_I^+(x_2) + \phi_I^-(x_1)\phi_I^-(x_2)
+    \end{equation*}
+    we can simply insert a \(\theta\) function in the normal ordered product without altering it as 
+    \begin{align*}
+        \normord{\phi_I(x_1) \phi_I(x_2)} =& \theta(x_1^0 - x_2^0)\left[ \phi_I^+(x_1)\phi_I^+(x_2) + \phi_I^-(x_2)\phi_I^+(x_1) + \phi_I^-(x_1)\phi_I^+(x_2) + \phi_I^-(x_1)\phi_I^-(x_2) \right] \\
+         &+ \theta(x_2^0 - x_1^0)\left[ \phi_I^+(x_1)\phi_I^+(x_2) + \phi_I^-(x_2)\phi_I^+(x_1) + \phi_I^-(x_1)\phi_I^+(x_2) + \phi_I^-(x_1)\phi_I^-(x_2) \right]
+    \end{align*}
+    Then the difference in the two products would be (noticing that the only different term is the second term in the normal ordering)
+    \begin{align*}
+        \wick{\c \phi_I(x_1) \c \phi_I(x_2)} &= \theta(x_1^0 - x_2^0)\left( \phi_I^+(x_1)\phi_I^-(x_2) - \phi_I^-(x_2)\phi_I^+(x_1) \right) + \theta(x_2^0 - x_1^0) \left(  \phi_I^+(x_2)\phi_I^-(x_1) - \phi_I^-(x_1)\phi_I^+(x_2)  \right)\\
+        &=\theta(x_1^0 - x_2^0) [\phi_I^+(x_1), \phi_I^-(x_2)] + \theta(x_2^0 - x_1^0) [\phi_I^+(x_2), \phi_I^-(x_1)] 
+    \end{align*}
+    These commutators are only numbers, and not operators.
+
+    \subsection{The theorem}
+
+    Wick's theorem simply tell that 
+    
+    \begin{equation}
+            \begin{split}
+                T[\phi_I(x_1) \phi_I(x_2)& \cdots \phi_I(x_n)] = \normord{\phi_I(x_1) \phi_I(x_2) \cdots \phi_I(x_n)} + \normord{\wick{\c \phi_I(x_1) \c \phi_I(x_2)} \cdots \phi_I(x_n)} \\
+                &+ \normord{\wick{\c \phi_I(x_1) \phi_I(x_2)\c \phi_I(x_3)} \cdots \phi_I(x_n)} + \text{ other terms with 1 contraction}\\
+                &+ \normord{\wick{\c1 \phi_I(x_1) \c1 \phi_I(x_2) \c1 \phi_I(x_3) \c1 \phi_I(x_4)} \cdots \phi_I(x_n)} + \text{ other terms with 2 contractions}\\
+                &+ \cdots \text{ terms with 3 and more contractions}\\
+                &+ \begin{cases}
+                    \normord{\wick{\c1 \phi_I(x_1) \c1 \phi_I(x_2) \cdots \c1 \phi_I(x_{n-2}) \c1 \phi_I(x_{n-1})} \phi_I(x_n)} + \text{terms with only one uncontracted field } : n \text{ odd}\\
+                    \normord{\wick{\c1 \phi_I(x_1) \c1 \phi_I(x_2) \cdots \c1 \phi_I(x_{n-1}) \c1 \phi_I(x_{n})}} + \text{terms with no uncontracted field } : n \text{ even}
+                \end{cases}
+            \end{split}
+            \label{eq:wick}
+    \end{equation}
+    As an example, 
+    \begin{align*}
+        T[\phi_I(x_1) \phi_I(x_2) \phi_I(x_3)\phi_I(x_4)] =& \normord{\phi_I(x_1) \phi_I(x_2) \phi_I(x_3)\phi_I(x_4)} + \normord{\wick{\c\phi_I(x_1) \c\phi_I(x_2) \phi_I(x_3)\phi_I(x_4)}}\\
+        &+\normord{\wick{\c\phi_I(x_1) \phi_I(x_2)\c \phi_I(x_3)\phi_I(x_4)}} + \normord{\wick{\c\phi_I(x_1)\phi_I(x_2) \phi_I(x_3)\c\phi_I(x_4)}}\\
+        &+\normord{\wick{\phi_I(x_1) \c\phi_I(x_2) \c\phi_I(x_3)\phi_I(x_4)}}+\normord{\wick{\phi_I(x_1) \c\phi_I(x_2) \phi_I(x_3)\c\phi_I(x_4)}}\\
+        &+\normord{\wick{\phi_I(x_1) \phi_I(x_2) \c\phi_I(x_3) \c\phi_I(x_4)}} + \normord{\wick{\c \phi_I(x_1) \c \phi_I(x_2) \c\phi_I(x_3) \c\phi_I(x_4)}} \\
+        &+\normord{\wick{\c\phi_I(x_1) \c2\phi_I(x_2) \c\phi_I(x_3) \c2\phi_I(x_4)}}
+    \end{align*}
+
+    \underline{Proof}\\
+    We prove the theorem by induction.\\
+    For \(n=2\), the theorem is definitely true, by the definition of contraction.\\
+    Suppose the theorem is true for some \(n\). That is 
+    \begin{equation*}
+        T[\phi_I(x_1)\cdots\phi_I(x_n)] = W(x_1, \cdots, x_n)
+    \end{equation*}
+    where we used \(W\) as the shorthand for the RHS in equation (\ref{eq:wick})\\
+    For \(n+1\), let us assume without loss of generality that \(x_1^0\) is the latest time. We can do this because inside the \(T\) all operators commute, since at the end \(T\) rearranges them according to their time ordering, and therefore, we can bring the field with the latest time to the first and call it \(\phi_I(x_1)\). Then 
+    \begin{equation*}
+        T(\phi_I(x_1)\phi_I(x_2) \cdots \phi_I(x_{n+1})) = \phi_I(x_1)T(\phi_I(x_2) \cdots \phi_I(x_{n+1})) 
+    \end{equation*}
+    From our assumption that the theorem is true for \(n\), \(T(\phi_I(x_2) \cdots \phi_I(x_{n+1}) )= W(x_2, \cdots x_{n+1})\). Now 
+    \begin{equation*}
+        \phi_I(x_1) = \phi_I^+(x_1) + \phi_I^-(x_1)
+    \end{equation*} 
+    which means 
+    \begin{equation*}
+        T(\phi_I(x_1)\phi_I(x_2) \cdots \phi_I(x_{n+1})) = (\phi_I^-(x_1) + \phi_I^+(x_1))W(x_2, \cdots x_{n+1}) 
+    \end{equation*}
+    The first term in the RHS is already has \(\phi^-\) on the left, but the second term is not normal ordered. Therefore, we can commute the \(\phi^+\) to normal order the second term too as
+    \begin{equation*}
+        T(\phi_I(x_1)\phi_I(x_2) \cdots \phi_I(x_{n+1})) = \phi_I^-(x_1)W(x_2, \cdots x_{n+1}) + W(x_2, \cdots x_{n+1})\phi_I^+(x_1) + [\phi_I^+(x_1), ~W(x_2, \cdots x_{n+1})]
+    \end{equation*} 
+    The first two terms when added together simply gives 
+    \begin{equation*}
+        \normord{\phi_I(x_1) W(x_2, \cdots x_{n+1})}
+    \end{equation*}
+    which is the set of \(\normord{\phi_I(x_1) \phi_I(x_2) \cdots \phi_I(x_{n+1})}\) and all terms with \(\phi_I(x_1)\) uncontracted. \\
+
+    The next part, which is the commutator, will have terms of the form 
+    \begin{equation*}
+        [\phi_I^+(x_1), \phi_I(x_m)] = [\phi_I^+(x_1), \phi^-_I(x_m)]~ \because \phi^+\text{ at different spacetime points commute}
+    \end{equation*}
+    But since \(x_1^0 > x_m^0\forall m\), we can also rewrite this as
+    \begin{equation*}
+        \theta(x_1^0 - x_m^0)[\phi_I^+(x_1), \phi^-_I(x_m)] + \theta(x_m^0 - x_1^0)[\phi_I^+(x_m), \phi^-_I(x_1)] = \wick{\c\phi_I(x_1) \c\phi_I(x_m)}
+    \end{equation*} 
+    Therefore, the second part will have contractions of \(\phi_I(x_1)\) with all \(\phi_I(x_m)\). \\
+
+    The sum of the first and second part will have everything that is required in \(W(x_1, \cdots, x_{n+1})\), i.e.\ there is a normal ordered product, plus all possible contractions of all fields. Therefore, for \(n+1\)
+    \begin{equation*}
+        T(\phi_I(x_1)\phi_I(x_2) \cdots \phi_I(x_{n+1})) = W(x_1, \cdots, x_{n+1})
+    \end{equation*}
+    Therefore, Wick's theorem is proved by mathematical induction.\\
+
+    What makes Wick's theorem useful, and therefore significant, is that it makes evaluation of these time ordered products simple. Suppose we were calculating the vacuum expectation values of a given \(T(\phi_I(x_1)\cdots\phi_I(x_n))\). The only contribution would be from the terms where all the fields are contracted, since other terms are normal ordered and normal ordered products annihilate vacuum and therefore have zero vacuum expectation values. 
+
+    \subsection{Evaluating the contraction}
+    See that 
+    \begin{equation*}
+        \braket{0|T(\phi_I(x) \phi_I(y))|0} = \braket{0|\wick{\c \phi_I(x) \c \phi_I(y)} |0} = \wick{\c \phi_I(x) \c \phi_I(y)} 
+    \end{equation*}
+    Since the normal ordered product annihilates the vacuum, contraction is a number, and \(\braket{0|0} = 1\).\\
+
+    For \(x^0 > y^0\), this evaluates to 
+    \begin{equation*}
+        \int \bra{0} \a{q} \e^{-iq\cdot x} \adag{p}\e^{ip\cdot y} \ket{0} \frac{d^3\textbf{p}d^3\textbf{q}}{(2\pi)^6 2\sqrt{\w_\textbf{p}\w_\textbf{q}}}
+    \end{equation*}
+    since all other terms give zero. We can now commute the \(a\) and \(\adag{}\) to get a delta function, which removes one integral in \(\textbf{q}\), and obtain 
+    \begin{equation}
+        \int \e^{-ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3}
+    \end{equation}
+    When \(y^0 > x^0\), we similarly get 
+    \begin{equation*}
+        \int \e^{ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3}
+    \end{equation*}
+    and therefore the contraction looks like 
+    \begin{equation*}
+        \wick{\c \phi_I(x) \c \phi_I(y)} = \theta(x^0 - y^0) \int \e^{-ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3} ~~+~~\theta(y^0-x^0) \int \e^{ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3}
+    \end{equation*}
+
+    We can write it in a slighly simpler way as 
+    \begin{equation}
+        \wick{\c \phi_I(x) \c \phi_I(y)}  = \int\frac{i}{p^2 - m^2 + i\epsilon} \e^{-ip\cdot(x-y)}\frac{d^4p}{(2\pi)^4} = \int \e^{-ip_0 (x^0 - y^0)} \e^{i\textbf{p}\cdot (\textbf{x}- \textbf{y})} \frac{i}{p_0^2 - \textbf{p}^2 - m^2 + i\epsilon} \frac{dp_0 d^3\textbf{p}}{(2\pi)^4}
+        \label{eq:feynman}
+    \end{equation}
+    The \(i\epsilon\) is just a prescription to indicate in which direction the contour should be closed. See that when we do the integral over \(p_0\) without the \(i\epsilon\) shifting, it has two poles, 
+    \begin{equation*}
+        p_0^2 - \textbf{p}^2 - m^2 = 0 \implies p_0 = \pm \w_\textbf{p}
+    \end{equation*}
+    on the real axis and therefore the integral is ill defined. The \(i\epsilon\) shifts the poles in such a way that taking a contour along the real axis and closing the contour along one of the two half planes will give the correct result.\\
+
+
+    With the introduction of \(i\epsilon\), the poles now move to 
+    \begin{equation*}
+        p_0 = \pm \sqrt{\w_\textbf{p}^2 - i\epsilon} \approx \pm \left( \w_\textbf{p} - \frac{i\epsilon}{2\w_\textbf{p}} \right) \approx \pm (\w_\textbf{p} - i\epsilon)
+    \end{equation*}
+    (notice that the \(i\epsilon\) is simply an integral prescription and its value has no meaning). Therefore, for the \(p_0\) integral the location of poles is shown in figure (\ref{fig:prescription})
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[>=latex, scale=1]
+            \draw[->] (-3,0) -- (3,0);
+            \draw[->] (0, -1.5) -- (0,1.5);
+            \fill (1.5,0) circle (2pt);
+            \node at (-1.5, -0.25) {\(-\w_\textbf{p}\)};
+            \node at (1.5, 0.25) {\(\w_\textbf{p}\)};
+            \fill (-1.5,0) circle (2pt);
+
+            \node at (1.5, -1.2) {\(\w_\textbf{p} - i\epsilon\)};
+            \node at (1.5, -0.75) {\(\mathsf{X}\)};
+            \node at (-1.5, 1.2) {\(-\w_\textbf{p} + i\epsilon\)};
+            \node at (-1.5, 0.75) {\(\mathsf{X}\)};
+
+            \begin{scope}[xshift=7cm]
+                \draw[->, opacity=0.35] (-3,0) -- (3,0);
+                \draw[->, opacity=0.35] (0, -1.5) -- (0,1.5);
+                \fill (1.5,0) circle (2pt);
+                \node at (-1.5, 0.25) {\(-\w_\textbf{p}\)};
+                \node at (1.5, -0.25) {\(\w_\textbf{p}\)};
+                \fill (-1.5,0) circle (2pt);
+                \draw[->] (1,0) arc (180:0:0.5);
+                \draw[<-] (-1,0) arc (360:180:0.5);
+                \draw[->] (-1,0) -- (1,0);
+                \draw (2,0) -- (3,0);
+                \draw (-2,0) -- (-3,0);
+            \end{scope}
+        \end{tikzpicture}
+        \caption{The position of poles in case of \(i\epsilon\) prescription (left), and the equivalent contour we need to consider when working without the shifting (right)}\label{fig:prescription}
+    \end{figure}
+
+    To check that this expression with this pole prescription gives the correct result, consider the two cases\\
+
+    1.\ \(x_0 > y_0\)\\
+    The integrand is 
+    \begin{equation*}
+        \e^{-ip_0(x^0 - y^0)} = \e^{-i\mathrm{Re}(p_0) (x^0 - y^0)}\e^{\mathrm{Im}(p_0)(x^0 - y^0)}
+    \end{equation*}
+    In the upper half of the complex plane, this blows at \(|p_0| \to \infty\) and therefore we close the contour in lower half of the complex plane, picking up the pole at \(\w_\textbf{p} - i\epsilon\). The contour is closed in clockwise sense and the value of the integral is  
+    \begin{equation*}
+        -2\pi i\frac{1}{2\w_\textbf{p}}\e^{-i\w_\textbf{p}(x^0 - y^0)}
+    \end{equation*}
+    When plugging the value of this integral into the equation (\ref{eq:feynman}) where one factor of \(2\pi\) cancels with the \((2\pi)^4\) in denominator, and \(-i\) multiplies with \(i\) to give \(1\), we get 
+    \begin{equation*}
+        \int \e^{-ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3}
+    \end{equation*}
+    
+    2.\ \(x_0 < y_0\)\\
+    In this case the integrand is zero at infinity in the upper half plane and therefore we complete the contour in the upper half plane, picking up the pole at \(p_0 = -\w_\textbf{p}\). The contour is closed counterclockwise, and therefore the integral is 
+    \begin{equation*}
+        (2\pi i)(-1)\frac{1}{2\w_\textbf{p}}\e^{i\w_\textbf{p}(x^0 - y^0)}
+    \end{equation*}
+    Plugging this back, we get 
+    \begin{equation*}
+        \int \e^{i\w_\textbf{p}\cdot(x_0-y_0) + i\textbf{p}\cdot(\textbf{x} - \textbf{y})}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3}
+    \end{equation*}
+    We can convert the integral from \(\textbf{p}\) to \(-\textbf{p}\) to get 
+
+    \begin{equation*}
+        \int \e^{ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3}
+    \end{equation*}
+
+    Therefore we recover
+    \begin{equation*}
+        \wick{\c \phi_I(x) \c \phi_I(y)} = \begin{cases}
+            \displaystyle\int \e^{-ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3} &: x_0 > y_0\\
+            \displaystyle\int \e^{ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3} &: x_0 < y_0
+        \end{cases}
+    \end{equation*}
+    as required. This is called the Feynman Green's function (Feynman Propagator). (Notice that it was very important to consider \(+i\epsilon\) in the denominator. Any other addition would not give this result.)\\
+
+    There is another way to understand this \(i\epsilon\) prescription as 
+    \begin{equation*}
+        \frac{1}{x - a - i\epsilon} = P\left( \frac{1}{x-a} \right) + i\pi \delta(x-a)
+    \end{equation*}
+    where \(P()\) stands for the principle value. The above equation is, in essence, a distribution valued equation, and it makes sense only under an integral 
+    \begin{equation*}
+        \int \frac{f(x)}{x-a-i\epsilon} dx = P\int \frac{f(x)}{x-a} dx + i\pi f(a) =\lim_{\delta \to 0} \left(\int_{-\infty}^{a-\delta} \frac{f(x)}{x-a} dx+ \int_{a+\delta}^{\infty} \frac{f(x)}{x-a} dx \right) + i\pi f(a)
+    \end{equation*}
+
+    To prove this, let us consider the equation
+    \begin{equation*}
+        \frac{1}{x-a-i\epsilon} - \frac{1}{x-a+i\epsilon} = 2i\pi\delta(x-a)
+    \end{equation*}
+    which we obtained from adding the above equation to its complex conjugate.\\
+    This is equivalent to stating that 
+    \begin{equation*}
+        \int dx \frac{f(x)}{x-a-i\epsilon} - \int dx \frac{f(x)}{x-a+i\epsilon} = 2i\pi f(a)
+    \end{equation*}
+
+    The first term in the above equation simply implies the choice of the contour 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[>=latex, scale=1]
+            \draw[->] (-1.5, 0) -- (-0.4,0);
+            \draw[<-] (1.5, 0) -- (0.4,0);
+            \draw[->] (-0.4,0) arc (180:360:0.4);
+            \fill (0,0) circle (2pt);
+            \node at (0,0.2) {\(a\)};
+        \end{tikzpicture}
+    \end{figure}
+
+    and the second term implies the choice of the contour 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[>=latex, scale=1]
+            \draw[->] (-1.5, 0) -- (-0.4,0);
+            \draw[<-] (1.5, 0) -- (0.4,0);
+            \draw[->] (-0.4,0) arc (180:0:0.4);
+            \fill (0,0) circle (2pt);
+            \node at (0,-0.2) {\(a\)};
+        \end{tikzpicture}
+    \end{figure}
+
+    Subtracting the above two is equivalent to reversing the direction of the second contour and adding, in which case the only piece that remains is 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[>=latex, scale=1]
+            \draw[->] (0.4,0) arc (0:360:0.4);
+            \fill (0,0) circle (2pt);
+            \node at (0,-0.2) {\(a\)};
+        \end{tikzpicture}
+    \end{figure}
+
+    which is equal to \(2\pi i\) times the residue of the function at \(x=a\), which is exactly equal to \(2\pi i f(a)\).
+
+    \subsection{Green's Function}
+    The Feynman progagator also has the property 
+    \begin{equation*}
+        (\square + m^2) \braket{0|T(\phi_I(x) \phi_I(y))|0} = i\delta^4(x-y)
+    \end{equation*}
+
+
+
+
 
 
 \end{document}
