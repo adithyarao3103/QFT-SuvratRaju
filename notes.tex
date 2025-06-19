@@ -1497,7 +1497,7 @@
 
     What makes Wick's theorem useful, and therefore significant, is that it makes evaluation of these time ordered products simple. Suppose we were calculating the vacuum expectation values of a given \(T(\phi_I(x_1)\cdots\phi_I(x_n))\). The only contribution would be from the terms where all the fields are contracted, since other terms are normal ordered and normal ordered products annihilate vacuum and therefore have zero vacuum expectation values. 
 
-    \subsection{Evaluating the contraction}
+    \subsection{The Feynman Propagator}
     See that 
     \begin{equation*}
         \braket{0|T(\phi_I(x) \phi_I(y))|0} = \braket{0|\wick{\c \phi_I(x) \c \phi_I(y)} |0} = \wick{\c \phi_I(x) \c \phi_I(y)} 
@@ -1509,17 +1509,18 @@
         \int \bra{0} \a{q} \e^{-iq\cdot x} \adag{p}\e^{ip\cdot y} \ket{0} \frac{d^3\textbf{p}d^3\textbf{q}}{(2\pi)^6 2\sqrt{\w_\textbf{p}\w_\textbf{q}}}
     \end{equation*}
     since all other terms give zero. We can now commute the \(a\) and \(\adag{}\) to get a delta function, which removes one integral in \(\textbf{q}\), and obtain 
-    \begin{equation}
+    \begin{equation*}
         \int \e^{-ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3}
-    \end{equation}
+    \end{equation*}
     When \(y^0 > x^0\), we similarly get 
     \begin{equation*}
         \int \e^{ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3}
     \end{equation*}
     and therefore the contraction looks like 
-    \begin{equation*}
+    \begin{equation}
         \wick{\c \phi_I(x) \c \phi_I(y)} = \theta(x^0 - y^0) \int \e^{-ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3} ~~+~~\theta(y^0-x^0) \int \e^{ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3}
-    \end{equation*}
+        \label{eq:contraction-full}
+    \end{equation}
 
     We can write it in a slighly simpler way as 
     \begin{equation}
@@ -1603,7 +1604,7 @@
 
     Therefore we recover
     \begin{equation*}
-        \wick{\c \phi_I(x) \c \phi_I(y)} = \begin{cases}
+        \wick{\c \phi_I(x) \c \phi_I(y)} = G_F(x-y) =  \begin{cases}
             \displaystyle\int \e^{-ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3} &: x_0 > y_0\\
             \displaystyle\int \e^{ip\cdot(x-y)}\frac{1}{2\w_\textbf{p}} \frac{d^3\textbf{p}}{(2\pi)^3} &: x_0 < y_0
         \end{cases}
@@ -1663,17 +1664,128 @@
         \end{tikzpicture}
     \end{figure}
 
-    which is equal to \(2\pi i\) times the residue of the function at \(x=a\), which is exactly equal to \(2\pi i f(a)\).
+    which is equal to \(2\pi i\) times the residue of the function at \(x=a\), which is exactly equal to \(2\pi i f(a)\).\\
 
-    \subsection{Green's Function}
-    The Feynman progagator also has the property 
+    Notice that the Feynman progagator also satisfies 
     \begin{equation*}
-        (\square + m^2) \braket{0|T(\phi_I(x) \phi_I(y))|0} = i\delta^4(x-y)
+        (\square + m^2) \braket{0|T(\phi_I(x) \phi_I(y))|0} = -i\delta^4(x-y)
     \end{equation*}
 
+    \textcolor{red}{
+        \begin{align*}
+                \braket{0|T(\phi_I(x) \phi_I(y))|0} &= \int\frac{i}{p^2 - m^2 + i\epsilon} \e^{-ip\cdot(x-y)}\frac{d^4p}{(2\pi)^4} \\
+                \implies (\square + m^2) \braket{0|T(\phi_I(x) \phi_I(y))|0} &= (\square + m^2) \int\frac{i}{p^2 - m^2 + i\epsilon} \e^{-ip\cdot(x-y)}\frac{d^4p}{(2\pi)^4} \\
+                &= \int \frac{i}{p^2 - m^2 + i\epsilon} ((-ip)^2 + m^2) \e^{-ip\cdot(x-y)}\frac{d^4p}{(2\pi)^4}\\
+                &= -i \int \e^{-ip\cdot(x-y)}\frac{d^4p}{(2\pi)^4}\\
+                &= -i\delta^4(x-y)
+        \end{align*}
+    }
+    
+    The Feynman propagator has the property that it propagates positive frequencies forward in time, and negative frequencies backwards in time. To see what this means, see that from equation (\ref{eq:contraction-full}), we see that the Feynman propagator is of the form 
+    \begin{equation*}
+        \int \theta(x^0 - y^0)  \e^{-ik\cdot (x-y)} \theta(k^0) f(k) \frac{d^4k}{(2\pi)^4}  + \int \theta(y^0 - x^0)  \e^{-ik\cdot (x-y)} \theta(-k^0) f(k) \frac{d^4k}{(2\pi)^4}
+    \end{equation*}
+    (where \(f(k)\) is the \(delta(k^2 - m^2)\), and in the above equation we have simply taken equation (\ref{eq:contraction-full}) and converted it into a manifestly Lorentz invarent \(4-\)integral).\\
+    In the second integral, rather than writing the conversion as \(\e^{ik\cdot(x-y)} \theta(k^0) f(k)\), we wrote it as \(\e^{-ik\cdot(x-y)}\theta(-k^0)f(k)\) and used the invariance of the \(3-\)integral under \(\textbf{k}\to -\textbf{k}\). \\
+    The propagator in this form has the combinations \(\theta(x^0 - y^0)\theta(k^0)\) and \(\theta(y^0 - x^0)\theta(-k^0)\) which imply that the Feynman propagator propagates positive frequencies forward in time and negative frequencies backward in time.\\
 
+    Feynman propagator is one kind of propagator. We could have considered an anti-time ordered propagator, which would come with a \(-i\epsilon\), and would have the opposite baheviour, propagating positive frequencies backward in time and negative frequencies forward in time. Then there are other propagators which send both the frequencies either backwards or forwards.
 
+    \subsection{The retarded propagator}
+    The retarded propagator is simply 
+    \begin{equation*}
+        \theta(x^0 - y^0)\bra{0}[\phi_I(x), \phi_I(y) ]\ket{0} = G_R(x-y)
+    \end{equation*}
+    Notice that this propagator also satisfies 
+    \begin{equation*}
+        (\square + m^2)G_R(x-y) = -i\delta^4(x-y)
+    \end{equation*}
+    This implies that \(G_F\) and \(G_R\) should differ by only a solution of the equation of motion. To check that this is true, notice that 
+    \begin{equation*}
+        \frac{\del}{\del x^0} \left(\theta(x^0 - y^0)\bra{0}[\phi_I(x), \phi_I(y) ]\ket{0}\right) = \delta(x^0 - y^0)\bra{0}[\phi_I(x), \phi_I(y) ]\ket{0} + \theta(x^0 - y^0)\frac{\del}{\del x^0} \bra{0}[\phi_I(x), \phi_I(y) ]\ket{0}
+    \end{equation*}
+    The first term is zero, since at equal times, the fields commute and the delta function enforces equal time. 
+    Therefore we get 
+    \begin{equation*}
+        \frac{\del}{\del x^0} \left(\theta(x^0 - y^0)\bra{0}[\phi_I(x), \phi_I(y) ]\ket{0}\right) = \theta(x^0 - y^0) \bra{0}[\dot{\phi}_I(x), \phi_I(y) ]\ket{0}
+    \end{equation*}
+    The second derivative w.r.to \(x^0\) would therefore be 
+    \begin{align*}
+        \frac{\del^2}{\del (x^0)^2} \left(\theta(x^0 - y^0)\bra{0}[\phi_I(x), \phi_I(y) ]\ket{0}\right) &= \delta(x^0 - y^0) \bra{0}[\Pi_I(x), \phi_I(y) ]\ket{0} + \theta(x^0 - y^0) \bra{0}[\ddot{\phi}_I(x), \phi_I(y) ]\ket{0} \\
+        &= -i\delta(x^0 - y^0)\delta^3(\textbf{x} - \textbf{y}) + \theta(x^0 - y^0) \bra{0}[\ddot{\phi}_I(x), \phi_I(y) ]\ket{0} 
+    \end{align*}
+    where in the first term the delta function imposed equal times, and therefore the commutator becomes simply an equal time commutation relation. \\
 
+    There are other terms which are \((-\nabla_x^2 + m^2) G_R\). The \(\nabla_x\) doesn't care about the \(\theta\) function and therefore we would simply get 
+    \begin{equation*}
+        (-\nabla_x^2 + m^2) \left(\theta(x^0 - y^0)\bra{0}[\phi_I(x), \phi_I(y) ]\ket{0}\right) = \theta(x^0 - y^0)\bra{0}[(-\nabla_x^2 + m^2)\phi_I(x), \phi_I(y) ]\ket{0}
+    \end{equation*}
+    Adding this and the above equation, we see that we get 
+    \begin{equation*}
+        (\square + m^2)\left(\theta(x^0 - y^0)\bra{0}[\phi_I(x), \phi_I(y) ]\ket{0}\right) = -i\delta(x^0 - y^0)\delta^3(\textbf{x} - \textbf{y}) + \theta(x^0 - y^0) \bra{0}[(\square + m^2)\phi_I(x), \phi_I(y) ]\ket{0}
+    \end{equation*}
+    But since \((\square + m^2)\phi_I(x) = 0\), we get 
+    \begin{equation*}
+        (\square + m^2)\left(\theta(x^0 - y^0)\bra{0}[\phi_I(x), \phi_I(y) ]\ket{0}\right) = -i\delta(x^0 - y^0)\delta^3(\textbf{x} - \textbf{y}) = -i\delta^4(x-y)
+    \end{equation*}
 
+    Let us try evaluating this expression in momentum space, the propagator becomes 
+    \begin{align*}
+        \theta(x^0 - y^0)[\phi_I(x), \phi_I(y)] &= \int \left(  [\a{q}, \adag{p}] \e^{-iq\cdot x + ip\cdot y} + [\adag{q}, \a{p}]\e^{iq\cdot x - ip\cdot y}  \right)\frac{d^3\textbf{p}d^3\textbf{q}}{(2\pi)^62\sqrt{\w_\textbf{p}\w_\textbf{q}}}\\
+        &= \int \e^{-iq\cdot(x-y)} - \e^{iq\cdot (x-y)} \frac{d^3\textbf{q}}{(2\pi)^32\w_\textbf{q}}\theta(x^0 - y^0)
+    \end{align*}
+    Claim - the whole retarded propagator can be written as 
+    \begin{equation*}
+        G_R(x-y) = \int \frac{i}{(k_0 + i\epsilon)^2 - \textbf{k}^2 - m^2} \e^{-ik\cdot(x-y)} \frac{d^4k}{(2\pi)^4}
+    \end{equation*}
+    In this case, the poles are at \(k^0 = \pm \w_\textbf{k} - i\epsilon\).
+
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[>=latex, scale=1]
+            \draw[->] (-3,0) -- (3,0);
+            \draw[->] (0, -1.5) -- (0,1.5);
+            \fill (1.5,0) circle (2pt);
+            \node at (-1.5, 0.25) {\(-\w_\textbf{k}\)};
+            \node at (1.5, 0.25) {\(\w_\textbf{k}\)};
+            \fill (-1.5,0) circle (2pt);
+
+            \node at (1.5, -1.2) {\(\w_\textbf{p} - i\epsilon\)};
+            \node at (1.5, -0.75) {\(\mathsf{X}\)};
+            \node at (-1.5, -1.2) {\(-\w_\textbf{p} + i\epsilon\)};
+            \node at (-1.5, -0.75) {\(\mathsf{X}\)};
+
+            \begin{scope}[xshift=7cm]
+                \draw[->, opacity=0.35] (-3,0) -- (3,0);
+                \draw[->, opacity=0.35] (0, -1.5) -- (0,1.5);
+                \fill (1.5,0) circle (2pt);
+                \node at (-1.5, -0.25) {\(-\w_\textbf{p}\)};
+                \node at (1.5, -0.25) {\(\w_\textbf{p}\)};
+                \fill (-1.5,0) circle (2pt);
+                \draw[->] (1,0) arc (180:0:0.5);
+                \draw[->] (-2,0) arc (180:0:0.5);
+                \draw[->] (-1,0) -- (1,0);
+                \draw (2,0) -- (3,0);
+                \draw (-2,0) -- (-3,0);
+            \end{scope}
+        \end{tikzpicture}
+        \caption{The position of the shifted poles (left), and the equivalent contour (right).}
+    \end{figure}
+    
+    For \(x^0 < y^0\), we need to close the contour in the upper half plane, where it does not enclose any poles. Therefore the integral is zero. \\
+
+    For \(x^0 > y^0\), we close the contour in the lower half plane, picking up residues of both the poles. The residues are the same as we had calculated for the case of Feynman propagator, and therefore the above integral for \(x^0 > y^0\) becomes
+    \begin{equation*}
+        (-2\pi i ) \frac{i}{2\pi} \left(\int \e^{-ik\cdot(x-y)}\frac{1}{2\w_\textbf{k}} \frac{d^3\textbf{k}}{(2\pi)^3} + \int \e^{ik\cdot(x-y)}\frac{1}{-2\w_\textbf{k}} \frac{d^3\textbf{k}}{(2\pi)^3} \right)
+    \end{equation*}
+    therefore giving 
+    \begin{equation*}
+        G_R(x-y) = \int \frac{i}{(k_0 + i\epsilon)^2 - \textbf{k}^2 - m^2} \e^{-ik\cdot(x-y)} \frac{d^4k}{(2\pi)^4} = \theta(x^0 - y^0) \int \e^{-ik\cdot(x-y)}\frac{1}{2\w_\textbf{k}} {(2\pi)^3} - \e^{ik\cdot(x-y)}\frac{1}{2\w_\textbf{k}} \frac{d^3\textbf{k}}{(2\pi)^3}
+    \end{equation*}
+    as required.\\
+
+    There is also an advanced propagator, with \(\theta(y^0-x^0)\) and for this case the pole prescription would be \((k_0 + i\epsilon)^2 - \textbf{k}^2 - m^2\).\\
+
+    The retarded propagator is the propagator we study in electrodynamics. To understand why this is the case, we need to understand the physical interpretation of this propagator. 
 
 \end{document}
