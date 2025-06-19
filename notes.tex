@@ -1786,6 +1786,141 @@
 
     There is also an advanced propagator, with \(\theta(y^0-x^0)\) and for this case the pole prescription would be \((k_0 + i\epsilon)^2 - \textbf{k}^2 - m^2\).\\
 
-    The retarded propagator is the propagator we study in electrodynamics. To understand why this is the case, we need to understand the physical interpretation of this propagator. 
+    The retarded propagator is the propagator we study in classical electrodynamics. To understand why this is the case, we need to understand the physical interpretation of this propagator. In QM, we are allowed to turn on sources for fields. These sources are unitary operators. Say we turn on source, which is equivalent to saying that we do 
+    \begin{equation*}
+        \ket{\psi} \to \e^{i\int d^4y J(y) \phi(y)} \ket{\psi}
+    \end{equation*}
+    that is, we add the term \(J(y) \phi(y)\) to the Hamiltonian, with \(J(y)\) controlling the strenght and duration of the current. (This is basically saying that we create excitations in a spacetime, whose strength and the region of excitation are defined by \(J\)). We can now measure the effect at \(x\), which is basically seeing how much the following expectation value deviates from  \(\braket{\psi | \phi(x) | \psi}\)
+    \begin{equation*}
+        \bra{\psi} \e^{-i\int d^4y J(y) \phi(y) } \phi(x) \e^{i\int d^4y J(y) \phi(y) dy} \ket{\psi}
+    \end{equation*}
+    The zeroth order term is \(\braket{\psi | \phi(x) | \psi}\) itself, and the first order term is 
+    \begin{equation*}
+        \int d^4y J(y) \theta(x_0 - y_0)\bra{\psi}[\phi(x), \phi(y)]\ket{\psi}
+    \end{equation*}
+    Physically, what we are doing is adding a source at \(y\) and measuring its effect at \(x\). Causality requires that there cannot be any effect if \(y_0 > x_0\), which brings a \(\theta\) function. Therefore, the effect is, upto first order 
+    \begin{equation*}
+        \int d^4y J(y) G_R(x-y) 
+    \end{equation*}
+    which is the retarded Green's function. (Notice that the above discussion was not precise. To make it precise we need to consider the time ordered exponential as the unitary operator, in which case the \(\theta\) function naturally emerges. The above discussion is purely for extracting physical insights). Therefore, \(G_R(x-y)\) is the linear response at \(x\) to a disturbance at \(y\). This is exactly what we do in Classical Mechanics, where we do a disturbance and measure its affect at some different time and different region.
+
+    \subsection{Wightman Functions}
+    They are simply 
+    \begin{equation*}
+        \bra{0}\phi_I(x)\phi_I(y)\ket{0} = W(x,y)
+    \end{equation*}
+    This obeys the equation of motion 
+    \begin{equation*}
+        (\square + m^2) W(x,y) = 0
+    \end{equation*}
+    See that \(\phi_I^+(y)\) annihilates the vacuum on the right and \(\phi_I^-(x)\) annihilates the vacuum on right, and therefore the only surviving term above is 
+    \begin{equation*}
+        W(x,y) = \bra{0} \phi_I^+(x)\phi_I^-(y) \ket{0}
+    \end{equation*}
+    In momentum space, this is 
+    \begin{equation*}
+        W(x,y) = \int \bra{0} \a{q}\adag{p} \ket{0} \e^{-iq\cdot x + ip\cdot y} \frac{d^3\textbf{p} d^3\textbf{q}}{(2\pi)^6 2\sqrt{\w_\textbf{p} \w_\textbf{q}}}
+    \end{equation*}
+    which we can commute and obtain 
+    \begin{equation*}
+        W(x,y) = \int \e^{-ip\cdot (x - y)} \frac{d^3\textbf{p}}{(2\pi)^3 2\w_\textbf{p}}
+    \end{equation*}
+    As an integral over the four momentum, this can be written as 
+    \begin{equation*}
+        W(x,y) = \int \frac{d^4p}{(2\pi)^4} \e^{-ip\cdot (x-y)} 2\pi \delta(p^2 - m^2) \theta(p^0)
+    \end{equation*}
+
+    Consider the object 
+    \begin{equation*}
+        \bra{0} \phi(x)\phi(y) \ket{0}
+    \end{equation*}
+    where now the fields are in Heisenberg picture. \\
+    We can insert an identity in the form of complete set of momentum eigenstates (the vacuum plus one-particle, multi-particle, etc.) (the actual insertion would involve an integration with some measure and stuff, which is irrelevant here, so we write the insertion as a sum)
+    \begin{equation*}
+        \bra{0} \phi(x)\phi(y) \ket{0} = \sum_k \bra{0} \phi(x) \ket{k}\bra{k}\phi(y) \ket{0}
+    \end{equation*}
+    We can always do this, and this evaluates to 
+    \begin{equation*}
+        \sum_k \e^{-ik\cdot x}  \bra{0} \phi(0) \ket{k} \e^{-ik\cdot y}   \bra{k}\phi(0) \ket{0}
+    \end{equation*}
+    \textcolor{red}{
+        This is because of the translational invariance of the Heisenberg-picture field. That is, 
+        \begin{equation*}
+            \phi(x)~=~e^{i P\cdot x}\:\phi(0)\:e^{-\,i P\cdot x},
+        \end{equation*}
+        with \(P\ket{k} = k\ket{k}\), \(P\ket{0} = \ket{0}\)\\
+    }
+
+    Therefore the above expression looks like 
+    \begin{equation*}
+        \sum_k \e^{-ik\cdot (x - y)}  \bra{0} \phi(0) \ket{k}   \bra{k}\phi(0) \ket{0}
+    \end{equation*}
+
+    Notice that even in the case of interacting fields, we could still insert a complete set of states and got an expression similar to this. Now if we extend \(x-y \to x-y - iq\), where \(q\) is a future directed (which means \(q_0 >0\)) timelike vector (\(x-y\) is a \(4-\)vector, and therefore \(q\) should be a \(4-\)vector). When we do this, 
+    \begin{equation*}
+        W = \sum_k \e^{-k\cdot q} \e^{-ik\cdot (x - y)}  \bra{0} \phi(0) \ket{k}   \bra{k}\phi(0) \ket{0}
+    \end{equation*}
+    The sign of \(k\cdot q\) is always positive since \(k\) and \(q\) are future directed timelike vectors, and their product is always positive (\(\because~k\cdot q = k_0q^0 - \textbf{k}\cdot \textbf{q}\), and for future directed timelike vectors, this is always positive). Therefore, this addition always improves convergence. So the Wightman function is analytic when \(x-y\) is extended to the complex plane with a future directed timelike vector. The only requirement was that \(k\) be a timelike vector, i.e.\ for every momentum eigenstate, the energy should be greater than the total momentum, which is guaranteed by the \textit{spectrum condition in QFT}, and this is true even in interacting theory. 
+
+
+    \subsection{Normalisation}
+    We want to start doing perturbation theory, but before that we need to discuss the normalisation of the states. \\
+
+    So far, we have been working with the states that have the normalisation 
+    \begin{equation*}
+        \braket{\textbf{k}'|\textbf{k}} = (2\pi)^3\delta(\textbf{k} - \textbf{k}')
+    \end{equation*}
+    However, there is a problem with this normalisation. \\
+
+    Suppose we Lorentz transform this by \(\Lambda\). In QFT, the Lorentz transformation acts on the state by some unitary transformation \(U(\Lambda)\). With the normalisation we have we see that 
+    \begin{equation*}
+        U(\Lambda) \ket{\textbf{k}} \ne \ket{\Lambda \textbf{k}}
+    \end{equation*}
+    rather it has to be multiplied by a number. Why?\\
+    Suppose the above equation was true. Then we would have 
+    \begin{equation*}
+        \braket{\Lambda \textbf{k}'|\Lambda \textbf{k}} = \bra{\textbf{k}'} U(\Lambda)^\dagger U(\Lambda)\ket{\textbf{k}} = \braket{\textbf{k}'|\textbf{k}}
+    \end{equation*}
+    But when we compare the normalisations, we have 
+    \begin{equation*}
+        \braket{\Lambda \textbf{k}'|\Lambda \textbf{k}} = (2\pi)^3 \delta^3(\Lambda \textbf{k} - \Lambda \textbf{k}') \ne (2\pi)^3\delta(\textbf{k} - \textbf{k}') = \braket{\textbf{k}'|\textbf{k}}
+    \end{equation*}
+    And we have a contradiction.\\
+    The correct transformation would be 
+    \begin{equation*}
+        U(\Lambda) \ket{\textbf{k}} = \frac{k^0}{(\Lambda k)^0}\ket{\Lambda \textbf{k}}
+    \end{equation*}
+    For our convenience, we use the Lorentz invarient normalisation. \\
+    See that 
+    \begin{equation*}
+        \mathbb{I} = \int \frac{d^3\textbf{k}}{(2\pi)^3} \ket{\textbf{k}}\bra{\textbf{k}} = \int \frac{d^4k}{(2\pi)^4} \delta(k^2 - m^2)\theta(k^0)\ket{\textbf{k}}\bra{\textbf{k}}2\w_\textbf{k}
+    \end{equation*}
+    and therefore it would be convenient if we define 
+    \begin{equation*}
+        \ket{\textbf{k}}_{\text{new}} = \sqrt{2\w_\textbf{k}}\ket{\textbf{k}}
+    \end{equation*}
+    In this normalisation, 
+    \begin{equation*}
+        \braket{\textbf{k}'|\textbf{k}}_{\text{new}} = (2\pi)^3 2\w_\textbf{k}\delta(\textbf{k} - \textbf{k}')
+    \end{equation*}
+    and this has the property 
+    \begin{equation*}
+        U(\Lambda)\ket{\textbf{k}}_{\text{new}} = \ket{\Lambda \textbf{k}}_{\text{new}}
+    \end{equation*}
+    since the extra factors now cancel out with the factors these states themselves carry. There was nothing wrong with the previous states, but this normalisation, when doing perturbation theory will give rise to some simpler rules, and therefore are convenient to use. Therefore, from now on, we will use 
+    \begin{equation*}
+        \ket{\textbf{k}}\equiv \ket{\textbf{k}}_{\text{new}}
+    \end{equation*}
+    With this, we also have to modify the creation and annihilation operators to satisfy
+    \begin{equation*}
+        [\a{k}, \adag{k}] = 2\w_\textbf{k} (2\pi)^3\delta(\textbf{k} - \textbf{k}')
+    \end{equation*}
+    How we normalise the creation and annihilation operators is upto us and does not modify the content of the theory as long as we keep it consistent. The normalisation of \(\phi(x)\) is fixed by the canonical commutation relation, but the definitions of creation and annihilation operators are upto us.
+
+    \newpage
+    \section{Perturbation Theory}
+    We will consider two models for the perturbation theory, \\
+
+
 
 \end{document}
