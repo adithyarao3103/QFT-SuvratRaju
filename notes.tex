@@ -35,6 +35,10 @@
 \newcommand{\normord}[1]{:\mathrel{#1}:}
 \renewcommand{\a}[1]{a_\mathbf{#1}}
 \newcommand{\adag}[1]{a^\dagger_\mathbf{#1}}
+\renewcommand{\b}[1]{b_\mathbf{#1}}
+\newcommand{\bdag}[1]{b^\dagger_\mathbf{#1}}
+\renewcommand{\c}[1]{c_\mathbf{#1}}
+\newcommand{\cdag}[1]{c^\dagger_\mathbf{#1}}
 
 \numberwithin{equation}{section}
 
@@ -184,6 +188,7 @@
     and one can write equations similar to the Hamiltonian equations of motion for the field and its conjugate momenta.
 
     \subsection{Parameterizing the Phase Space}
+    \label{sec:solution-freescalar}
     Given the phase space, the usual parameterization is using \(\Pi\) and \(\Phi\). But we can also parameterize the phase space using different variables — the set of solutions to the equations of motion. This is true because given a point in phase space, we can use it as initial conditions and obtain a solution to the equations of motion. Therefore, there is a one-to-one map between points in phase space and solutions to the equations of motion, and we can see the set of solutions to the equations of motion as parameterizing the phase space. That is, a point corresponds to a solution, and a solution provided a section corresponds to a point.\\
     In other words, the \textit{parameterization} of all solutions to the equations of motion is the same as parameterization of the whole phase space. \\
 
@@ -879,6 +884,31 @@
     \begin{equation*}
         P^\mu = \frac{\delta \ld}{\delta \del_\mu \phi} D\phi
     \end{equation*}
+
+    % We can also ask how the conserved charge transform under Lorentz transformation.\\
+
+    % The conserved current is a \(4-\)vector, and therefore under Lorentz transformation transforms as
+    % \begin{equation*}
+    %     J^\mu(x) \to J'^{\mu}(x') = \Lambda\indices{^\mu_\nu}J^\nu (\Lambda^{-1} X)
+    % \end{equation*}
+    % The conserved charge is given by 
+    % \begin{equation*}
+    %     Q(t) = \int d^3\textbf{x} J^0(t, \textbf{x})
+    % \end{equation*}
+    % Now since this is conserved, we can choose one specific time to evaluate this, and for convenience we choose \(t=0\).\\
+    % \begin{equation*}
+    %     Q = \int d^3\textbf{x} J^0(0, \textbf{x})
+    % \end{equation*}
+    % We can also write this as the \(4-\)integral
+    % \begin{equation*}
+    %     Q = \int d^4x \delta(\eta\cdot x) \eta \cdot J(x)
+    % \end{equation*}
+    % where \(\eta = (1,0,0,0)\). This \(4-\)integral can be written as 
+    % \begin{equation*}
+    %     Q = \int d^4x \del_\mu \theta(\eta\cdot x)  J^\mu(x)
+    % \end{equation*}
+    % by noticing that the space-derivative of theta function is simply zero, and the time derivative gives the delta function multiplied by \(\eta_\mu\)
+    
 
     \subsection{Applications}
     Let us look at some applications of the Noether's theorem
@@ -1863,7 +1893,7 @@
     The sign of \(k\cdot q\) is always positive since \(k\) and \(q\) are future directed timelike vectors, and their product is always positive (\(\because~k\cdot q = k_0q^0 - \textbf{k}\cdot \textbf{q}\), and for future directed timelike vectors, this is always positive). Therefore, this addition always improves convergence. So the Wightman function is analytic when \(x-y\) is extended to the complex plane with a future directed timelike vector. The only requirement was that \(k\) be a timelike vector, i.e.\ for every momentum eigenstate, the energy should be greater than the total momentum, which is guaranteed by the \textit{spectrum condition in QFT}, and this is true even in interacting theory. 
 
 
-    \subsection{Normalisation}
+    \subsection{Normalisation of momentum states}
     We want to start doing perturbation theory, but before that we need to discuss the normalisation of the states. \\
 
     So far, we have been working with the states that have the normalisation 
@@ -1911,15 +1941,299 @@
     \begin{equation*}
         \ket{\textbf{k}}\equiv \ket{\textbf{k}}_{\text{new}}
     \end{equation*}
-    With this, we also have to modify the creation and annihilation operators to satisfy
+    With this, we also have to modify the creation and annihilation operators as 
     \begin{equation*}
-        [\a{k}, \adag{k}] = 2\w_\textbf{k} (2\pi)^3\delta(\textbf{k} - \textbf{k}')
+        \a{k}{}_\text{new} = \sqrt{2\w_\textbf{k}}\a{k},~~\adag{k}{}_\text{new} = \sqrt{2\w_\textbf{k}}\adag{k}
     \end{equation*}
-    How we normalise the creation and annihilation operators is upto us and does not modify the content of the theory as long as we keep it consistent. The normalisation of \(\phi(x)\) is fixed by the canonical commutation relation, but the definitions of creation and annihilation operators are upto us.
+    and they satisfy
+    \begin{equation*}
+        [\a{k}{}_{\text{new}}, \adag{k}{}_{\text{new}}] = 2\w_\textbf{k} (2\pi)^3\delta(\textbf{k} - \textbf{k}')
+    \end{equation*}
+    How we normalise the creation and annihilation operators is upto us and does not modify the content of the theory as long as we keep it consistent. The normalisation of \(\phi(x)\) is fixed by the canonical commutation relation, but the definitions of creation and annihilation operators are upto us. What is important, in later calculations, is the objeect \(\bra{0}\phi(x)\ket{k}\), and we require it to satisfy the normalisation 
+    \begin{equation*}
+        \bra{0}\phi(x)\ket{k} = \e^{-ik\cdot x} 
+    \end{equation*}
+
+    \textcolor{red}{
+        With the original normalisation, we had 
+        \begin{align*}
+            \bra{0} \phi(x)\ket{k} &= \bra{0}\int \frac{d^3\textbf{p}}{\sqrt{2\w_\textbf{p}}(2\pi)^3} (\a{p}\e^{-ip\cdot x} + \adag{p} \e^{ip\cdot x}) \adag{k} \ket{0}\\
+            & = \bra{0}\int \frac{d^3\textbf{p}}{\sqrt{2\w_\textbf{p}}(2\pi)^3} \a{p}\e^{-ip\cdot x} \adag{k}\ket{0} \\
+            & = \int \frac{d^3\textbf{p}}{\sqrt{2\w_\textbf{p}}} \delta^3(\textbf{p} - \textbf{k})\e^{-ip\cdot x}\\
+            & = \frac{1}{\sqrt{2\w_\textbf{k}}}\e^{-ik\cdot x}
+        \end{align*}
+        With the new normalisation, we have 
+        \begin{align*}
+            \bra{0} \phi(x)\ket{k} &= \bra{0}\int \frac{d^3\textbf{p}}{2\w_\textbf{p}(2\pi)^3} (\a{p}{}_{\text{new}}\e^{-ip\cdot x} + \adag{p}{}_{\text{new}} \e^{ip\cdot x})\adag{k}{}_{\text{new}} \ket{0}\\
+            & = \bra{0}\int \frac{d^3\textbf{p}}{2\w_\textbf{p}(2\pi)^3} \a{p}{}_{\text{new}}\e^{-ip\cdot x} \adag{k}{}_{\text{new}}\ket{0} \\
+            & = \int d^3\textbf{p} \delta^3(\textbf{p} - \textbf{k})\e^{-ip\cdot x}\\
+            & =\e^{-ik\cdot x}
+        \end{align*}
+    }
+    From the next section onwards we simply call \(\a{k} \equiv \a{k}{}_{\text{new}}~\&~\adag{k} \equiv \adag{k}{}_{\text{new}}\)
 
     \newpage
     \section{Perturbation Theory}
     We will consider two models for the perturbation theory, \\
+    \begin{enumerate}
+        \item \(\phi^4\) theory — \begin{equation*}
+            \ld = \frac{1}{2}(\del_\mu \phi)^2 - \frac{m^2}{2}\phi^2 - \frac{\lambda}{4!}\phi^4\text{   — one field self interacting.}
+        \end{equation*}
+        \item Scalar Yukawa theory — \begin{equation*}
+            \ld = |\del_\mu \psi|^2 - M^2 |\psi|^2 + \frac{1}{2}(\del_\mu \phi)^2 - \frac{m^2}{2}\phi^2 - g|\psi|^2\phi \text{   — three scalar  fields } \psi,~\psi^\dagger,~\phi~\text{interacting with each other.} 
+        \end{equation*}
+    \end{enumerate}
+
+    \textcolor{red}{
+        Free \(\psi\) theory — 
+        \begin{equation*}
+            \ld = |\del_\mu \psi(x)|^2 - M^2 |\psi(x)|^2 = \del_\mu \psi(x) \del^\mu \psi^\dagger(x) - M^2 \psi(x)\psi^\dagger(x) 
+        \end{equation*}
+        The equation of motion for this Lagrangian, when varying with respect to
+        \begin{align*}
+            &\psi \to \del_\mu (\del^\mu \psi^\dagger(x)) + M^2\psi^\dagger(x) = 0\\
+            &\psi^\dagger \to \del_\mu (\del^\mu \psi(x)) + M^2\psi(x) = 0
+        \end{align*}
+        which are again decoupled Klein-Gordon equations. Therefore the solutions can be found, as before using the following Fourier transformation,
+        \begin{equation*}
+            \psi(t,\textbf{x}) = \int d^3\textbf{p}~\psi(t, \textbf{p})\e^{i\textbf{p}\cdot \textbf{x}} \implies \psi^\dagger(t,\textbf{x}) = \int d^3\textbf{p}~\psi^\dagger(t, \textbf{p})\e^{-i\textbf{p}\cdot \textbf{x}} = \int d^3\textbf{p}~\psi^\dagger(t, -\textbf{p})\e^{i\textbf{p}\cdot \textbf{x}} 
+        \end{equation*}
+        as did in section (\ref{sec:solution-freescalar}) are 
+        \begin{align*}
+            &\psi(t, \textbf{p}) = b_1(\textbf{p}) \exp(-i\w_\textbf{p} t) + b_2(\textbf{p})\exp(i\w_\textbf{p} t)\\
+            \psi^\dagger(t, -\textbf{p}) = c_1(\textbf{p}) \exp(-i\w_\textbf{p} t) + c_2(\textbf{p})\exp(i\w_\textbf{p} t) \implies&\psi^\dagger(t, \textbf{p}) = c_1(-\textbf{p}) \exp(-i\w_\textbf{p} t) + c_2(-\textbf{p})\exp(i\w_\textbf{p} t) 
+        \end{align*}
+        % (Where in the first equation we used \(c^*\), and in second \(h^*\) simply because we can later relabel them as \(c^\dagger\) to call it creation operator, as its commutator with Hamiltonian will be the one corresponding to the creation operator. Further, the \(-\textbf{p}\)s are placed for convenience so that we can make a transformation of variables later and get the equations in a convenient form. Note that this does not change the physics as we simply needed a function of \(\textbf{p}\), and it is upto our convenience to call it \(c\) or \(c^*\), or even call it a function of \(\textbf{p}\) or \(-\textbf{p}\). )\\
+        Comparing the above two equations, we get 
+        \begin{equation*}
+          c_1(-\textbf{p}) = b_2^*(\textbf{p})~~\&~~ c_2(-\textbf{p}) = b_1^*(\textbf{p})
+        \end{equation*}
+        and therefore the fields are (writing everything in terms of \(b_1\equiv b\) and \(c_1\equiv c\))
+        \begin{align*}
+            &\psi(t, \textbf{x}) = \int b(\textbf{p}) \e^{-i\w_\textbf{p}t + i\textbf{p}\cdot \textbf{x}} + c^*(-\textbf{p})\e^{i\w_\textbf{p}t + i\textbf{p}\cdot \textbf{x}} \frac{1}{\sqrt{2\w_\textbf{p}}}\frac{d^3\textbf{p}}{(2\pi)^3}\\
+            &\psi^\dagger(t, \textbf{x}) = \int c(-\textbf{p}) \e^{-i\w_\textbf{p}t - i\textbf{p}\cdot \textbf{x}} + b^*(\textbf{p})\e^{i\w_\textbf{p}t - i\textbf{p}\cdot \textbf{x}} \frac{1}{\sqrt{2\w_\textbf{p}}}\frac{d^3\textbf{p}}{(2\pi)^3}
+        \end{align*}
+        We can again change the variables in half of both the integrals from \(\textbf{p}\to-\textbf{p}\) and obtain 
+        \begin{align*}
+            &\psi(t, \textbf{x}) = \int b(\textbf{p}) \e^{-i\w_\textbf{p}t + i\textbf{p}\cdot \textbf{x}} + c^*(\textbf{p})\e^{i\w_\textbf{p}t - i\textbf{p}\cdot \textbf{x}} \frac{1}{\sqrt{2\w_\textbf{p}}}\frac{d^3\textbf{p}}{(2\pi)^3}\\
+            &\psi^\dagger(t, \textbf{x}) = \int c(\textbf{p}) \e^{-i\w_\textbf{p}t + i\textbf{p}\cdot \textbf{x}} + b^*(\textbf{p})\e^{i\w_\textbf{p}t - i\textbf{p}\cdot \textbf{x}} \frac{1}{\sqrt{2\w_\textbf{p}}}\frac{d^3\textbf{p}}{(2\pi)^3}
+        \end{align*}
+        Notice that the theory forces the fields to have creation operator of one kind and annihilation of other kind. Also, we are free to call any of the operators \(b\) and the other \(b^*\), but the convention is that the one that comes with a \(\exp(+i\w_\textbf{p} t)\) is \(b^\dagger\) since it is the creation operator.\vspace{7pt}\\
+        Further, since in the last section we decided on a \textit{redefinition of the momentum eigenstates}, we need to rescale the creation and annihilation operators by multiplying them by \(\sqrt{2\w_\textbf{p}}\), and in terms of the \textbf{new} operators, the fields are 
+        \begin{align*}
+            &\psi(t, \textbf{x}) = \int b(\textbf{p}) \e^{-i\w_\textbf{p}t + i\textbf{p}\cdot \textbf{x}} + c^\dagger(\textbf{p})\e^{i\w_\textbf{p}t - i\textbf{p}\cdot \textbf{x}} \frac{d^3\textbf{p}}{2\w_\textbf{p}(2\pi)^3}\\
+            &\psi^\dagger(t, \textbf{x}) = \int c(\textbf{p}) \e^{-i\w_\textbf{p}t + i\textbf{p}\cdot \textbf{x}} + b^\dagger(\textbf{p})\e^{i\w_\textbf{p}t - i\textbf{p}\cdot \textbf{x}} \frac{d^3\textbf{p}}{2\w_\textbf{p}(2\pi)^3}
+        \end{align*}
+    }
+
+    For the complex field, we also have 
+    \begin{equation*}
+        \bra{0} T ( \psi(x) \psi^\dagger(x) )\ket{0} = \int \frac{i}{p^2 - M^2 + i\epsilon} \frac{d^4p}{(2\pi)^4}
+    \end{equation*}
+
+    \subsection{\(\phi^4\) theory}
+    \subsubsection{Amplitude for \(\phi\phi \to \phi\phi\)}
+    We can start by asking the simple question — If we start with ``\(\textbf{k}_1,\textbf{k}_2\)'' in the past, what is the amplitude for ending up with ``\(\textbf{k}_3, \textbf{k}_4\)'' in the future. There are a few subtleties, especially regarding the meaning of the states \(\textbf{k}_1,\textbf{k}_2\) and \(\textbf{k}_3, \textbf{k}_4\). What we require is that the particles with momenta \(\textbf{k}_1\) and \(\textbf{k}_2\) well separated in far past (i.e. wavepackets well separated in position space, i.e. not a delta function in momentum space, but with a little spread, enough thin to approximated well as a delta function), and similarly in the far future, and then we allow them to interact in between. \\
+    But for now we will take a naive approach, assuming that the Hilbert space for the interacting theory is the same as that for a free theory. \textbf{This is a wrong assumption, but nevertheless we continue with this assumptionm since it turns out that it doesn't matter at leading order.}\\ 
+    Therefore what we compute is 
+    \begin{equation*}
+        \lim_{t\to \infty}\bra{\textbf{k}_3, \textbf{k}_4} \e^{-iHt} \ket{\textbf{k}_1, \textbf{k}_2}
+    \end{equation*}
+    This is the full time evolution operator. But since we assume that the Hilbert space is the same as that of free theory, upto a phase, this is the same as 
+    \begin{equation*}
+        \bra{\textbf{k}_3, \textbf{k}_4} T\left(\e^{-i\int_{-\infty}^{\infty}H_I(t) dt }\right) \ket{\textbf{k}_1, \textbf{k}_2}
+    \end{equation*}
+
+    \textcolor{red}{
+    Remember that 
+    \begin{equation*}
+        U_I(t) = \e^{iH_0t }\e^{-iHt} \implies \e^{-iHt} = \e^{-iH_0t} U_I(t)
+    \end{equation*}
+    therefore, in replacing the full time translation operator by the interaction time evolution operator, we only gain a phase \(\e^{-iE_\psi t}\) if \(\ket{\psi}\) is a momentum eigenstate in free theory.\\
+    }
+
+    The in and out states are therefore 
+    \begin{equation*}
+        \ket{\textbf{k}_1, \textbf{k}_2} = \adag{k_1}\adag{k_2}\ket{0},~~~\ket{\textbf{k}_3, \textbf{k}_4} = \adag{k_3}\adag{k_4}\ket{0}
+    \end{equation*}
+    There is another subtlety about what the vacuum is, since the vacuum of the interacting theory is not the same as that of the free theory. We will assume that in the free theory and the interacting theory the vacuum is the same as it turns out to be at leading order. One way to ``arrange'' for this is by having the turning on-off function. All of these subtleties, especially assuming the Hilbert spaces and the vacuum to be same in free and interacting theories, they are all important, but they are not important in leading order, and therefore ``for now'' we will proceed with these assumptions.\\
+
+    In the above equation, we can call 
+    \begin{equation*}
+        T\left(\e^{-i\int_{-\infty}^{\infty}H_I(t) dt }\right) = S
+    \end{equation*}
+    since this is the matrix that relates the in-states to the out-states as required by the \(S-\)matrix. The leading order term in this is the identity. This term simply says that the initial two particles go straight through each other without nothing happening. Therefore, the convention is to calculate \(S-1\). (In some cases, in some condensed matter systems etc, it turns out that the \(1\) also gets corrected when we compute the exact \(S-\)matrices and we obtain some interesting phases.)\\
+
+    Let us compute the first term. The first term is 
+    \begin{equation*}
+        -i\frac{\lambda}{4!} \bra{\textbf{k}_3, \textbf{k}_4} ~~\int_{-\infty}^{\infty} dt \int d^3\textbf{x} \phi_I(t, \textbf{x})^4~~ \ket{\textbf{k}_1, \textbf{k}_2} \equiv -i\frac{\lambda}{4!} \bra{\textbf{k}_3, \textbf{k}_4} ~~ \int d^4x \phi_I(x)^4~~ \ket{\textbf{k}_1, \textbf{k}_2}
+    \end{equation*}
+    (where we could convert the \(d^3\textbf{x}\) integral to \(d^4x\) only because we were computing the transition from asymptotic past to the asymptotic future. In other cases, this would not have been possible)\\
+
+    At the lowest order, we are calculating 
+    \begin{equation*}
+        \bra{\textbf{k}_3, \textbf{k}_4} ~~ \int d^4x \phi_I(x)^4~~ \ket{\textbf{k}_1, \textbf{k}_2}
+    \end{equation*}
+    Let us consider the term 
+    \begin{equation*}
+        \bra{\textbf{k}_3, \textbf{k}_4} \phi_I(x)\phi_I(x)\phi_I(x)\phi_I(x) \ket{\textbf{k}_1, \textbf{k}_2}
+    \end{equation*}
+    Since each field operator has one creation and insertion operator, the product will have \(2^4 = 16\) terms. In each term there can be only either a creation operator, or an annihilation operator of each field. A term cannot have both creation and annihilation operator both of same field. The fields are inserted at same spacetime point, and therefore they all commute with each other. Only the annihilation contract with \( \ket{\textbf{k}_1, \textbf{k}_2}\) (since in creating \(\ket{\textbf{k}_1, \textbf{k}_2}\) we acted on vacuum with the creation operators), while only creation operators act on \(\bra{\textbf{k}_3, \textbf{k}_4}\). Therefore, one possible term is where the following contractions happen 
+    \begin{equation*}
+        \langle \wick{\c2{\mathbf{k}_3},\c1{\mathbf{k}_4}| \c1 \phi_I(x) \c2 \phi_I(x) \c2 \phi_I(x) \c1 \phi_I(x) | \c1{\mathbf{k}_1},\c2{\mathbf{k}_2}}\rangle 
+    \end{equation*}
+    The two contractions with \(\textbf{k}_3\) and \(\textbf{k}_4\) gives \(\e^{i(k_3 + k_4)\cdot \textbf{x}}\) while the other two give \(\e^{-i(k_1 + k_2)\cdot \textbf{x}}\). Doing the integral over \(d^4x\), we get one term 
+    \begin{equation*}
+        \frac{-i\lambda}{4!}\int d^4x \langle \wick{\c2{\mathbf{k}_3},\c1{\mathbf{k}_4}| \c1 \phi_I(x) \c2 \phi_I(x) \c2 \phi_I(x) \c1 \phi_I(x) | \c1{\mathbf{k}_1},\c2{\mathbf{k}_2}}\rangle  = \frac{-i\lambda}{4!}(2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4) 
+    \end{equation*}
+    Now there are \(4\) ways to first contract \(\textbf{k}_1\), \(3\) ways to then contract \(\textbf{k}_2\), \(2\) ways to contract \(\textbf{k}_3\) and then only one of the left fields can contract \(\textbf{k}_4\). Therefore, there are \(4!\) such terms, and each term is exactly the same, giving rise to the element 
+    \begin{equation*}
+        \bra{\textbf{k}_3, \textbf{k}_4} \int d^4x \phi_I(x)^4 \ket{\textbf{k}_1, \textbf{k}_2} = -i\lambda(2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4) 
+    \end{equation*} 
+    This is the answer to the question that we asked in the beginning. If we start with ``\(\textbf{k}_1,\textbf{k}_2\)'' in the past, the amplitude (to the leading order) for ending up with ``\(\textbf{k}_3, \textbf{k}_4\)'' in the future is \(-i\lambda(2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4)\)\\
+
+    \textcolor{red}{
+        Let us make the above discussion more precise. 
+        In the expansion of \(\phi^4\), there will be terms of the form \(aaaa,~aaaa^\dagger,~ aaa^\dagger a^\dagger,~ aa^\dagger a^\dagger a^\dagger~\&~a^\dagger a^\dagger a^\dagger a^\dagger\). In our in states there are two creation operators, and our out states has two annihilation operators. \\
+        Let us see what happens for the term with three annihilation and one creation operators, say \(a^\dagger a a a\).  The object that we are computing then is of the form 
+        \begin{equation*}
+            \braket{0|aa(a^\dagger aaa)a^\dagger a^\dagger |0}
+        \end{equation*}
+        We can first switch the creation operator on the left with the annhilation operator to its left, picking up a commutator in the form of delta function 
+        \begin{equation*}
+            = \braket{0|aa^\dagger aaaaa^\dagger a^\dagger |0} + \delta \braket{0|aaaaa^\dagger a^\dagger |0}
+        \end{equation*}
+        We can keep on doing this as 
+        \begin{align*}
+            &= \braket{0|a^\dagger aaaaaa^\dagger a^\dagger |0} + \delta\braket{0|aaaaa^\dagger a^\dagger |0}  + \delta \braket{0|aaaaa^\dagger a^\dagger |0}\\ 
+            &= 0 + \delta\braket{0|aaaa^\dagger a a^\dagger |0} + \delta\delta \braket{0|aaa a^\dagger |0}  + \delta\braket{0|aaaa^\dagger a a^\dagger |0} + \delta\delta \braket{0|aaa a^\dagger |0} \\
+            & = \delta\delta\braket{0|aaaa^\dagger|0} + \delta\delta\delta \braket{0|aa|0}  + \delta\delta\braket{0|aaaa^\dagger|0} + \delta\delta\delta \braket{0|aa|0}  \\
+            & = \delta\delta\delta \braket{0|aa|0} + \delta\delta\delta \braket{0|aa|0}+\delta\delta\delta \braket{0|aa|0}+\delta\delta\delta \braket{0|aa|0} = 0
+        \end{align*}
+        (where we are not combining similar looking terms since they are different terms with delta functions, and \(a\) \(\adag{~}\) in different momenta, and from third line onwards directly eliminated terms that are 0 without explicitly showing them.)\\
+        If we need a non-zero term, we need two creation operators and two annihilation operators that can each commute with the creation and annihilation operators in the in-out states, giving rise to a constant term. \\
+        Another way to look at this is that we need two annihilation operators to annihilate the two momenta in incoming state giving the vacuum, and then we need two creation operators to create two momenta, and only this term will have non zero overlap with the out-states. For other combinations of creation and annhilation operators, we will end up with either one or three particle states, which will have zero overlap with the outgoing state.\vspace{7pt}\\
+        Let us calculate one such term (not accurately, just to give a gist)
+        \begin{align*}
+            &\int dp~dq~dr~ds~ \e^{-i(p+q-r-s)\cdot x}\braket{0|\a{k_3}\a{k_4} \adag{p}\adag{q}\a{r}\a{s} \adag{k_1} \adag{k_2}|0} \\
+            =&\int dp~dq~dr~ds~ \e^{-i(p+q-r-s)\cdot x}\braket{0|\a{k_3} \adag{p}\a{k_4}\adag{q}\a{r}\a{s} \adag{k_1} \adag{k_2}|0} + \delta(\mathbf{k_4} - \textbf{p})\braket{0|\a{k_3} \adag{q}\a{r}\a{s} \adag{k_1} \adag{k_2}|0}\\
+            =& \int dp~dq~dr~ds~ \e^{-i(p+q-r-s)\cdot x}\delta(\mathbf{k_3} - \textbf{p})\braket{0|\a{k_4}\adag{q}\a{r}\a{s} \adag{k_1} \adag{k_2}|0} + \delta(\mathbf{k_4} - \textbf{p})\braket{0|\a{k_3} \adag{q}\a{r}\a{s} \adag{k_1} \adag{k_2}|0}\\
+            =&  \int dp~dq~dr~ds~ \e^{-i(p+q-r-s)\cdot x}\delta(\mathbf{k_3} - \textbf{p})\braket{0|\a{k_4}\adag{q}\a{r}\a{s} \adag{k_1} \adag{k_2}|0} + \delta(\mathbf{k_4} - \textbf{p})\braket{0|\a{k_3} \adag{q}\a{r}\a{s} \adag{k_1} \adag{k_2}|0}\\
+            =& \int dp~dq~dr~ds~ \e^{-i(p+q-r-s)\cdot x}\delta(\mathbf{k_3} - \textbf{p})\delta(\mathbf{k_4} - \textbf{q})\braket{0|\a{r}\a{s} \adag{k_1} \adag{k_2}|0} + \delta(\mathbf{k_3} - \textbf{q})\delta(\mathbf{k_4} - \textbf{p})\braket{0|\a{r}\a{s} \adag{k_1} \adag{k_2}|0}\\
+            \vdots \\
+            =& \int dp~dq~dr~ds~ \e^{-i(p+q-r-s)} \delta(\mathbf{k_3} - \textbf{p})\delta(\mathbf{k_4} - \textbf{q})\delta(\mathbf{k_1} - \textbf{r})\delta(\mathbf{k_2} - \textbf{s}) + \text{~3 other delta function combinations}\\
+            =& 4 \e^{-i(k_3 + k_4 - k_2 - k_1)\cdot x}
+        \end{align*}
+        Notice that the delta functions will always in all cases end up such that the final answer will have incoming momenta minus the outgoing momenta (or vice versa). \\
+        Now, \(a^\dagger a^\dagger a a\) was one of the possible terms. There are \({}^4C_2 = 6\) terms (\(a^\dagger a a^\dagger a,~aaa^\dagger a^\dagger,~\)etc.) in total that give rise to the same answer, and therefore the final answer for this case would be 
+        \begin{equation*}
+            \int dx ~6\times 4\times \e^{-i(k_3 + k_4 - k_2 - k_1)\cdot x} = 4! \times (2\pi)^4 \delta(k_3 + k_4 - k_2 - k_1)
+        \end{equation*}
+        and the \(4!\) from here cancels with the \(4!\) in the coupling constant. \\
+        Notice that this entire ordeal is equivalent to saying that I commute the creation(annihilation) operator from one of the fields with a annihilation(creation) operator from one of the out(in) states, to get a factor of \(\e^{+(-)ikx}\) and that there are \(4!\) ways to do this (4 ways to commute \(k_1\), 3 to commute \(k_2\) and so on), each giving rise to the term \(\e^{i(\sum_{in}k - \sum_{out}k)}\)
+    }
+
+    \subsection{Scalar Yukawa Theory}
+    Following Coleman, let us call the \(\psi\) fields nucleons and \(\phi\) fields mesons. This is not accurate since nucleons are fermions, but let us keep this for the time being. (Also keep note that from now, I am dropping the subscript \(I\) on the interaction picture fields. Assume that the fields are always in interaction picture)
+    
+    \subsubsection{Amplitude for \(\phi\to\psi\psi^\dagger\)}
+    In this case we can ask a different question - If we started off with a meson \(\phi\) with momentumm \(\textbf{k}_1\) in the far past, what is the amplitude to end up with two nucleons \(\psi~\&~\psi^\dagger\) in the far future with momenta \(\textbf{k}_2\) and \(\textbf{k}_3\). \\
+
+    Even in this case, we follow the same steps as before. We call
+    \begin{align*}
+        &\ket{\text{in}} = \ket{\textbf{k}_1} = \adag{k_1}\ket{0}\\
+        &\ket{\text{out}} = \ket{\textbf{k}_2, \textbf{k}_3} = \bdag{k_2}\cdag{k_3}\ket{0}
+    \end{align*} 
+    We have \(H_I(t) = -ig\int d^3\textbf{x} \phi(x) \psi(x) \psi^\dagger(x)\) and therefore we want the matrix element 
+    \begin{equation*}
+        -ig \bra{\textbf{k}_2, \textbf{k}_3} \int d^4x  \psi(x) \psi^\dagger(x) \phi(x) \ket{\textbf{k}_1} 
+    \end{equation*}
+    Now we have fewer choices, \(\phi\) can give only an annihilation operator, and both \(\psi\) and \(\psi^\dagger\) should give creation operators. Even in the creation operators, there is only one possible contraction; since \(\psi\) creates particles of type \(c\) and annihilates particles of type \(b\) and vice versa for \(\psi^\dagger\), we need the creation operator from \(\psi\) to contract with \(\textbf{k}_3\) and from \(\psi^\dagger\) to contract with \(\textbf{k}_2\). Therefore the only possible contraction is the following 
+    \begin{equation*}
+        -ig \int d^4x \langle \wick{\c2{\mathbf{k}_2},\c1{\mathbf{k}_3}| \c1 \psi(x) \c2 \psi^\dagger(x) \c1 \phi(x) | \c1{\mathbf{k}_1}}\rangle 
+    \end{equation*}
+    Now the \(\phi\) contraction should bring in \(\e^{-ik_1\cdot x}\), and the other two contractions should bring in \(\e^{ik_2\cdot x}\) and \(\e^{ik_3\cdot x}\). Therefore, the above term is 
+    \begin{equation*}
+        -ig \int d^4 x \e^{-i(k_1 - k_2 - k_3)\cdot x} = -ig(2\pi)^4 \delta^4(k_1 - k_2 - k_3)
+    \end{equation*}
+    In general, for three point amplitudes, it is not easy to find the kinematic configuration where all the delta functions as found above is satisfied. To put things to picture, suppose you work in a frame where \(k_3\) is at rest, i.e. 
+    \begin{equation*}
+        k_3 = M(1,0,0,0)
+    \end{equation*}
+    But I can't at the same time, set \(k_2 = M(1,0,0,0)\). But we can choose it to be 
+    \begin{equation*}
+        k_2 = M(\cosh\theta, \sinh\theta, 0, 0)
+    \end{equation*} 
+    which is equivalent to setting the \(z\) axis of my coordinate system parallel to \(\textbf{k}_2\). \\
+    Now in order for the above delta function to be satisfied, \(k_1\) has to be \(k_2 + k_3\), which is  
+    \begin{equation*}
+        k_1 = M(1+\cosh\theta, \sinh\theta, 0, 0)
+    \end{equation*}
+    But for \(k_1\), the mass is \(m\), and therefore it is necessary that \(k_1^2 = m^2\), i.e.,
+    \begin{equation*}
+        M^2((1+\cosh\theta)^2 - \sinh^2\theta) = m^2 \implies M^2(1 + \cosh^2\theta + 2\cosh\theta - \sinh^2\theta) = m^2
+    \end{equation*}
+    which gives 
+    \begin{equation*}
+        2M^2(1+\cosh\theta) = m^2
+    \end{equation*}
+    So we see that unless the particles have a very specific relationship between the masses and this rapidity, we could never had satisfied this delta function. As an example, if the mass \(m\) is light compared to \(M\), this delta function can never be satisfied. Therefore, the three point interactions are realised only in very special cases.
+    
+    \subsubsection{Amplitude for \(\psi\psi\to\psi\psi\)}
+
+    We can try asking more questions. For example if we start two \(\psi\) fields in the past, what is the amplitude for getting two \(\psi\) fields in the future. 
+    \begin{align*}
+        &\ket{\text{in}} = \ket{\textbf{k}_1, \textbf{k}_2} = \cdag{k_1}\cdag{k_2}\ket{0}\\
+        &\ket{\text{out}} = \ket{\textbf{k}_3, \textbf{k}_4} = \cdag{k_3}\cdag{k_4}\ket{0}\\
+    \end{align*}
+    For this, first order term would be 
+    \begin{equation*}
+        -ig\bra{\textbf{k}_3, \textbf{k}_4}\int d^4 x ~ \phi(x) \psi(x) \psi^\dagger(x) \ket{\textbf{k}_1, \textbf{k}_2}
+    \end{equation*}
+    This is exactly zero since we need two \(\psi^\dagger\) and two \(\psi\) to contract with the in and out states, and this simply doesn't have the required field insertions. \\
+
+    Let us now try in the second order. In second order, we now have to worry about the time ordering in the time translation operator. Therefore, the term is 
+    \begin{equation*}
+        -\frac{g^2}{2} \bra{\textbf{k}_3, \textbf{k}_4} \int d^4x d^4y ~T\left[  \phi(x) \psi(x) \psi^\dagger(x)  \phi(y) \psi(y) \psi^\dagger(y)  \right]\ket{\textbf{k}_1, \textbf{k}_2}
+    \end{equation*}
+    Using Wick's theorem, we can write the time ordered product in terms of different contractions. So we now need to worry about which of the contractions is actually going to contribute to the amplitude. Notice that we need two \(\psi\)s and two \(\psi^\dagger\)s to hit the in(out) state to give a non zero contribution. Therefore, the only contraction in which all \(\psi\)s and \(\psi^\dagger\)s are left uncontracted while the \(\phi\)s are contracted gives a non-zero value. Therefore, the only term we need to worry about is 
+    \begin{equation*}
+        -\frac{g^2}{2} \bra{\textbf{k}_3, \textbf{k}_4} \int d^4x d^4y~    \normord{\psi(x) \psi^\dagger(x) \psi(y) \psi^\dagger(y)} \wick{\c\phi(x)\c\phi(y)}   \ket{\textbf{k}_1, \textbf{k}_2}
+    \end{equation*}
+    If we did not contract the \(\phi\)s we would have ended up with zero, and if we had contracted any of \(\psi\) or \(\psi^\dagger\)s, we would have also obtained zero. See that with Wick's theorem, we do not have to worry about time ordering anymore, we do not have to do horrible integrals where the limits of one integral is the integration variable of the other and so on.  \\
+
+
+    With this, we now have 4 possible terms, which arises from the choices of which \(\psi\) to use to annihilate the out states and which \(\psi^\dagger\)s to annihilate the in states. For one such choice, we get 
+    \begin{equation*}
+        -\frac{g^2}{2} \int d^4x d^4y \underbrace{\e^{-ik_1\cdot y}\e^{-ik_2\cdot x}\e^{ik_3\cdot y}\e^{ik_4\cdot x}}_{\bra{\textbf{k}_3, \textbf{k}_4}\normord{\psi(x) \psi^\dagger(x) \psi(y) \psi^\dagger(y)}\ket{\textbf{k}_1, \textbf{k}_2}}  
+        \overbrace{\frac{i\e^{-ip\cdot(x-y)}}{p^2 -m^2 + i\epsilon}\frac{d^4p}{(2\pi)^4}}^{ \wick{\c\phi(x)\c\phi(y)} }
+    \end{equation*}
+    Now we can do the \(x\) and \(y\) integrals to get 
+    \begin{equation*}
+        -\frac{g^2}{2} \int d^4p~
+       \frac{i}{p^2 -m^2 + i\epsilon}(2\pi)^4\delta^4(k_2 - k_4 + p) \delta^4(k_3 - k_1 + p)
+    \end{equation*}
+    We can now do the \(p\) integral
+    \begin{equation*}
+        -\frac{g^2}{2} \frac{i}{(k_4-k_2)^2 - m^2} (2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4)
+    \end{equation*}
+    The other possible term will be 
+    \begin{equation*}
+        -\frac{g^2}{2} \int d^4x d^4y\e^{-ik_1\cdot y}\e^{-ik_2\cdot x}\e^{ik_4\cdot y}\e^{ik_3\cdot x}\frac{i\e^{-ip\cdot(x-y)}}{p^2 -m^2 + i\epsilon}\frac{d^4p}{(2\pi)^4}
+    \end{equation*}
+    which will give 
+    \begin{equation*}
+         -\frac{g^2}{2} \int d^4p~  \frac{i}{p^2 -m^2 + i\epsilon}(2\pi)^4\delta^4(k_2 - k_3 + p) \delta^4(k_4 - k_1 + p)
+    \end{equation*}
+    This integral will evaluate to 
+    \begin{equation*}
+        -\frac{g^2}{2} \frac{i}{(k_3-k_1)^2 - m^2} (2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4)
+    \end{equation*}    
+    The other two terms are exactly equal to these two terms, and therefore give a factor of \(2\). Therefore, the final answer at second order is 
+    \begin{equation*}
+        -ig^2 \left(  \frac{1}{(k_4-k_2)^2 - m^2}  +   \frac{1}{(k_3-k_1)^2 - m^2}  \right)(2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4)
+    \end{equation*}
+
 
 
 
