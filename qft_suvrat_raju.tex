@@ -9,7 +9,7 @@
 
 \usepackage{setspace}
 \usepackage{braket}
-\usepackage{tikz-feynman}
+\usepackage[compat=1.1.0]{tikz-feynman}
 \usetikzlibrary{patterns, decorations.markings, positioning}
 
 \usepackage{xcolor}
@@ -2229,10 +2229,71 @@
     \begin{equation*}
         -\frac{g^2}{2} \frac{i}{(k_3-k_1)^2 - m^2} (2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4)
     \end{equation*}    
-    The other two terms are exactly equal to these two terms, and therefore give a factor of \(2\). Therefore, the final answer at second order is 
+    The other two terms are exactly equal to these two terms (since we can obtain them by doing \(x\leftrightarrow y\) in both creation and annihilation operators which is simply equivalent to changing the integration variable), and therefore give a factor of \(2\). Therefore, the final answer at second order is 
     \begin{equation*}
         -ig^2 \left(  \frac{1}{(k_4-k_2)^2 - m^2}  +   \frac{1}{(k_3-k_1)^2 - m^2}  \right)(2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4)
     \end{equation*}
+
+    \subsection{Feynman Diagrams}
+    The way we understand Feynman diagrams today is not the way it was developed. In the development phase, it was used to genuinely understand the underlying quantum field theory, and the diagrams had their interpretation. This was a messy business and it was Dyson who cleaned up things by putting everything in order. Today Feynman diagrams is simply a graphical way repackaging of the results of the Dyson series and the Wick's theorem. There is nothing conceptually new in this. It is just a useful simple calculation tool. \\
+
+    The structure of Feynman diagrams is very simple. There are vertices, and there are propagators connecting these vertices. Vertices are those that come from a single insertion of \(H_I\), and they bring with them a value. In the \(\phi^4\) theory, the \(H_I\) is \(\displaystyle\frac{-i\lambda}{4!}\phi^4(x)\), and the corresponding vertex is 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[scale=0.7]
+            \begin{feynman}
+                \vertex (o);
+                \vertex [below right =of o] (f2);
+                \vertex [below left =of o] (i2);                
+                \vertex [above right =of o] (f1);
+                \vertex [above left =of o] (i1);
+                \diagram*{
+                    (i1) --  (o) -- (f1);
+                    (i2) -- (o) -- (f2);
+                };
+            \end{feynman}
+            \node at (2,0) {\(=-i\lambda\)};
+        \end{tikzpicture}
+    \end{figure}
+    where \(-i\lambda\) is the value associated with the vertex. Notice that we are not putting the \(4!\), since the symmetry of the diagram already takes care of it.\\
+
+    In addition, we are supposed to associate momenta with each leg of a vertex, and impose energy momentum conservation, i.e.     
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[scale=0.7]
+            \begin{feynman}
+                \vertex (o);
+                \vertex [below right =of o] (f2);
+                \vertex [below left =of o] (i2);                
+                \vertex [above right =of o] (f1);
+                \vertex [above left =of o] (i1);
+                \diagram*{
+                    (i1) -- [ momentum'=$\textbf{k}_1$] (o) --[ momentum=$\textbf{k}_3$] (f1);
+                    (i2) -- [ momentum'=$\textbf{k}_2$](o) --[ momentum=$\textbf{k}_4$] (f2);
+                };
+            \end{feynman}
+            \node at (7,0) {\(=-i\lambda(2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4)\)};
+        \end{tikzpicture}
+    \end{figure}
+
+    What about the \(\phi\psi\psi^\dagger\) model? Now there are two kinds of particles, and therefore we need to come up with a notation. Let us call the dotted line \(\phi\), line with arrow pointing towards the vertex \(\psi\) and the line with arrow pointing away \(\psi^\dagger\). Therefore, the vertex is 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[scale=0.7]
+            \begin{feynman}
+                \vertex (o);
+                \vertex [left =of o] (i);                
+                \vertex [above right =of o] (f1);
+                \vertex [below right =of o] (f2);
+                \diagram*{
+                    (i) --[ghost, momentum=$\textbf{k}_1$] (o);
+                    (o) -- [fermion, momentum=$\textbf{k}_2$] (f1);
+                    (o) -- [anti fermion, momentum=$\textbf{k}_3$] (f2);
+                };
+            \end{feynman}
+            \node at (6,0) {\(=-ig(2\pi)^4\delta^4(k_1 - k_2 - k_3)\)};
+        \end{tikzpicture}
+    \end{figure}
 
 
 
