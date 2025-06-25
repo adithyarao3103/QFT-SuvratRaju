@@ -2028,7 +2028,7 @@
 
     For the complex field, we also have 
     \begin{equation*}
-        \bra{0} T ( \psi(x) \psi^\dagger(x) )\ket{0} = \int \frac{i}{p^2 - M^2 + i\epsilon} \frac{d^4p}{(2\pi)^4}
+        \bra{0} T ( \psi(x) \psi^\dagger(y) )\ket{0} = \int \frac{i}{p^2 - M^2 + i\epsilon} \e^{ip\cdot(x-y)} \frac{d^4p}{(2\pi)^4}
     \end{equation*}
 
     \subsection{\(\phi^4\) theory}
@@ -2134,10 +2134,10 @@
     }
 
     \subsection{Scalar Yukawa Theory}
-    Following Coleman, let us call the \(\psi\) fields nucleons and \(\phi\) fields mesons. This is not accurate since nucleons are fermions, but let us keep this for the time being. (Also keep note that from now, I am dropping the subscript \(I\) on the interaction picture fields. Assume that the fields are always in interaction picture)
+    Following Coleman, let us call the \(\psi\) fields nucleons (\(N\)) and \(\phi\) fields mesons. This is not accurate since nucleons are fermions, but let us keep this for the time being. (Also keep note that from now, I am dropping the subscript \(I\) on the interaction picture fields. Assume that the fields are always in interaction picture)
     
-    \subsubsection{Amplitude for \(\phi\to\psi\psi^\dagger\)}
-    In this case we can ask a different question - If we started off with a meson \(\phi\) with momentumm \(\textbf{k}_1\) in the far past, what is the amplitude to end up with two nucleons \(\psi~\&~\psi^\dagger\) in the far future with momenta \(\textbf{k}_2\) and \(\textbf{k}_3\). \\
+    \subsubsection{Amplitude for \(\phi\to N\bar{N}\)}
+    In this case we can ask a different question - If we started off with a meson \(\phi\) with momentumm \(\textbf{k}_1\) in the far past, what is the amplitude to end up with two nucleons \(N (\text{created by }\psi)~\&~\bar{N} (\text{ created by }\psi^\dagger)\) in the far future with momenta \(\textbf{k}_2\) and \(\textbf{k}_3\). \\
 
     Even in this case, we follow the same steps as before. We call
     \begin{align*}
@@ -2148,7 +2148,7 @@
     \begin{equation*}
         -ig \bra{\textbf{k}_2, \textbf{k}_3} \int d^4x  \psi(x) \psi^\dagger(x) \phi(x) \ket{\textbf{k}_1} 
     \end{equation*}
-    Now we have fewer choices, \(\phi\) can give only an annihilation operator, and both \(\psi\) and \(\psi^\dagger\) should give creation operators. Even in the creation operators, there is only one possible contraction; since \(\psi\) creates particles of type \(c\) and annihilates particles of type \(b\) and vice versa for \(\psi^\dagger\), we need the creation operator from \(\psi\) to contract with \(\textbf{k}_3\) and from \(\psi^\dagger\) to contract with \(\textbf{k}_2\). Therefore the only possible contraction is the following 
+    Now we have fewer choices, \(\phi\) can give only an annihilation operator, and both \(\psi\) and \(\psi^\dagger\) should give creation operators. Even in the creation operators, there is only one possible contraction; since \(\psi\) creates particles of type \(N\) and annihilates particles of type \(\bar{N}\) and vice versa for \(\psi^\dagger\), we need the creation operator from \(\psi\) to contract with \(\textbf{k}_3\) and from \(\psi^\dagger\) to contract with \(\textbf{k}_2\). Therefore the only possible contraction is the following 
     \begin{equation*}
         -ig \int d^4x \langle \wick{\c2{\mathbf{k}_2},\c1{\mathbf{k}_3}| \c1 \psi(x) \c2 \psi^\dagger(x) \c1 \phi(x) | \c1{\mathbf{k}_1}}\rangle 
     \end{equation*}
@@ -2179,9 +2179,9 @@
     \end{equation*}
     So we see that unless the particles have a very specific relationship between the masses and this rapidity, we could never had satisfied this delta function. As an example, if the mass \(m\) is light compared to \(M\), this delta function can never be satisfied. Therefore, the three point interactions are realised only in very special cases.
     
-    \subsubsection{Amplitude for \(\psi\psi\to\psi\psi\)}
+    \subsubsection{Amplitude for \(NN\to NN\)}
 
-    We can try asking more questions. For example if we start two \(\psi\) fields in the past, what is the amplitude for getting two \(\psi\) fields in the future. 
+    We can try asking more questions. For example if we start two \(N\) particles in the past, what is the amplitude for getting two \(N\) particles in the future. 
     \begin{align*}
         &\ket{\text{in}} = \ket{\textbf{k}_1, \textbf{k}_2} = \cdag{k_1}\cdag{k_2}\ket{0}\\
         &\ket{\text{out}} = \ket{\textbf{k}_3, \textbf{k}_4} = \cdag{k_3}\cdag{k_4}\ket{0}\\
@@ -2215,7 +2215,7 @@
     \end{equation*}
     We can now do the \(p\) integral
     \begin{equation*}
-        -\frac{g^2}{2} \frac{i}{(k_4-k_2)^2 - m^2} (2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4)
+        -\frac{g^2}{2} \frac{i}{(k_1-k_3)^2 - m^2} (2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4)
     \end{equation*}
     The other possible term will be with \(x\leftrightarrow y\) but only for the annihilation operator, which will give 
     \begin{equation*}
@@ -2227,17 +2227,18 @@
     \end{equation*}
     This integral will evaluate to 
     \begin{equation*}
-        -\frac{g^2}{2} \frac{i}{(k_3-k_1)^2 - m^2} (2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4)
+        -\frac{g^2}{2} \frac{i}{(k_1-k_4)^2 - m^2} (2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4)
     \end{equation*}    
     The other two terms are exactly equal to these two terms (since we can obtain them by doing \(x\leftrightarrow y\) in both creation and annihilation operators which is simply equivalent to changing the integration variable), and therefore give a factor of \(2\). Therefore, the final answer at second order is 
     \begin{equation*}
-        -ig^2 \left(  \frac{1}{(k_4-k_2)^2 - m^2}  +   \frac{1}{(k_3-k_1)^2 - m^2}  \right)(2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4)
+        -ig^2 \left(  \frac{1}{(k_1-k_3)^2 - m^2}  +   \frac{1}{(k_1-k_4)^2 - m^2}  \right)(2\pi)^4 \delta^4(k_1 + k_2 - k_3 - k_4)
     \end{equation*}
 
     \subsection{Feynman Diagrams}
     The way we understand Feynman diagrams today is not the way it was developed. In the development phase, it was used to genuinely understand the underlying quantum field theory, and the diagrams had their interpretation. This was a messy business and it was Dyson who cleaned up things by putting everything in order. Today Feynman diagrams is simply a graphical way repackaging of the results of the Dyson series and the Wick's theorem. There is nothing conceptually new in this. It is just a useful simple calculation tool. \\
 
     The structure of Feynman diagrams is very simple. There are vertices, and there are propagators connecting these vertices. Vertices are those that come from a single insertion of \(H_I\), and they bring with them a value. In the \(\phi^4\) theory, the \(H_I\) is \(\displaystyle\frac{-i\lambda}{4!}\phi^4(x)\), and the corresponding vertex is 
+
     \begin{figure}[h]
         \centering
         \begin{tikzpicture}[scale=0.7]
@@ -2248,8 +2249,8 @@
                 \vertex [above right =of o] (f1);
                 \vertex [above left =of o] (i1);
                 \diagram*{
-                    (i1) --  (o) -- (f1);
-                    (i2) -- (o) -- (f2);
+                    (i1) -- [scalar] (o) --[scalar] (f1);
+                    (i2) --[scalar] (o) --[scalar] (f2);
                 };
             \end{feynman}
             \node at (2,0) {\(=-i\lambda\)};
@@ -2268,15 +2269,15 @@
                 \vertex [above right =of o] (f1);
                 \vertex [above left =of o] (i1);
                 \diagram*{
-                    (i1) -- [ momentum'=$\textbf{k}_1$] (o) --[ momentum=$\textbf{k}_3$] (f1);
-                    (i2) -- [ momentum'=$\textbf{k}_2$](o) --[ momentum=$\textbf{k}_4$] (f2);
+                    (f1) -- [scalar, momentum'=$\textbf{k}_1$] (o) --[scalar, momentum=$\textbf{k}_3$] (i1);
+                    (f2) -- [scalar, momentum'=$\textbf{k}_2$](o) --[scalar, momentum=$\textbf{k}_4$] (i2);
                 };
             \end{feynman}
             \node at (7,0) {\(=-i\lambda(2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4)\)};
         \end{tikzpicture}
     \end{figure}
 
-    What about the \(\phi\psi\psi^\dagger\) model? Now there are two kinds of particles, and therefore we need to come up with a notation. Let us call the dotted line \(\phi\), line with arrow pointing towards the vertex \(\psi\) and the line with arrow pointing away \(\psi^\dagger\). Therefore, the vertex is 
+    What about the \(\phi\psi\psi^\dagger\) model? Now there are two kinds of particles, and therefore we need to come up with a notation. Let us call the dotted line \(\phi\), line with arrow pointing towards the vertex \(\psi\) and the line with arrow pointing away \(\psi^\dagger\). Therefore, at the vertex, the scalar line meets with a line with arrow pointing towards the vertex and another line with arrow pointing away from the vertex.
     \begin{figure}[h]
         \centering
         \begin{tikzpicture}[scale=0.7]
@@ -2286,14 +2287,247 @@
                 \vertex [above right =of o] (f1);
                 \vertex [below right =of o] (f2);
                 \diagram*{
-                    (i) --[ghost, momentum=$\textbf{k}_1$] (o);
-                    (o) -- [fermion, momentum=$\textbf{k}_2$] (f1);
-                    (o) -- [anti fermion, momentum=$\textbf{k}_3$] (f2);
+                    (o) --[scalar, momentum=$\textbf{k}_3$] (i);
+                    (f1) -- [anti fermion, momentum=$\textbf{k}_1$] (o);
+                    (f2) -- [fermion, momentum=$\textbf{k}_2$] (o);
                 };
             \end{feynman}
-            \node at (6,0) {\(=-ig(2\pi)^4\delta^4(k_1 - k_2 - k_3)\)};
+            \node at (6,0) {\(=-ig(2\pi)^4\delta^4(k_1 + k_2 - k_3)\)};
         \end{tikzpicture}
     \end{figure}
+    
+    \textcolor{red}{
+        Notice that since the in-states enter the calculations as kets and the out-states enter the calculation as bras, the action of \(\psi\) and \(\psi^\dagger\) on the in -tates is not the same as their actions on the out-states. That is, if \(\psi\) acts on an in-state it creates an \(N\), while if it acts on an out-state it creates an \(\bar N\), and vice versa for \(\psi^\dagger\). Therefore, an in-directed line with momentum arrow also in-directed will be an incoming \(N\), an in-directed line with momentum arrow out-directed will be an outgoing \(\bar N\), and vice versa for the out-directed line.\vspace{7pt}\\
+        One can understand this as following — the arrows on the nucleon lines always track ``Nucleon-number flow'' rather than ``particle vs. antiparticle''. In other words, an incoming \(\psi\) is equivalent to an outgoing \(\psi^\dagger\) and vice versa, where the incoming and outgoing are determined by the momenta arrows. Therefore in the very above vertex, if the momentum \(\textbf{k}_1\) would be the other way, then we would read off both the solid lines as \(N\), while if the momentum \(\textbf{k}_2\) were the other way, then both the solid lines would be \(\bar{N}\)s.\\
+    }
+
+    The propagators are simply lines connecting two vertices, and they are exactly equal to the value (in momentum space) of the time ordered product of two fields. \\
+    That is, for the \(\phi^4\) theory 
+
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex[dot] (a);
+                \vertex [dot, right = of a] (b);
+                \diagram*{
+                    (a) --[scalar] (b);
+                };
+            \end{feynman};
+            \fill (a) circle (2pt);
+            \fill (b) circle (2pt);
+            \node at (5.5,0) {\(= \mathcal{M}(\braket{0|T(\phi(x)\phi(y))|0}) = \displaystyle \frac{i}{k^2 - m^2 + i\epsilon}\)};
+        \end{tikzpicture}
+    \end{figure}
+
+    (where I have used \(\mathcal{M}\) to denote the momentum space representation) and for the \(\psi(\psi^\dagger)\) fields in \(\phi\psi\psi^\dagger\) theory, 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex[dot] (a);
+                \vertex [dot, right = of a] (b);
+                \diagram*{
+                    (a) --[fermion] (b);
+                };
+            \end{feynman};
+            \fill (a) circle (2pt);
+            \fill (b) circle (2pt);
+            \node at (5.5,0) {\(= \mathcal{M}(\braket{0|T(\psi^\dagger(x)\psi(y))|0}) = \displaystyle \frac{i}{k^2 - M^2 + i\epsilon}\)};
+        \end{tikzpicture}
+    \end{figure}
+
+    where for the vertex on the left, the line has outgoing arrow and therefore is \(\psi^\dagger\) and for that on the right, the line has incoming arrow and therefore is \(\psi\). Therefore the relevent propagator is \(\braket{0|T(\psi^\dagger(x)\psi(y))|0}\).\\
+    
+    
+    The rules for calculations are simple. You join the vertices with propagators to make a diagram that represents the process you are trying to compute. Label the edges with their corresponding momenta (the momenta decide the flow of the diagram), read off the integrals by assigning the corresponding values, and integrate over all undetermined momenta.\\
+
+    Let us try to get the previously obtained results using these diagrams. The first two are trivial and are directly read from the vertices. The non-trivial result is of the \(NN \to NN\). One possible diagram is 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a);
+                \vertex [below = of a] (b);
+                \vertex [above left =of a] (f1);                
+                \vertex [above right =of a] (i1);
+                \vertex [below right =of b] (i2);
+                \vertex [below left =of b] (f2);
+                \diagram*{
+                    (a) --[scalar, momentum=$\textbf{k}$] (b);
+                    (i1) -- [fermion, momentum=$\textbf{k}_1$] (a) -- [fermion, momentum=$\textbf{k}_3$] (f1);
+                    (i2) -- [fermion, momentum'=$\textbf{k}_2$] (b) -- [fermion, momentum'=$\textbf{k}_4$] (f2);
+                };
+            \end{feynman}
+        \end{tikzpicture}
+    \end{figure}
+
+    \textcolor{red}{
+        In this diagram the \(\psi\) lines are with in-states and therefore are incoming \(N\) particles, while \(\psi^\dagger\) lines are with out-states and therefore are outgoing \(N\) particles. Therefore this diagram indeed represents a \(NN\to NN\) scattering.\\
+    }
+
+    The value of this diagram would be 
+    \begin{equation*}
+        \int \frac{d^k}{(2\pi)^4}(-ig)(2\pi)^4\delta^4(k_1 - k - k_3)\times(-ig)(2\pi)^4\delta^4(k_2 + k - k_4)\times \frac{i}{k^2 - m^2 + i\epsilon} 
+    \end{equation*}
+    which is equal to 
+    \begin{equation*}
+        -ig^2 (2\pi)^4\delta^4(k_1 +k_2 - k_3 - k_4) \frac{1}{(k_1 - k_3)^2 + m^2 + i\epsilon}
+    \end{equation*}
+
+    There is another diagram that we can draw, since the incoming(outgoing) particles are identical, which is 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                % External momenta
+                \vertex (i1) at (2,  1.5);
+                \vertex (i2) at (2, -1.5);
+                \vertex (f1) at ( -2,  1.5);
+                \vertex (f2) at ( -2, -1.5);
+                % Interaction vertices
+                \vertex (a) at (0,  1);
+                \vertex (b) at (0, -1);
+                % Diagram
+                \diagram*{
+                (i1) -- [fermion, momentum'={[arrow shorten=0.3,xshift=4mm, yshift=5mm]\(\textbf{k}_1\)}] (b) -- [fermion, momentum=\(\textbf{k}_4\)] (f2),
+                (i2) -- [fermion, momentum={[arrow shorten=0.3, ,xshift=4mm, yshift=-5mm]\(\textbf{k}_2\)}] (a) -- [fermion, momentum'=\(\textbf{k}_3\)] (f1),
+                (a)  -- [scalar, momentum'=\(\textbf{k}\)] (b),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+    \end{figure}
+
+    for which the value is 
+    \begin{equation*}
+        \int \frac{d^k}{(2\pi)^4}(-ig)(2\pi)^4\delta^4(k_1 - k - k_4)\times(-ig)(2\pi)^4\delta^4(k_2 + k - k_3)\times \frac{i}{k^2 - m^2 + i\epsilon} 
+    \end{equation*}
+    which is equal to 
+    \begin{equation*}
+        -ig^2 (2\pi)^4\delta^4(k_1 +k_2 - k_3 - k_4) \frac{1}{(k_1 - k_4)^2 + m^2 + i\epsilon}
+    \end{equation*}
+    And therefore, the amplitude, as before is 
+    \begin{equation*}
+        -ig^2 (2\pi)^4\delta^4(k_1 +k_2 - k_3 - k_4) \left( \frac{1}{(k_1 - k_3)^2 + m^2 + i\epsilon} + \frac{1}{(k_1 - k_4)^2 + m^2 + i\epsilon} \right)
+    \end{equation*}
+
+    One can attach a \textit{story} to these diagrams, which is to say that two particles approached each other, exchanged a meson and then flew off. This is not to be taken seriously, these diagrams should only be seen as a calculation tool.\\
+
+    Now that we are equipped with the machinery for computing the scattering amplitudes, we can try to calculate the amplitudes for other processes
+    
+    \subsubsection{Amplitude for \(\bar{N}N\to \bar{N}N\)}
+    For this process, we can write the following diagrams 
+
+    \begin{figure}[h]
+        \centering
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a);
+                    \vertex [right = of a] (b);
+                    \vertex [above left =of a] (f1);                
+                    \vertex [above right =of b] (i1);
+                    \vertex [below right =of b] (i2);
+                    \vertex [below left =of a] (f2);
+                    \diagram*{
+                        (b) --[scalar, momentum=$\textbf{k}$] (a);
+                        (i1) -- [fermion, momentum'=$\textbf{k}_1$] (b);
+                        (a) -- [fermion, momentum'=$\textbf{k}_3$] (f1);
+                        (i2) -- [anti fermion, momentum=$\textbf{k}_2$] (b);
+                        (a) -- [anti fermion, momentum=$\textbf{k}_4$] (f2);
+                    };
+                \end{feynman}
+                \begin{scope}[xshift=6cm, yshift=0.6cm]
+                    \begin{feynman}
+                        \vertex (a);
+                        \vertex [below = of a] (b);
+                        \vertex [above left =of a] (f1);                
+                        \vertex [above right =of a] (i1);
+                        \vertex [below right =of b] (i2);
+                        \vertex [below left =of b] (f2);
+                        \diagram*{
+                            (a) --[scalar, momentum=$\textbf{k}$] (b);
+                            (i1) -- [fermion, momentum=$\textbf{k}_1$] (a) -- [fermion, momentum=$\textbf{k}_3$] (f1);
+                            (i2) -- [anti fermion, momentum'=$\textbf{k}_2$] (b) -- [anti fermion, momentum'=$\textbf{k}_4$] (f2);
+                        };
+                    \end{feynman}
+                \end{scope}
+            \end{tikzpicture}
+    \end{figure}
+
+    Notice that we have fixed the statement that the incoming \(N\) has momentum \(\textbf{k}_1\), and \(\bar N\) has momentum \(\textbf{k}_2\) and similarly for outgoing nucleons, and since a nucleon is not the same as an antinucleon, there doesnt exist another diagram as seen in the \(NN\to NN\) process, where the incoming legs are exchanged.\\
+
+    For the first diagram, the value is 
+    \begin{equation*}
+        \int \frac{d^k}{(2\pi)^4}(-ig)(2\pi)^4\delta^4(k_1 + k_2 - k)\times(-ig)(2\pi)^4\delta^4(k_3 + k_4 - k)\times \frac{i}{k^2 - m^2 + i\epsilon} 
+    \end{equation*}
+    which evaluates to 
+    \begin{equation*}
+        -ig^2(2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4)\frac{1}{(k_1 + k_2)^2 - m^2 + i\epsilon} 
+    \end{equation*}
+    and the second diagram evaluates to 
+    \begin{equation*}
+        -ig^2(2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4)\frac{1}{(k_1 
+    - k_3)^2 - m^2 + i\epsilon} 
+    \end{equation*}
+    and therefore the total amplitude is 
+    \begin{equation*}
+        -ig^2(2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4) \left(  \frac{1}{(k_1 + k_2)^2 - m^2 + i\epsilon} +    \frac{1}{(k_1 
+    - k_3)^2 - m^2 + i\epsilon}    \right)
+    \end{equation*}
+
+    Now the story that goes along these two diagrams are different and not the same as was the case in \(NN\to NN\). The first diagram in this corresponds to the \(N\) and \(\bar{N}\) annihilating each other to give a virtual meson, which then decays back into \(N\bar{N}\) pair. Notice that is a virtual meson and not a real meson since it is not on-shell, i.e., it doesnt have momentum \(k^2 = m^2\), rather its momenta is variable and determined by the incoming particles. The second one corresponds to two particles approach each other, exchange a meson and keep going. 
+    
+    \subsubsection{Amplitude for \(\phi N \to \phi N\)}
+    For this, one possible diagram is 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a);
+                \vertex [below = of a] (b);
+                \vertex [above left =of a] (f1);                
+                \vertex [above right =of a] (i1);
+                \vertex [below right =of b] (i2);
+                \vertex [below left =of b] (f2);
+                \diagram*{
+                    (a) --[fermion, momentum=$\textbf{k}$] (b);
+                    (i1) -- [fermion, momentum=$\textbf{k}_1$] (a) -- [scalar, momentum=$\textbf{k}_3$] (f1);
+                    (i2) -- [scalar, momentum'=$\textbf{k}_2$] (b) -- [fermion, momentum'=$\textbf{k}_4$] (f2);
+                };
+            \end{feynman}
+        \end{tikzpicture}
+    \end{figure}
+    The value associated with this is 
+    \begin{equation*}
+        -ig^2 (2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4) \frac{1}{(k_1- k_3)^2 - M^2 + i\epsilon}
+    \end{equation*}
+    The story for this diagram is that a nucleon emits a virtual nucleon and turns into a meson, while the meson absorbs the virtual nucleon and becomes a nucleon. See that with interactions, particle identity is not fixed, particles can convert from one to another. \\
+    The other diagram one can draw is 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                    \vertex (a);
+                    \vertex [right = of a] (b);
+                    \vertex [above left =of a] (f1);                
+                    \vertex [above right =of b] (i1);
+                    \vertex [below right =of b] (i2);
+                    \vertex [below left =of a] (f2);
+                    \diagram*{
+                        (b) --[fermion, momentum=$\textbf{k}$] (a);
+                        (i1) -- [fermion, momentum'=$\textbf{k}_1$] (b);
+                        (a) -- [scalar, momentum'=$\textbf{k}_3$] (f1);
+                        (i2) -- [scalar, momentum=$\textbf{k}_2$] (b);
+                        (a) -- [fermion, momentum=$\textbf{k}_4$] (f2);
+                    };
+                \end{feynman}
+        \end{tikzpicture}
+    \end{figure}
+    with the associated value 
+    \begin{equation*}
+        -ig^2 (2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4) \frac{1}{(k_1+k_2)^2 - M^2 + i\epsilon}
+    \end{equation*}
+    The story again is different, the nucleon and meson meet each other and turn into a virtual nucleon which then again emits a nucleon meson pair. The total amplitude, as usual, is the sum of the values for the two diagrams.
 
 
 
