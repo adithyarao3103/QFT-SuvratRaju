@@ -2297,8 +2297,8 @@
     \end{figure}
     
     \textcolor{red}{
-        Notice that since the in-states enter the calculations as kets and the out-states enter the calculation as bras, the action of \(\psi\) and \(\psi^\dagger\) on the in -tates is not the same as their actions on the out-states. That is, if \(\psi\) acts on an in-state it creates an \(N\), while if it acts on an out-state it creates an \(\bar N\), and vice versa for \(\psi^\dagger\). Therefore, an in-directed line with momentum arrow also in-directed will be an incoming \(N\), an in-directed line with momentum arrow out-directed will be an outgoing \(\bar N\), and vice versa for the out-directed line.\vspace{7pt}\\
-        One can understand this as following — the arrows on the nucleon lines always track ``Nucleon-number flow'' rather than ``particle vs. antiparticle''. In other words, an incoming \(\psi\) is equivalent to an outgoing \(\psi^\dagger\) and vice versa, where the incoming and outgoing are determined by the momenta arrows. Therefore in the very above vertex, if the momentum \(\textbf{k}_1\) would be the other way, then we would read off both the solid lines as \(N\), while if the momentum \(\textbf{k}_2\) were the other way, then both the solid lines would be \(\bar{N}\)s.\\
+        Notice that since the in-states enter the calculations as kets and the out-states enter the calculation as bras, the action of \(\psi\) and \(\psi^\dagger\) on the in-states is not the same as their actions on the out-states. That is, if \(\psi\) acts on an in-state it creates an \(N\), while if it acts on an out-state it creates an \(\bar N\), and vice versa for \(\psi^\dagger\). Therefore, the line with arrow towards the vertex, with the momentum also towards the vertex will be an incoming \(N~(\equiv \psi)\) , a line with arrow towards the vertex with momentum arrow away from the vertex will be an outgoing \(\bar N ~(\equiv \psi^\dagger)\), and vice versa for the line whose arrow points away from the vertex.\vspace{7pt}\\
+        Therefore the vertex can be interpreted in multiple ways — it can be considered as having one ingoing \(\psi\) and one ingoing \(\bar{\psi}\), or it can be one ingoing \(\psi\) and one outgoing \(\psi\), or it can be one ingoing \(\bar{\psi}\) and one outgoing \(\bar{\psi}\). All these are allowed interpretations of this vertex, and they depend on the momentum flow in the vertex.\\
     }
 
     The propagators are simply lines connecting two vertices, and they are exactly equal to the value (in momentum space) of the time ordered product of two fields. \\
@@ -2342,7 +2342,7 @@
     
     The rules for calculations are simple. You join the vertices with propagators to make a diagram that represents the process you are trying to compute. Label the edges with their corresponding momenta (the momenta decide the flow of the diagram), read off the integrals by assigning the corresponding values, and integrate over all undetermined momenta.\\
 
-    Let us try to get the previously obtained results using these diagrams. The first two are trivial and are directly read from the vertices. The non-trivial result is of the \(NN \to NN\). One possible diagram is 
+    Let us try to get the previously obtained results using these diagrams.\\ The first two are trivial and are directly read from the vertices. The non-trivial result is of the \(NN \to NN\). \\ One possible diagram is 
     \begin{figure}[h]
         \centering
         \begin{tikzpicture}
@@ -2529,6 +2529,11 @@
     \end{equation*}
     The story again is different, the nucleon and meson meet each other and turn into a virtual nucleon which then again emits a nucleon meson pair. The total amplitude, as usual, is the sum of the values for the two diagrams.
 
+    \subsection{Application — Physics of the Yukawa Potential}
+    The Yukawa potential is due to the exchange of massive particles, and is give by 
+    \begin{equation*}
+        V\sim \frac{e^{-mr}}{r}
+    \end{equation*}
 
 
 
