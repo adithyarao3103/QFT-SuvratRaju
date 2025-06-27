@@ -4,6 +4,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{tensor}
+\usepackage{float}
 
 \usepackage{simpler-wick}
 
@@ -2316,7 +2317,7 @@
             \end{feynman};
             \fill (a) circle (2pt);
             \fill (b) circle (2pt);
-            \node at (5.5,0) {\(= \mathcal{M}(\braket{0|T(\phi(x)\phi(y))|0}) = \displaystyle \frac{i}{k^2 - m^2 + i\epsilon}\)};
+            \node at (5.5,0) {\(= \mathcal{M}(\braket{0|T(\phi(x)\phi(y))|0}) = \displaystyle \frac{i}{k^2 - m^2}\)};
         \end{tikzpicture}
     \end{figure}
 
@@ -2333,7 +2334,7 @@
             \end{feynman};
             \fill (a) circle (2pt);
             \fill (b) circle (2pt);
-            \node at (5.5,0) {\(= \mathcal{M}(\braket{0|T(\psi^\dagger(x)\psi(y))|0}) = \displaystyle \frac{i}{k^2 - M^2 + i\epsilon}\)};
+            \node at (5.5,0) {\(= \mathcal{M}(\braket{0|T(\psi^\dagger(x)\psi(y))|0}) = \displaystyle \frac{i}{k^2 - M^2}\)};
         \end{tikzpicture}
     \end{figure}
 
@@ -2368,11 +2369,11 @@
 
     The value of this diagram would be 
     \begin{equation*}
-        \int \frac{d^k}{(2\pi)^4}(-ig)(2\pi)^4\delta^4(k_1 - k - k_3)\times(-ig)(2\pi)^4\delta^4(k_2 + k - k_4)\times \frac{i}{k^2 - m^2 + i\epsilon} 
+        \int \frac{d^k}{(2\pi)^4}(-ig)(2\pi)^4\delta^4(k_1 - k - k_3)\times(-ig)(2\pi)^4\delta^4(k_2 + k - k_4)\times \frac{i}{k^2 - m^2} 
     \end{equation*}
     which is equal to 
     \begin{equation*}
-        -ig^2 (2\pi)^4\delta^4(k_1 +k_2 - k_3 - k_4) \frac{1}{(k_1 - k_3)^2 + m^2 + i\epsilon}
+        -ig^2 (2\pi)^4\delta^4(k_1 +k_2 - k_3 - k_4) \frac{1}{(k_1 - k_3)^2 - m^2}
     \end{equation*}
 
     There is another diagram that we can draw, since the incoming(outgoing) particles are identical, which is 
@@ -2398,17 +2399,18 @@
         \end{tikzpicture}
     \end{figure}
 
-    for which the value is 
+    Notice that the location and direction of the incoming and outgoing momenta should be fixed when we draw different diagrams.\\
+    For this diagram, the associated value is 
     \begin{equation*}
-        \int \frac{d^k}{(2\pi)^4}(-ig)(2\pi)^4\delta^4(k_1 - k - k_4)\times(-ig)(2\pi)^4\delta^4(k_2 + k - k_3)\times \frac{i}{k^2 - m^2 + i\epsilon} 
+        \int \frac{d^k}{(2\pi)^4}(-ig)(2\pi)^4\delta^4(k_1 - k - k_4)\times(-ig)(2\pi)^4\delta^4(k_2 + k - k_3)\times \frac{i}{k^2 - m^2 } 
     \end{equation*}
     which is equal to 
     \begin{equation*}
-        -ig^2 (2\pi)^4\delta^4(k_1 +k_2 - k_3 - k_4) \frac{1}{(k_1 - k_4)^2 + m^2 + i\epsilon}
+        -ig^2 (2\pi)^4\delta^4(k_1 +k_2 - k_3 - k_4) \frac{1}{(k_1 - k_4)^2 - m^2}
     \end{equation*}
     And therefore, the amplitude, as before is 
     \begin{equation*}
-        -ig^2 (2\pi)^4\delta^4(k_1 +k_2 - k_3 - k_4) \left( \frac{1}{(k_1 - k_3)^2 + m^2 + i\epsilon} + \frac{1}{(k_1 - k_4)^2 + m^2 + i\epsilon} \right)
+        -ig^2 (2\pi)^4\delta^4(k_1 +k_2 - k_3 - k_4) \left( \frac{1}{(k_1 - k_3)^2 - m^2 } + \frac{1}{(k_1 - k_4)^2 - m^2 } \right)
     \end{equation*}
 
     One can attach a \textit{story} to these diagrams, which is to say that two particles approached each other, exchanged a meson and then flew off. This is not to be taken seriously, these diagrams should only be seen as a calculation tool.\\
@@ -2458,21 +2460,21 @@
 
     For the first diagram, the value is 
     \begin{equation*}
-        \int \frac{d^k}{(2\pi)^4}(-ig)(2\pi)^4\delta^4(k_1 + k_2 - k)\times(-ig)(2\pi)^4\delta^4(k_3 + k_4 - k)\times \frac{i}{k^2 - m^2 + i\epsilon} 
+        \int \frac{d^k}{(2\pi)^4}(-ig)(2\pi)^4\delta^4(k_1 + k_2 - k)\times(-ig)(2\pi)^4\delta^4(k_3 + k_4 - k)\times \frac{i}{k^2 - m^2} 
     \end{equation*}
     which evaluates to 
     \begin{equation*}
-        -ig^2(2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4)\frac{1}{(k_1 + k_2)^2 - m^2 + i\epsilon} 
+        -ig^2(2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4)\frac{1}{(k_1 + k_2)^2 - m^2 } 
     \end{equation*}
     and the second diagram evaluates to 
     \begin{equation*}
         -ig^2(2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4)\frac{1}{(k_1 
-    - k_3)^2 - m^2 + i\epsilon} 
+    - k_3)^2 - m^2} 
     \end{equation*}
     and therefore the total amplitude is 
     \begin{equation*}
-        -ig^2(2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4) \left(  \frac{1}{(k_1 + k_2)^2 - m^2 + i\epsilon} +    \frac{1}{(k_1 
-    - k_3)^2 - m^2 + i\epsilon}    \right)
+        -ig^2(2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4) \left(  \frac{1}{(k_1 + k_2)^2 - m^2} +    \frac{1}{(k_1 
+    - k_3)^2 - m^2}    \right)
     \end{equation*}
 
     Now the story that goes along these two diagrams are different and not the same as was the case in \(NN\to NN\). The first diagram in this corresponds to the \(N\) and \(\bar{N}\) annihilating each other to give a virtual meson, which then decays back into \(N\bar{N}\) pair. Notice that is a virtual meson and not a real meson since it is not on-shell, i.e., it doesnt have momentum \(k^2 = m^2\), rather its momenta is variable and determined by the incoming particles. The second one corresponds to two particles approach each other, exchange a meson and keep going. 
@@ -2499,7 +2501,7 @@
     \end{figure}
     The value associated with this is 
     \begin{equation*}
-        -ig^2 (2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4) \frac{1}{(k_1- k_3)^2 - M^2 + i\epsilon}
+        -ig^2 (2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4) \frac{1}{(k_1- k_3)^2 - M^2}
     \end{equation*}
     The story for this diagram is that a nucleon emits a virtual nucleon and turns into a meson, while the meson absorbs the virtual nucleon and becomes a nucleon. See that with interactions, particle identity is not fixed, particles can convert from one to another. \\
     The other diagram one can draw is 
@@ -2525,16 +2527,435 @@
     \end{figure}
     with the associated value 
     \begin{equation*}
-        -ig^2 (2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4) \frac{1}{(k_1+k_2)^2 - M^2 + i\epsilon}
+        -ig^2 (2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4) \frac{1}{(k_1+k_2)^2 - M^2}
     \end{equation*}
     The story again is different, the nucleon and meson meet each other and turn into a virtual nucleon which then again emits a nucleon meson pair. The total amplitude, as usual, is the sum of the values for the two diagrams.
 
-    \subsection{Application — Physics of the Yukawa Potential}
+    \subsection{Detour — Physics of the Yukawa Potential}
     The Yukawa potential is due to the exchange of massive particles, and is give by 
     \begin{equation*}
         V\sim \frac{e^{-mr}}{r}
     \end{equation*}
+    Note that potential is a non-relativistic concept. Relativistic dynamics cannot speak about potential, the reason being the same as discussed int he first section. In case of statics/non-relativistic dynamics, we can speak about potentials, and it is not necessary for all quantum field theories to have deducible potentials. However it is illuminating to see how the things we are calculating in QFT translates to the physics that we can observe. That is, in the non-relativistic limit, the calculations we do in QFT should have some interpretation as some potential.\\
 
+    The objective of this discussion is to consider the process \(NN\to NN\), calculate the \(S-1\) matrix element, find its non-relativistic limit, and then from that, infer what the non-relativistic potential should be. \\
+    Remember that for the \(NN\to NN\) process, the matrix element 
+    \begin{equation*}
+        \bra{\textbf{k}_3, \textbf{k}_4} S-1 \ket{\textbf{k}_1, \textbf{k}_2} = -ig^2 (2\pi)^4\delta^4(k_1 +k_2 - k_3 - k_4) \left( \frac{1}{(k_1 - k_3)^2 - m^2} + \frac{1}{(k_1 - k_4)^2 - m^2 } \right)
+    \end{equation*}
+
+    First let us discuss some non-relativistc quantum mechanics. The degrees of freedom are described by a wave function which obeys
+    \begin{equation*}
+        i\frac{\del}{\del t}\psi(\textbf{x}_1, \textbf{x}_2,t) = \frac{1}{2m}\left( -\mathbf\nabla_1^2 - \mathbf\nabla_2^2 \right) \psi(\textbf{x}_1, \textbf{x}_2,t) + V(\textbf{x}_1 - \textbf{x}_2)\psi(\textbf{x}_1, \textbf{x}_2,t) 
+    \end{equation*}
+    The potential depends on \(\textbf{x}_1-\textbf{x}_2\) since we require translation invariance in our theory, which was also inherent in our field theoretic description. Since the potential depends only on \(\textbf{x}_1 - \textbf{x}_2\), the simplest kind of wavefunction we can write is of the form
+    \begin{equation*}
+        \psi = \underbrace{\psi_d(\textbf{x}_1 - \textbf{x}_2, t)}_{\text{wavefunction of separation DOF}}\times \overbrace{\psi_c(\textbf{x}_1 + \textbf{x}_2, t)}^{\text{wavefunction of center of mass DOF}}
+    \end{equation*} 
+    We can also write the kinetic term in the form 
+    \begin{equation*}
+        \frac{1}{2m}\left( -\mathbf\nabla_1^2 - \mathbf\nabla_2^2 \right) = \frac{1}{4m}\left( -\mathbf\nabla_{\textbf{x}_1 - \textbf{x}_2}^2 - \mathbf\nabla_{\textbf{x}_1 + \textbf{x}_2}^2 \right)
+    \end{equation*}
+
+    \textcolor{red}{
+        \begin{equation*}
+            \textbf{r} = \textbf{x}_1 - \textbf{x}_2,~~\textbf{R} = \textbf{x}_1 + \textbf{x}_2
+        \end{equation*}
+        \begin{align*}
+            &\mathbf\nabla_1 = \frac{\del \textbf{r}}{\del \textbf{x}_1}\mathbf\nabla_\textbf{r} +  \frac{\del \textbf{R}}{\del \textbf{x}_1}\mathbf\nabla_\textbf{R} = \mathbf{\nabla}_\textbf{r} + \mathbf{\nabla}_\textbf{R}\\
+            &\mathbf\nabla_2 = \frac{\del \textbf{r}}{\del \textbf{x}_2}\mathbf\nabla_\textbf{r} +  \frac{\del \textbf{R}}{\del \textbf{x}_2}\mathbf\nabla_\textbf{R} = -\mathbf{\nabla}_\textbf{r} + \mathbf{\nabla}_\textbf{R}
+        \end{align*}
+        squaring and adding, we get 
+        \begin{equation*}
+            \mathbf\nabla_1^2 + \mathbf\nabla_2^2 = 2(\mathbf{\nabla}_\textbf{r}^2 + \mathbf{\nabla}_\textbf{R}^2)
+        \end{equation*}
+    }
+    Using this, we can read off the equations of motion for the center of mass and for the separation as 
+    \begin{align*}
+        &i\frac{\del}{\del t}\psi_c(\textbf{x}_1+ \textbf{x}_2,t) = \frac{1}{4m}\left( -\mathbf\nabla_{\textbf{x}_1 + \textbf{x}_2}^2 \right) \psi_c(\textbf{x}_1 + \textbf{x}_2,t)\\
+        &i\frac{\del}{\del t}\psi_d(\textbf{x}_1- \textbf{x}_2,t) = \frac{1}{4m}\left( -\mathbf\nabla_{\textbf{x}_1 - \textbf{x}_2}^2 \right) \psi_d(\textbf{x}_1 - \textbf{x}_2,t) + V(\textbf{x}_1 - \textbf{x}_2)\psi_d(\textbf{x}_1 - \textbf{x}_2,t)
+    \end{align*}
+    We also want the momentum space representation. Notice that 
+    \begin{equation*}
+        \exp(i\textbf{k}_1 \cdot \textbf{x}_1 + i\textbf{k}_2 \cdot \textbf{x}_2) = \exp\left( i(\textbf{kx}_1 + \textbf{x}_2)\cdot \frac{(\textbf{k}_1 + \textbf{k}_2)}{2} + i(\textbf{x}_1 - \textbf{x}_2)\cdot \frac{(\textbf{k}_1 - \textbf{k}_2)}{2}     \right)
+    \end{equation*}
+    What this means is that the momentum associated with the \(\psi_c\) degree of freedom is \((\textbf{k}_1 + \textbf{k}_2)/2\), while \(\psi_d\) has the momentum \((\textbf{k}_1 - \textbf{k}_2)/2\). However, notice that these are not the good momentum eigenstates to expand our position space eigenstates in. This is because the particles are identical and therefore we require the wavefunciton to be symmetric under \(\textbf{x}_1 \leftrightarrow \textbf{x}_2\). \(\psi_c\) already has this property, and on \(\psi_d\) we need to impose this property. Therefore the right eigenstates basis for \(\psi_d\) will not be the complete expontial, but only the cosine part of it. Field theory was clever, it automatically took care of the Bose statistics. But in non-relativistic QM, we need to impose Bose statistics by hand. \\
+
+    We can now calculate the non-relativistic scattering amplitude for this process. The scattering amplitude for \(\psi_c\) and \(\psi_d\) are to be considered separately, and the total amplitude will be the product of these two amplitudes. \\
+    First let us consider the COM scattering, which is just free particle scattering. Free particle scattering cannot change the momenta, we need the in momenta to be equal to the out momenta, and therefore the free particle scattering amplitude is simply 
+    \begin{equation*}
+        (2\pi)^3\delta^3(\textbf{k}_3 +  \textbf{k}_4 - (\textbf{k}_1 + \textbf{k}_2))
+    \end{equation*}
+    The difference scattering can be calculated using the general non-relativistic scattering amplitude formula 
+    \begin{equation*}
+        \bra{\textbf{k}'}S-1\ket{\textbf{k}} = -i(2\pi)\delta(E - E') \bra{\textbf{k}} \frac{1}{1 - VG_\perp} -1 \ket{\textbf{k}'}
+    \end{equation*}
+    To leading order, this is equal to 
+    \begin{equation*}
+        -i(2\pi)\delta(E - E') \int V(\textbf{x}) \e^{i(\textbf{k} - \textbf{k}')\cdot \textbf{x}}d^3\textbf{x}
+    \end{equation*}
+    This is for a one particle scattering from a potential. In our case \(\textbf{k} = \textbf{k}_1 - \textbf{k}_2\) and \(\textbf{k}' = \textbf{k}_3 - \textbf{k}_4\). We also need to impose Bose statistics, which means that \(\textbf{k}\to -\textbf{k}\) and \(\textbf{k}' \to -\textbf{k}'\) should also be included, and therefore in our case, the leading order would be 
+    \begin{equation*}
+        -i(2\pi)\delta(E - E') \int V(\textbf{x}) \left( \e^{i(\textbf{k} - \textbf{k}') \cdot \textbf{x}} + \e^{i(\textbf{k} + \textbf{k}') \cdot \textbf{x}}\right)d^3\textbf{x}
+    \end{equation*}
+    (where we have not kept track of (a lot of) factors of 2. The important factor is that there will be terms where both initial and final momenta have same sign, and terms where they have the opposite sign.). \\
+    
+    First take a look at the delta function. The delta function in this term can be expressed in terms of the momenta by seeing that 
+    \begin{equation*}
+        \delta(E-E') \sim \frac{1}{m}\delta\left((\textbf{k}_1 - \textbf{k}_2)^2 - (\textbf{k}_3 - \textbf{k}_4)^2\right)
+    \end{equation*} 
+    Now since the total amplitude is the product of this expression with the free particle amplitude, this delta function gets multiplied with \(\delta^3(\textbf{k}_3 +  \textbf{k}_4 - (\textbf{k}_1 + \textbf{k}_2))\), and therefore we can add \((\textbf{k}_1 + \textbf{k}_2)^2\)   and subtract \((\textbf{k}_3 + \textbf{k}_4)^2\) to get 
+    \begin{equation*}
+        \delta(E-E') \sim \frac{1}{m}\delta\left((\textbf{k}_1 - \textbf{k}_2)^2 + (\textbf{k}_1 + \textbf{k}_2)^2 - (\textbf{k}_3 - \textbf{k}_4)^2 - (\textbf{k}_3 + \textbf{k}_4)^2\right) = \sim \frac{1}{m}\delta(k_1^2 + k_2^2 - k_3^2 - k_4^2)
+    \end{equation*}
+    This is the non relativistic limit of the delta function 
+    \begin{equation*}
+        \delta(k_1^0 + k_2^0 - k_3^0 - k_4^0)
+    \end{equation*}
+    and therefore 
+    \begin{equation*}
+         (2\pi)^4\delta(E-E')\delta^3(\textbf{k}_3 +  \textbf{k}_4 - (\textbf{k}_1 + \textbf{k}_2))\overset{\text{non-relativistic}}{=}(2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4) 
+    \end{equation*}
+
+    In the amplitude we calculated from the field theory, the delta function was multiplied by terms of the form \(((k_1 - k_3)^2 - m^2)^{-1}\), which are four vector terms. We need to match these terms too in our non-relativistic calculations. To do so, we can make use of the fact that the field theoretic amplitude is Lorentz invariant, and therefore we can choose to go to the COM frame. In the COM frame, we have \(\textbf{k}_1 = -\textbf{k}_2\) and \(\textbf{k}_3 = -\textbf{k}_4\), which means that the energies are the same, i.e. \(k_1^0 = k_2^0 = k_3^0 = k_4^0\). Therefore, the term
+    \begin{equation*}
+        -ig^2\left( \frac{1}{(k_2 - k_4)^2 - m^2} + \frac{1}{(k_1 - k_4)^2 - m^2 } \right) = ig^2\left( \frac{1}{(\textbf{k}_2 - \textbf{k}_4)^2 + m^2} + \frac{1}{(\textbf{k}_1 - \textbf{k}_4)^2 + m^2 } \right)
+    \end{equation*}
+
+    In the COM frame, \(\textbf{k}' = \textbf{k}_3 - \textbf{k}_4 = 2\textbf{k}_3 = -2\textbf{k}_4\) and \(\textbf{k} = \textbf{k}_1 - \textbf{k}_2 = 2\textbf{k}_1 = -2\textbf{k}_2\). Therefore 
+    \begin{equation*}
+        \textbf{k} - \textbf{k}' \sim \textbf{k}_2 -  \textbf{k}_4
+    \end{equation*}
+    and  
+    \begin{equation*}
+        \textbf{k} + \textbf{k}' \sim \textbf{k}_1 -  \textbf{k}_4
+    \end{equation*}
+
+    which means the above term would be 
+    \begin{equation}
+        ig^2\left( \frac{1}{(\textbf{k} - \textbf{k}')^2 + m^2} + \frac{1}{(\textbf{k} + \textbf{k}')^2 + m^2 } \right)
+    \end{equation}
+    \textit{in COM frame only}.\\
+
+    Therefore, we need a potential \(V(r)\) such that 
+    \begin{equation*}
+        \int V(\textbf{x}) \left( \e^{i(\textbf{k} - \textbf{k}') \cdot \textbf{x}} + \e^{i(\textbf{k} + \textbf{k}') \cdot \textbf{x}}\right)d^3\textbf{x} \sim \left( \frac{1}{(\textbf{k} - \textbf{k}')^2 + m^2} + \frac{1}{(\textbf{k} + \textbf{k}')^2 + m^2 } \right)
+        \label{eq:yukawa-potential-calc}
+    \end{equation*}
+
+    The general integral 
+    \begin{equation*}
+        \int V(\textbf{x})\e^{i\textbf{q}\cdot \textbf{x}}d^3\textbf{x}
+    \end{equation*}
+    can be calculated by going to polar coordinates (assuming the potential to be spherically symmetric) as
+    \begin{equation*}
+        2\pi \int V(r) \e^{iqr\cos\theta} d(\cos\theta)r^2dr = 4\pi \int V(r)\frac{r}{q} \sin(qr) dr
+    \end{equation*}
+    Therefore, for the equation (\ref{eq:yukawa-potential-calc}) to be true, we require
+    \begin{equation*}
+        \int V(r)\frac{r}{q} \sin(qr) dr = \frac{1}{q^2 + m^2}
+    \end{equation*}
+
+    Now we have 
+    \begin{equation*}
+        \int \frac{\e^{-mr}}{r}\frac{r\sin(qr)}{q} dr = \mathrm{Im}\int \frac{\e^{-mr+iqr}}{q} dr = \mathrm{Im}\left(\frac{1}{q}\frac{m+iq}{m^2 + q^2}\right) = \frac{1}{q^2 + m^2}
+    \end{equation*}
+    and therefore we get 
+    \begin{equation*}
+        V(r) \sim \frac{\e^{-mr}}{r}
+    \end{equation*}
+
+    \subsection{Crossing Symmetry in Feynman Diagrams}
+    It refers to the fact that the amplitudes for some processes are related to the amplitudes for some other processes where some of the incoming and outgoing momenta are exchanged. That is, it is the statement that sometimes we can make various transformations to Feynman Diagrams and obtain different processes with same amplitude. The simplest example is the previously studied vertex 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[above right=of a] (b);
+                \vertex[below right=of a] (c);
+                \vertex[left = of a] (d);
+                \diagram*{
+                    (d) -- [scalar] (a) -- [anti fermion] (b);
+                    (a) -- [fermion] (c);
+                };
+            \end{feynman}
+        \end{tikzpicture}
+    \end{figure}
+    There are six possible physical interpretations of this vertex, corresponding to \(2^3 - 2\) possible momentum directions (subtract 2 since all momenta inwards and all momenta outwards make no sense physically)
+    \begin{enumerate}
+        \item Nucleon and anti nucleon annihilate to give meson \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[above right=of a] (b);
+                \vertex[below right=of a] (c);
+                \vertex[left = of a] (d);
+                \diagram*{
+                    (d) -- [scalar, rmomentum=\(\textbf{k}_3\)] (a) -- [anti fermion, rmomentum=\(\textbf{k}_1\)] (b);
+                    (a) -- [fermion, rmomentum=\(\textbf{k}_2\)] (c);
+                };
+            \end{feynman}
+        \end{tikzpicture}
+    \end{figure}
+    \item Meson creates a nucleon - anti nucleon pair \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[above right=of a] (b);
+                \vertex[below right=of a] (c);
+                \vertex[left = of a] (d);
+                \diagram*{
+                    (d) -- [scalar, momentum=\(\textbf{k}_3\)] (a) -- [anti fermion, momentum=\(\textbf{k}_1\)] (b);
+                    (a) -- [fermion, momentum=\(\textbf{k}_2\)] (c);
+                };
+            \end{feynman}
+        \end{tikzpicture}
+    \end{figure}
+    \item Anti-nucleon emits a meson and continues as an anti-nucleon \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[above right=of a] (b);
+                \vertex[below right=of a] (c);
+                \vertex[left = of a] (d);
+                \diagram*{
+                    (d) -- [scalar, rmomentum=\(\textbf{k}_3\)] (a) -- [anti fermion, momentum=\(\textbf{k}_1\)] (b);
+                    (a) -- [fermion, rmomentum=\(\textbf{k}_2\)] (c);
+                };
+            \end{feynman}
+        \end{tikzpicture}
+    \end{figure}
+    \item Nucleon emits a meson and continues as a nucleon \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[above right=of a] (b);
+                \vertex[below right=of a] (c);
+                \vertex[left = of a] (d);
+                \diagram*{
+                    (d) -- [scalar, rmomentum=\(\textbf{k}_3\)] (a) -- [anti fermion, rmomentum=\(\textbf{k}_1\)] (b);
+                    (a) -- [fermion, momentum=\(\textbf{k}_2\)] (c);
+                };
+            \end{feynman}
+        \end{tikzpicture}
+    \end{figure}
+    \item Anti-nucleon absorbs a meson and continues as an anti-nucleon \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[above right=of a] (b);
+                \vertex[below right=of a] (c);
+                \vertex[left = of a] (d);
+                \diagram*{
+                    (d) -- [scalar, momentum=\(\textbf{k}_3\)] (a) -- [anti fermion, momentum=\(\textbf{k}_1\)] (b);
+                    (a) -- [fermion, rmomentum=\(\textbf{k}_2\)] (c);
+                };
+            \end{feynman}
+        \end{tikzpicture}
+    \end{figure}
+    \item Nucleon absorbs a meson and continues as a nucleon \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[above right=of a] (b);
+                \vertex[below right=of a] (c);
+                \vertex[left = of a] (d);
+                \diagram*{
+                    (d) -- [scalar, momentum=\(\textbf{k}_3\)] (a) -- [anti fermion, rmomentum=\(\textbf{k}_1\)] (b);
+                    (a) -- [fermion, momentum=\(\textbf{k}_2\)] (c);
+                };
+            \end{feynman}
+        \end{tikzpicture}
+    \end{figure}
+    \end{enumerate}
+    The Feynman diagrams for all these diagrams always assign to these diagrams a \(-ig\). The only difference is the signs of the momenta entering the delta function. Its redundent to think of these processes differently, and therefore one can write a compact notation to represent all these values in a single diagram. The notation is to mark all the external momenta as incoming. This is fine since all the external momenta have a particular property, that is, they are on shell \(k_i^2 = m^2/M^2\) and they have positive Energy, i.e.\ \(k_i^0 > 0\). Therefore, when we mark all the momenta as incoming, the actual outgoing momenta will have \(k_i^0<0~\because k_i^\mu = -p^\mu\) for outgoing, and therefore \(k_i^0 = -p^0 < 0\) . And this will mean that the physical particle is outgoing. Therefore, it is consistent to mark all momenta as incoming since the outgoing particles will automatically get assigned a negative energy, therefore removing confusion. Therefore, we can denote all these scattering amplitudes by 
+    \begin{equation*}
+        -ig(2\pi)^4\delta^4(k_1 + k_2 + k_3)
+    \end{equation*}
+
+    This can be extended to more complicated diagrams too. As an example, the diagram 
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[above right=of a] (i1) {\(\textbf{k}_1\)};
+                \vertex[below right=of a] (i2) {\(\textbf{k}_2\)};
+                \vertex[above left=of d] (f1) {\(\textbf{k}_3\)};
+                \vertex[below left=of d] (f2) {\(\textbf{k}_4\)};
+                \vertex[left = of a] (b);
+                \diagram*{
+                    (d) -- [scalar] (a) -- [anti fermion] (i1);
+                    (a) -- [fermion] (i2);
+                    (d) -- [fermion] (f1);
+                    (d) -- [fermion] (f2);
+                };
+            \end{feynman}
+            \node at (6.5,0) {\(=\displaystyle -ig^2\frac{1}{(k_1+k_2)^2 - m^2}(2\pi)^4\delta^4(k_1+k_2+k_3+k_4)\)};
+        \end{tikzpicture}
+    \end{figure}
+    There is another different diagram we need to consider, owing to Bose statistics, which is the following
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[above right=of a] (i1) {\(\textbf{k}_1\)};
+                \vertex[below right=of a] (i2) {\(\textbf{k}_2\)};
+                \vertex[above left=of d] (f1) {\(\textbf{k}_3\)};
+                \vertex[below left=of d] (f2) {\(\textbf{k}_4\)};
+                \vertex[left = of a] (b);
+                \diagram*{
+                    (d) -- [scalar] (a) -- [anti fermion] (i2);
+                    (d) -- [fermion] (i1);
+                    (a) -- [fermion] (f1);
+                    (d) -- [anti fermion] (f2);
+                };
+            \end{feynman}
+            \node at (6.5,0) {\(=\displaystyle -ig^2\frac{1}{(k_1+k_3)^2 - m^2}(2\pi)^4\delta^4(k_1+k_2+k_3+k_4)\)};
+        \end{tikzpicture}
+    \end{figure}
+    and the full amplitude is the sum of these two diagrams. What crossing symmetry says is that these are the only possible diagrams, and one can read off all possible processes from this by choosing which \(k_i^0\) to set negative.\\
+
+    To look at it in action, consider the original old diagrams for \(N\bar{N} \to N \bar N\).
+    \begin{figure}[h]
+        \centering
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a);
+                    \vertex [right = of a] (b);
+                    \vertex [above left =of a] (f1);                
+                    \vertex [above right =of b] (i1);
+                    \vertex [below right =of b] (i2);
+                    \vertex [below left =of a] (f2);
+                    \diagram*{
+                        (b) --[scalar, momentum=$\textbf{k}$] (a);
+                        (i1) -- [fermion, momentum'=$\textbf{k}_1$] (b);
+                        (a) -- [fermion, momentum'=$\textbf{k}_3$] (f1);
+                        (i2) -- [anti fermion, momentum=$\textbf{k}_2$] (b);
+                        (a) -- [anti fermion, momentum=$\textbf{k}_4$] (f2);
+                    };
+                \end{feynman}
+                \begin{scope}[xshift=6cm, yshift=0.6cm]
+                    \begin{feynman}
+                        \vertex (a);
+                        \vertex [below = of a] (b);
+                        \vertex [above left =of a] (f1);                
+                        \vertex [above right =of a] (i1);
+                        \vertex [below right =of b] (i2);
+                        \vertex [below left =of b] (f2);
+                        \diagram*{
+                            (a) --[scalar, momentum=$\textbf{k}$] (b);
+                            (i1) -- [fermion, momentum=$\textbf{k}_1$] (a) -- [fermion, momentum=$\textbf{k}_3$] (f1);
+                            (i2) -- [anti fermion, momentum'=$\textbf{k}_2$] (b) -- [anti fermion, momentum'=$\textbf{k}_4$] (f2);
+                        };
+                    \end{feynman}
+                \end{scope}
+            \end{tikzpicture}
+    \end{figure}
+    which had the amplitude as
+    \begin{equation*}
+        -ig^2(2\pi)^4\delta^4(k_1 + k_2 - k_3 - k_4) \left(  \frac{1}{(k_1 + k_2)^2 - m^2} +    \frac{1}{(k_1 
+    - k_3)^2 - m^2}    \right)
+    \end{equation*}
+    This can be exactly obtained by the above two digrams in our new conventions, by doing \(k_{3/4} = -k_{3/4}\). Notice that in the new convention, we justified the second diagram by invoking Bose statistice, but in the original diagrams, we said that the Bose statistics was not really important. This is due to the fact that the processess \(N\bar{N}\to N\bar N\),  \(\bar N\bar{N}\to \bar N\bar N\), \(NN\to NN\), etc., are all related to one another by this crossing symmetry, and if Bose statistics is invoked in one, it can and should be invoked in some way in all other.\\
+
+    Let us look at another process \(N\bar N \to \phi\phi\)
+    \begin{figure}[h]
+        \centering
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a);
+                    \vertex [below = of a] (b);
+                    \vertex [left =of a] (f1) {\(\textbf{k}_4\)};                
+                    \vertex [right =of a] (i1) {\(\textbf{k}_1\)};
+                    \vertex [right =of b] (i2) {\(\textbf{k}_2\)};
+                    \vertex [left =of b] (f2) {\(\textbf{k}_3\)};
+                    \diagram*{
+                        (b) --[anti fermion] (a);
+                        (i1) -- [fermion] (a);
+                        (a) -- [scalar] (f1);
+                        (i2) -- [anti fermion] (b);
+                        (b) -- [scalar] (f2);
+                    };
+                \end{feynman}
+                \begin{scope}[xshift=5cm]
+                        \begin{feynman}
+                        \vertex (a);
+                        \vertex [below = of a] (b);
+                        \vertex [left =of a] (f1) {\(\textbf{k}_4\)};                
+                        \vertex [right =of a] (i1) {\(\textbf{k}_1\)};
+                        \vertex [right =of b] (i2) {\(\textbf{k}_2\)};
+                        \vertex [left =of b] (f2) {\(\textbf{k}_3\)};
+                        \diagram*{
+                            (b) --[anti fermion] (a);
+                            (i1) -- [fermion] (a);
+                            (a) -- [scalar] (f2);
+                            (i2) -- [anti fermion] (b);
+                            (b) -- [scalar] (f1);
+                        };
+                    \end{feynman}
+                \end{scope}
+            \end{tikzpicture}
+    \end{figure}
+
+    In the new convention, with all momenta incoming, these two are the only possible diagrams, and they give the total amplitude 
+    \begin{equation*}
+        -ig^2(2\pi)^4\delta^4(k_1+k_2+k_3+k_4) \left(  \frac{1}{(k_1+k_4)^2 - m^2} + \frac{1}{(k_1+k_3)^2 - m^2}  \right)
+    \end{equation*}
+
+    Now using the same diagram, we can represent also the processes \(N+\phi \to N + \phi\), \(\phi\phi\to N N\), \(\phi\phi\to \bar N \bar N\) etc.
+
+    \subsection{Mandelstam Variables}
+    Notice that in the 4 point processes that we have calculated so far, we have always encountered terms like \((k_1 + k_3)^2\), \((k_1 + k_4)^2\), etc. We can define a different kinematic representation for momenta that are slightly more convenient in representing the above combinations. These are called Mandelstam variables.\\
+
+    Suppose the four momenta are \(k_1,~k_2,~k_3,~k_4\) (all incoming), then 
+    \begin{enumerate}
+        \item \(s = (k_1 + k_2)^2\)
+        \item \(t = (k_1 + k_3)^2\)
+        \item \(u = (k_1 + k_4)^2\)
+    \end{enumerate}
+
+    These are all Lorentz invariant, and they are basically the only unique Lorentz invariant we can construct out of the incoming momenta. All other Lorentz invariant objects (like \(k_1\cdot k_2\) etc) can be written in terms of these. Therefore, all the amplitudes we write should be only functions of \(s,~t,~\& ~u\). However these are not all independent, they satisfy 
+    \begin{align*}
+        2(s+t+u) &= (k_1 + k_2)^2 + (k_1 + k_3)^2 + (k_1 + k_4)^2\\
+            &=(k_3 + k_4)^2 + (k_2 + k_4)^2 + (k_2 + k_3)^2~~(\because k_1 + k_2 + k_3 + k_4 = 0)\\
+            &= 3(k_1^2 + k_2^2 + k_3^2 + k_4^2 ) + 2k_1\cdot k_2 + \text{~other combinations}
+    \end{align*}
+    Note that \((k_1 + k_2 + k_3 + k_4)^2  = 0 = k_1^2 +\cdot+2k_1 \cdot k_2 + \cdot \) . Therefore, we get 
+    \begin{align*}
+        &2(s+t+u) = 2(k_1^2 + k_2^2 + k_3^2 + k_4^2) + 0 = 2(\sum_i m_i^2)\\
+        \implies & s+t+u = \sum m_i^2
+    \end{align*}
+    Therefore in the above \(N\bar N \to \phi\phi\), the two diagrams have propagators in \(t\) and \(u\), and they are called \(t-\)channel and \(u-\)channel diagrams.\\
+
+    The Mandelstam variables are useful even in higher point scatterings, however they become a little complicated sometimes. For higher point correlators, the definitions of Mandelstam variables are also standardized. That is, 
+    \begin{equation*}
+        s_{ij} = k_i\cdot k_j
+    \end{equation*}
+    But for these, we get more constraints beyond the obvious constraints we got from \(\sum k_i = 0\) and \(k_i^2 = m_i^2\). To see how, lets drop \(s_{nj}\) (where \(n\) is the number of incoming momenta), since \(k_n = -\sum_{i=1}^{n-1}k_i\). We are left with 
+    \begin{equation*}
+        {}^{n-1}C_2 = \frac{(n-1)(n-2)}{2}
+    \end{equation*}
+    variables since we can choose \(i\) in \(n-1\) ways (leaving \(n\)) and \(j\) in \(n-2\) ways. That is, we drop all \(s_{nj}\)s since we can write the \(s_{nj}\) in terms of \(k_i,~i\ne n\), and \(s_{ij} = s_{ji}\). Therefore we need to choose \(i\) from \(n-1\) numbers and \(j\) from \(n-2\) numbers. \\
+
+    Now in \(d\) dimensions, for \(n\) point scattering, there are \(n(d-1)\) degrees of freedom (\(d-1\) and not \(d\) because of mass shell condition). Then there are additional \(d\) delta function constraints for the momenta, and therefore the total degrees of freedom is 
+    \begin{equation*}
+        d(n-1) - d
+    \end{equation*}
+
+    Notice that we have now \(\propto n\) degrees of freedom, and \(\propto n^2\) free Mandelstam variables, and therefore, there are more constraints, which are not trivial but are some non-trivial non-linear constraints, that should bring down the variables to \(\propto n\). This is something we need to keep in mind when working with scattering amplitudes. One way to get around this is to consider scattering in large dimensions, say \(n\), in some processes where the details of the scattering doesn't depend on the dimensionality of the space. Then one can use Mandelstam variables, and calculate the kinematics. But we need to remember that, in finite dimensions, for higher point processes, there are some more constraints that exist, but it is very difficult to handle these, in-fact there is no existing method to obtain the constraints given an \(n-\)point scattering in \(d\) dimensions. Often, it is fine to treat the Mandelstam variables as independent, since the additional non-linear constraint do not have much affect on the kinematics.
+
+    \newpage
+    \section{Probabilities and Cross-Sections}
+    What we calculated so far was amplitudes. To get probabilities we should simply ``square'' them. But there is a problem, since we are not allowed to square the delta function. Conceptually speaking, this problem arises because we chose our in and out states as the plane wave states, which are not normalisable. If instead we had chosen to work with smeared in and out states normalised to \(1\), the delta functions would pair with the integration for smearing and give a finite number for the probability. Notice that the valid physical object is the smeared state, and it is this smeared state that one encounters in experiments.   
 
 
 \end{document}
