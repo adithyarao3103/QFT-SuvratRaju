@@ -2955,7 +2955,84 @@
 
     \newpage
     \section{Probabilities and Cross-Sections}
-    What we calculated so far was amplitudes. To get probabilities we should simply ``square'' them. But there is a problem, since we are not allowed to square the delta function. Conceptually speaking, this problem arises because we chose our in and out states as the plane wave states, which are not normalisable. If instead we had chosen to work with smeared in and out states normalised to \(1\), the delta functions would pair with the integration for smearing and give a finite number for the probability. Notice that the valid physical object is the smeared state, and it is this smeared state that one encounters in experiments.   
 
+    What we calculated so far was amplitudes. To get probabilities we should simply square them. The amplitudes are always of the form 
+    \begin{equation*}
+        M_{\text{if}}~ (2\pi)^4\delta^4(k_i - k_f)
+    \end{equation*}
+    and squaring this to get the probability requires us to ``square'' the delta function, which makes no sense mathematically.\\
+    
+    Conceptually speaking, this problem arises because we chose our in and out states as plane wave states, which are not normalisable. If instead we had chosen to work with smeared in and out states normalised to \(1\), the delta functions would pair with the integration associated with the smearing, and give a finite number for the probability. Notice that the valid physical object is the smeared state, and it is this smeared state that one encounters in experiments. Therefore, we should be studying the wavepackets, which would be a physically right kind of state, and would also circumvent the problem of squaring the delta function.\\
+
+    In practice, we never do this. If we introduce wavepacket in-out states, the results will depend on the form of the wavepackets we consider, and therefore some arbitrariness will creep into our results and we loose the universality of the results we obtain. Further, when we do experiments, the particles we encounter are almost of the form of plane waves with a little spread (i.e.\ they have a spread very large compared to the region of interaction, and also have sharp momentum distributions), but to an approximation one can always drop this spread and say that the particle has a fixed momentum \(k\). Therefore, if we ask the \textit{physically right kind of questions}, we can continue to work with plane wave approximations. \\
+    
+    To be precise, in the following section, we will regulate our calculations by considering wavepackets, and in the end we will consider some limits where the details of the wavepackets do not matter. \\
+
+    The first point is, there are two kinds of plane waves, the incoming plane waves and the outgoing plane waves. At the level of amplitude, there was a symmetry in how the incoming and outgoing states were treated. But when we discuss probabilities, there arises an asymmetry in how we treat them. That is, when discussing probabilities, we average over the initial states and sum over the final states. This is the kind of question we choose to ask. Mathematically, we could have chosen a different question, but this is a physically relevant question. Physically, we are setting up an experiment and there is an uncertainity in the initial conditions due to verious experimental errors, and therefore we average over the initial states, and then there are various possible outcomes and we sum over them. \textcolor{red}{(That is, if we have a few mutually exclusive possible outcomes, the total probability is the sum of the probabilities for the individual processes. As an example consider a process where two electrons are produced. There are different possible outcomes regarding the different possible spins. The probability for the production of two electrons would be the sum of the probabilities of electron production with different spin combinations. This is the right kind of question to ask physically.)}\\
+
+    What this means in our case of scattering is that, we consider an initial state of the form \\
+    \(\ket{\text{in}} = \int \psi(p_i) \ket{p_1, \ldots, p_n}\), with \(\braket{\text{in}|\text{in}} = \int \psi(p_i)^2 dp_i = 1\), and ask for the the probability to scatter into \(k_f^i + dk_f^i\) for every final state \(k_f^i\). The wavepacket in-state has an integral over the momenta, and therefore absorbs the delta function in the amplitude, giving a finite value. Therefore, we do not need to consider wavepackets in the final states, but just ask for a probability to scatter into an infinitesimal spread in the momenta. \\ 
+    That is, the probability we will consider will be 
+    \begin{equation*}
+        dP = |\braket{\text{in}~| ~k_1, \ldots, k_m}|^2 \frac{d^3\textbf{k}_1}{(2\pi)^3 2\w_\mathbf{k_1}}\cdots \frac{d^3\textbf{k}_m}{(2\pi)^3 2\w_\mathbf{k_m}}
+    \end{equation*}
+    Note that \(\braket{\text{in}~| ~k_1, \ldots, k_m}\) is already finite. Also note that if \(\psi(p_i)\) was a delta function in the \(p_i\)s then the delta function in the amplitude would survive and we would not get a finite answer. For the general case when \(\ket{\text{in}}\) is not necessarily normalised, the infinitesimal probability would be 
+    \begin{equation*}
+        dP = \frac{|\braket{\text{in}~| ~k_1, \ldots, k_m}|^2}{\braket{\text{in}|\text{in}}}\frac{d^3\textbf{k}_1}{(2\pi)^3 2\w_\mathbf{k_1}}\cdots \frac{d^3\textbf{k}_m}{(2\pi)^3 2\w_\mathbf{k_m}}
+    \end{equation*}
+    
+    Although the value is finite now, we still have an arbitrariness in the probability since there is a wavepacket in the in-state. We want to get rid of this, by considering in-states that are very close to plane waves. That is, we study the limit where the in-states are plane waves. One way to take this limit is by making the plane wave states normalisable by putting the in-states in a box. That is, we take a box of side \(L\), and consider that all processess happen within this box in a time interval \(T\). In this box, the plane waves are normalisable, and in the limit \(L,T\to\infty\) we recover the original plane waves. \\
+
+    When we go back to plane wave incoming states, the delta functions reappear. But see that the problematic term in the amplitude squared was 
+    \begin{equation*}
+        \left((2\pi)^4 \delta^4(\sum k_i + \sum p_i)\right)^2 
+    \end{equation*}
+    where the delta functions came from 
+    \begin{equation*}
+        \left((2\pi)^4 \delta^4(\sum k_i + \sum p_i)\right)^2 = \left((2\pi)^4 \delta^4(Q)\right)^2\sim  \lim_{L,T\to \infty}\int \e^{iQ\cdot x} d^4x \int \e^{iQ\cdot y}d^4y
+    \end{equation*}
+    We do a bit of handwavery here, you can do the calculations precisely by taking a plane wave limit of the wavepacket and somehow turning off interactions in far past and see that the calculations do match, but here we do not keep that level of precision. \\
+    Notice that in doing the first integral above, we get a delta function, which we can use to set \(Q=0\) in the second integrand, giving
+    \begin{equation*}
+        \left((2\pi)^4 \delta^4(Q)\right)^2\sim  \lim_{L,T\to \infty}(2\pi)^4 \delta^4(Q) \int 1~d^4y = \lim_{V,T\to \infty}VT (2\pi)^4 \delta^4(Q) 
+    \end{equation*}
+    (where \(V=L^3\)) is the volume of the space.\\
+    Further, in the plane wave limit, the denominator \(\braket{\text{in}|\text{in}}\) is no longer \(1\), but becomes 
+    \begin{equation*}
+        (2\pi)^3\delta(0)2\w_\textbf{p}
+    \end{equation*}
+    which happens because of our normalisation 
+    \begin{equation*}
+        \braket{\textbf{p}|\textbf{p}'} = (2\pi)^3 \delta^3(\textbf{p} - \textbf{p}')2\w_\textbf{p}
+    \end{equation*}
+    But this delta function also arises due to an integral over spacetime as 
+    \begin{equation*}
+        \braket{\textbf{p}|\textbf{p}'} = (2\pi)^3 \delta^3(\textbf{p} - \textbf{p}')2\w_\textbf{p} = 2\sqrt{\w_\textbf{p}\w_\textbf{p'}}\lim_{L,T\to\infty} \int \e^{-i(\textbf{p}-\textbf{p}')\cdot \textbf{x}} d^3\textbf{x}
+    \end{equation*}
+    which in \(\textbf{p}=\textbf{p}'\) case, gives 
+    \begin{equation*}
+        \braket{\text{in}|\text{in}} = 2\w_\textbf{p}\lim_{L,T\to\infty} \int 1~d^3\textbf{x} = 2\w_\textbf{p}\lim_{V,T\to\infty} V
+    \end{equation*}
+    For \(n\) incoming particles, this would be 
+    \begin{equation*}
+        \braket{\textbf{p}_1,\ldots,\textbf{p}_n|\textbf{p}_1,\ldots,\textbf{p}_n} = \lim_{V,T\to\infty} V^n \prod_{i} (2\w_\mathbf{p_i})
+    \end{equation*}
+
+    Putting all these together, we get 
+    \begin{equation*}
+        dP = |M_{\text{if}}|^2 \left(\prod_{j\in\text{out}}\frac{d^3\textbf{k}_j}{(2\pi)^3 2E_j}\right) \left(\prod_{i\in \text{in}} \frac{1}{2E_i}   \right)\times (2\pi)^4\delta^4\left(\sum k_{\text{in}} - \sum k_{\text{out}} \right)\lim_{V,T\to \infty}\frac{VT}{V^n}
+    \end{equation*}
+    where \(M_{\text{if}}\) is the part of the amplitude that doesn't contain the delta function. Notice that this experession still has the regulators in the form of volume and time factors.\\
+
+    Now, if we ask the \textit{right kind of physical questions}, the volume and time factors and limits will become irrelevant. Let us consider a few cases. The first case is the decay of a particle, which has \(n=1\). In this case, the volume factors go away immediately, and only the T factor remains. Therefore the physical question to ask is the \textbf{probability per unit time} for the decay to happen, which is therefore given by 
+
+    \begin{equation*}
+        \overbrace{\frac{1}{2E_{\text{in}}}}^{\text{not L.I}} \underbrace{| M_{\text{if}}|^2 \left(\prod_{j\in\text{out}}\frac{d^3\textbf{k}_j}{(2\pi)^3 2E_j}\right) \times (2\pi)^4\delta^4\left(\sum k_{\text{in}} - \sum k_{\text{out}} \right)}_{L.I}
+    \end{equation*}
+    where we see that the answer is not Lorentz Invariant (L.I), since the decay probability per unit \textit{time} depends on which frame we are in. The decay probability is minimized in the incoming particle's rest frame, where \(E_{\text{in}} = m\). The decay lifetime, which is the inverse of the decay probability per unit time therefore satisfies
+    \begin{equation*}
+        \frac{t^{\text{life}}_{\text{moving}}}{t^{\text{life}}_{\text{rest}}} = \frac{E_{\text{moving}}}{m}
+    \end{equation*}
+    Therefore, sometimes a particle that is very short lived can have a longer lifetime by boosting the particle. This is a standard example we consider when we learn special relativity — the muon decay.\\
 
 \end{document}
