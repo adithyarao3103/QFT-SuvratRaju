@@ -2953,8 +2953,7 @@
 
     Notice that we have now \(\propto n\) degrees of freedom, and \(\propto n^2\) free Mandelstam variables, and therefore, there are more constraints, which are not trivial but are some non-trivial non-linear constraints, that should bring down the variables to \(\propto n\). This is something we need to keep in mind when working with scattering amplitudes. One way to get around this is to consider scattering in large dimensions, say \(n\), in some processes where the details of the scattering doesn't depend on the dimensionality of the space. Then one can use Mandelstam variables, and calculate the kinematics. But we need to remember that, in finite dimensions, for higher point processes, there are some more constraints that exist, but it is very difficult to handle these, in-fact there is no existing method to obtain the constraints given an \(n-\)point scattering in \(d\) dimensions. Often, it is fine to treat the Mandelstam variables as independent, since the additional non-linear constraint do not have much affect on the kinematics.
 
-    \newpage
-    \section{Probabilities and Cross-Sections}
+    \subsection{Probabilities and Cross-Sections}
 
     What we calculated so far was amplitudes. To get probabilities we should simply square them. The amplitudes are always of the form 
     \begin{equation*}
@@ -3024,15 +3023,773 @@
     \end{equation*}
     where \(M_{\text{if}}\) is the part of the amplitude that doesn't contain the delta function. Notice that this experession still has the regulators in the form of volume and time factors.\\
 
-    Now, if we ask the \textit{right kind of physical questions}, the volume and time factors and limits will become irrelevant. Let us consider a few cases. The first case is the decay of a particle, which has \(n=1\). In this case, the volume factors go away immediately, and only the T factor remains. Therefore the physical question to ask is the \textbf{probability per unit time} for the decay to happen, which is therefore given by 
+    Now, if we ask the \textit{right kind of physical questions}, the volume and time factors and limits will become irrelevant. Let us consider a few cases. To see what are the questions we should ask, consider first the decay of a particle, which has \(n=1\). In this case, the volume factors cancel off immediately, and only the T factor remains. Therefore the physical question to ask is the \textbf{decay probability per unit time}, which is given by 
 
     \begin{equation*}
         \overbrace{\frac{1}{2E_{\text{in}}}}^{\text{not L.I}} \underbrace{| M_{\text{if}}|^2 \left(\prod_{j\in\text{out}}\frac{d^3\textbf{k}_j}{(2\pi)^3 2E_j}\right) \times (2\pi)^4\delta^4\left(\sum k_{\text{in}} - \sum k_{\text{out}} \right)}_{L.I}
     \end{equation*}
-    where we see that the answer is not Lorentz Invariant (L.I), since the decay probability per unit \textit{time} depends on which frame we are in. The decay probability is minimized in the incoming particle's rest frame, where \(E_{\text{in}} = m\). The decay lifetime, which is the inverse of the decay probability per unit time therefore satisfies
+    where we see that the answer is not Lorentz Invariant (L.I), since the decay probability per unit \textit{time} depends on which frame we are in. The decay probability is minimized in the incoming particle's rest frame, where \(E_{\text{in}} = m\). The decay lifetime, which is the inverse of the decay probability per unit time, therefore satisfies
     \begin{equation*}
         \frac{t^{\text{life}}_{\text{moving}}}{t^{\text{life}}_{\text{rest}}} = \frac{E_{\text{moving}}}{m}
     \end{equation*}
-    Therefore, sometimes a particle that is very short lived can have a longer lifetime by boosting the particle. This is a standard example we consider when we learn special relativity — the muon decay.\\
+    That is, sometimes a particle that is very short lived can have a longer lifetime by boosting the particle. This is a standard example we consider when we learn special relativity — the muon decay.
+
+    Let us consider the case \(n=2\). In this case, the right question to ask would be the \textit{differential cross-section} which is the \textbf{probability per unit time per unit of incoming flux}. This is what is is measured in an experiment, and also gives a finite and right answer when calculated. \\
+    
+    To discuss this, we first need to do a kinematic computation of flux. Suppose there is a volume \(V = L^3\), with one particle having velocity \(\textbf{v}\) at an instant. What we want is the flux of this particle as it goes by. Flux is given by number of particles per unit area per time. In this case, the number of particles is \(1\), the area of a side is \(L^2\) and the time taken for the particle to cross the volume is \(\displaystyle\frac{L_1}{v}\). Therefore, the flux is 
+    \begin{equation*}
+        \text{flux} = \frac{|\textbf{v}|}{L}\frac{1}{L^2} = \frac{|\textbf{v}|}{L^3} = \frac{|\textbf{v}|}{V}
+    \end{equation*}
+    What we have is two particles approaching each other, in which case the flux would be 
+    \begin{equation*}
+        \text{flux} = \frac{|\textbf{v}_1 - \textbf{v}_2|}{V}
+    \end{equation*}
+
+    The differential cross section is given by 
+    \begin{equation*}
+        d\sigma = \lim_{V,T\to \infty} |M_{\text{if}}|^2 \left(\frac{1}{2E_1}\frac{1}{2E_2} \right)\left(\prod_{j\in\text{out}}\frac{d^3\textbf{k}_j}{(2\pi)^3 2E_j}\right) \times (2\pi)^4\delta^4\left(\sum k_{\text{in}} - \sum k_{\text{out}} \right)\frac{VT}{V^2}  \frac{V}{|\textbf{v}_1 - \textbf{v}_2|}\frac{1}{T}
+    \end{equation*}
+    where now all the volume and time factors cancel out, givin a finite result
+    \begin{equation*}
+        d\sigma =  \underbrace{|M_{\text{if}}|^2}_{\text{amplitude squared}}\overbrace{\left(\frac{1}{2E_1}\frac{1}{2E_2} \right)\left(\prod_{j\in\text{out}}\frac{d^3\textbf{k}_j}{(2\pi)^3 2E_j}\right) \times (2\pi)^4\delta^4\left(\sum k_{\text{in}} - \sum k_{\text{out}}\right)\frac{1}{|\textbf{v}_1 - \textbf{v}_2|}}^{\text{phase space factor}}
+    \end{equation*}
+    Again, we see that if we ask the right physical question, the details of the regulators are no more relevant. This is a very important formula in particle physics, and we see that a lot of the details of the cross section comes from the kinematical factors and not the amplitude. These are called the phase space factors.\\
+
+    For an important and special case of 2 to 2 scattering, let us work out the phase space factor in the COM frame.
+    Let us consider the center of mass frame, where the incoming particles have \(\textbf{k}_1 + \textbf{k}_2 = 0\) and \(E_1 + E_2 = E_T\). The phase space factor for this case would be 
+    \begin{equation*}
+            \left(\frac{1}{2E_1}\frac{1}{2E_2} \right)\left(\frac{d^3\textbf{k}_3}{(2\pi)^3 2E_3}\frac{d^3\textbf{k}_4}{(2\pi)^3 2E_4}\right)(2\pi)^4\delta(E_T - E_3 - E_4)\delta^3\left(\textbf{k}_3 + \textbf{k}_4\right)\frac{1}{|\textbf{v}_1 - \textbf{v}_2|}
+    \end{equation*}
+    We can use the delta function in the outgoing momenta to eliminate one integral, giving the factor to be 
+    \begin{equation*}
+        \frac{1}{2E_1}\frac{1}{2E_2}\frac{1}{2E_3}\frac{1}{2E_4}\left(\frac{d^3\textbf{k}_3}{(2\pi)^3}\right)(2\pi)\delta(E_T - E_3 - E_4)\frac{1}{|\textbf{v}_1 - \textbf{v}_2|}
+    \end{equation*}
+    Now in the measure \(d^3\textbf{k}_3 \equiv |\textbf{k}_3|^2 d|\textbf{k}_3| d\Omega_3\), there is an integral over the magnitude of the momentum and direction. But the magnitude is fixed by the delta function 
+    \begin{equation*}
+        \delta(E_T - E_3 - E_4) = \delta\left(E_T - \sqrt{|\textbf{k}_3|^2 + m_3^2} - \sqrt{|\textbf{k}_3|^2 + m_4^2}\right)
+    \end{equation*}
+    This delta function can be written as 
+    \begin{equation*}
+        \displaystyle \frac{\delta\left(|\textbf{k}_3| - |\textbf{k}_3|^0\right)}{\bigg|\displaystyle \frac{\del E_3}{\del |\textbf{k}_3|} + \frac{\del E_4}{\del |\textbf{k}_3|}\bigg|}
+    \end{equation*}
+
+    \textcolor{red}{Using the one-dimensional delta-function identity
+\[
+\delta\bigl(f(x)\bigr)
+=\sum_{i}\frac{\delta(x-x_i)}{\bigl|f'(x_i)\bigr|},
+\]
+with
+\[
+f\bigl(|\mathbf{k}_3|\bigr)
+=E_T - \sqrt{|\mathbf{k}_3|^2 + m_3^2}
+         - \sqrt{|\mathbf{k}_3|^2 + m_4^2}
+\]
+and denoting by $|\mathbf{k}_3|^0$ the (positive) solution of $f(|\mathbf{k}_3|^0)=0$, we get
+\[
+\delta\bigl(E_T - E_3 - E_4\bigr)
+=\delta\bigl(f(|\mathbf{k}_3|)\bigr)
+=\frac{\delta\bigl(|\mathbf{k}_3| - |\mathbf{k}_3|^0\bigr)}
+      {\bigl|f'(|\mathbf{k}_3|^0)\bigr|}.
+\]
+Since
+\[
+f'\bigl(|\mathbf{k}_3|\bigr)
+=-\frac{\partial}{\partial|\mathbf{k}_3|}
+ \Bigl(\sqrt{|\mathbf{k}_3|^2 + m_3^2}\Bigr)
+-\frac{\partial}{\partial|\mathbf{k}_3|}
+ \Bigl(\sqrt{|\mathbf{k}_3|^2 + m_4^2}\Bigr)
+=-\Bigl(\frac{\partial E_3}{\partial|\mathbf{k}_3|}
+     +\frac{\partial E_4}{\partial|\mathbf{k}_3|}\Bigr),
+\]
+we have
+\[
+\bigl|f'(|\mathbf{k}_3|^0)\bigr|
+=\frac{\partial E_3}{\partial|\mathbf{k}_3|}\Big|_{|\mathbf{k}_3|^0}
++\frac{\partial E_4}{\partial|\mathbf{k}_3|}\Big|_{|\mathbf{k}_3|^0}.
+\]
+obtaining
+\[
+\delta\bigl(E_T - E_3 - E_4\bigr)
+=\frac{
+  \delta\bigl(|\mathbf{k}_3| - |\mathbf{k}_3|^0\bigr)
+}{
+  \displaystyle
+  \frac{\partial E_3}{\partial|\mathbf{k}_3|}\Big|_{|\mathbf{k}_3|^0}
+  +\frac{\partial E_4}{\partial|\mathbf{k}_3|}\Big|_{|\mathbf{k}_3|^0}
+}.
+\]}
+
+Now since
+\begin{equation*}
+    \frac{\del E_{3/4}}{\del |\textbf{k}_3|} = \frac{\textbf{k}_3}{E_{3/4}}
+\end{equation*}
+and therefore, we get 
+\begin{equation*}
+    \delta(E_T - E_3 - E_4) = \frac{\delta\left(|\textbf{k}_3| - |\textbf{k}_3|^0\right)}{\displaystyle \frac{|\textbf{k}_3|^0}{E_3} + \frac{|\textbf{k}_3|^0}{E_4}} = \delta\left(|\textbf{k}_3| - |\textbf{k}_3|^0\right) \frac{E_3E_4}{|\textbf{k}_3|^0(E_3+E_4)} = \delta\left(|\textbf{k}_3| - |\textbf{k}_3|^0\right) \frac{E_3E_4}{|\textbf{k}_3|^0 E_T}
+\end{equation*}
+Calling \(|\textbf{k}_3|^0 \equiv k_3\) from here on, we get the phase space factor as
+\begin{equation*}
+    \frac{1}{2E_1}\frac{1}{2E_2}\frac{k_3}{4 E_T}\left(\frac{d\Omega_3}{(2\pi)^3}\right)(2\pi)\frac{1}{|\textbf{v}_1 - \textbf{v}_2|}
+\end{equation*}
+We still need to look at the \(|\textbf{v}_1 - \textbf{v}_2|\) factor. We can use (\(m^{rel} = \gamma_v m\))
+\begin{equation*}
+    \textbf{k}_{1/2} = m_{1/2}^{rel} \textbf{v}_{1/2},~~~E_{1/2} = m_{1/2}^{rel}~~\implies~~\textbf{v}_{1/2} = \frac{\textbf{k}_{1/2}}{E_{1/2}}
+\end{equation*}
+and therefore
+\begin{equation*}
+    \frac{1}{2E_1}\frac{1}{2E_2}\frac{k_3}{4 E_T}\left(\frac{d\Omega_3}{(2\pi)^3}\right)(2\pi)\frac{1}{\displaystyle\bigg|\frac{\textbf{k}_1}{E_1} - \frac{\textbf{k}_2}{E_2}\bigg|}
+\end{equation*}
+In the COM frame, \(\textbf{k}_2 = -\textbf{k}_1\), and therefore, we get 
+\begin{equation*}
+    \frac{1}{2E_1}\frac{1}{2E_2}\frac{k_3}{4 E_T}\left(\frac{d\Omega_3}{(2\pi)^3}\right)(2\pi)\frac{E_1E_2}{k_1E_T}
+\end{equation*}
+where we are now calling \(|\textbf{k}_1| \equiv k_1\).\\
+This can be simplified to give 
+\begin{equation*}
+    \frac{1}{64 \pi^2} \frac{1}{E_T^2} \frac{k_3}{k_1} d\Omega_3
+\end{equation*}
+
+Therefore, the differential cross section is 
+\begin{equation*}
+    d\sigma = |M|^2 \frac{1}{64 \pi^2} \frac{1}{E_T^2} \frac{k_3}{k_1} d\Omega_3
+\end{equation*}
+In the COM frame, there is only one degree of freedom which is unspecified, which is the angle of emergance of one of the two outgoing particles. This gives the cross section per unit solid angle, which can be then integrated over some solid angle, or even the entire sphere to get physical results.\\
+
+Notice that the cross section is inversely proportional to the magnitude of incoming momentum \(k_1\). Therefore, larger the incoming momentum, the smalller is the scattering probability. In the limit, \(k_1\to0\), the kinematical factor is the maximum, but of course this will be accompanied by changes in \(M\) line \(M|_{k_1\to 0} =  0\), and there will be a sweet spot somewhere in between where the cross section is maximised.
+
+\newpage
+\section{Systematic Formulation of Perturbation Theory}
+So far we have taken a simple minded approach, not being careful about how we define the in and out states, and also the vacuum. This was not a problem at leading order, but will come to bite us when we discuss perturbation theory in higher order. \\
+
+To be precise, if we have the free vacuum \(H_0\ket{0} = 0\), and the vacuum of the full theory \(H\ket{\Omega} = 0\), the states \(\ket{0}\) and \(\ket{\Omega}\) are definitely not the same, since \(H\) and \(H_0\) do not at all commute. Secondly, so far we had our in and out states as \(\ket{k_1, k_2, \ldots}\), but these were created by the action of the creation(annihilation) operators on the free vacuum and that cannot be the right way to think about these states. At lowest order these were fine, but at higher order, these will create problems. \\
+As an example, consider in the \(\phi^4\) theory the amplitude for 2 to 2 scattering in 2nd order. In 2nd order, one of the diagrams is 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[scale=0.8, transform shape]
+        \begin{feynman}
+            \vertex (a);
+            \vertex[right = of a] (b);
+            \vertex[above left = of a] (f1);
+            \vertex[below left = of a] (f2);
+            \vertex[above right = of b] (i1);
+            \vertex[below right = of b] (i2);
+            \diagram*{
+                (i1) --[scalar] (b);
+                (a) --[scalar] (f1);
+                (i2) --[scalar] (b);
+                (a) --[scalar] (f2);
+                (a) --[scalar, half left] (b);
+                (a) --[scalar, half right] (b);
+            };
+        \end{feynman}
+    \end{tikzpicture}
+\end{figure}
+
+But there can be other disconnected diagrams of the form 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[scale=0.8, transform shape]
+        \begin{feynman}
+            \vertex (a);
+            \vertex[above left = of a] (f1);
+            \vertex[below left = of a] (f2);
+            \vertex[above right = of a] (i1);
+            \vertex[below right = of a] (i2);
+            \vertex[right = of a] (a1);
+            \vertex[right = of a1] (b);
+            \vertex[above = of b] (c);
+            \vertex[below = of b] (d);
+            \diagram*{
+                (i1) --[scalar] (a);
+                (a) --[scalar] (f1);
+                (i2) --[scalar] (a);
+                (a) --[scalar] (f2);
+                (b) --[scalar, half left] (c) --[scalar, half left] (b) --[scalar, half left] (d) --[scalar, half left] (b);
+            };
+        \end{feynman}
+    \end{tikzpicture}
+\end{figure}
+
+which are not forbidden by Wick's theorem, and therefore MUST be included in our calculations.\\
+
+This diagram is troublesome since in the loop, the momenta is not constrained at all unlike the first diagram, and we get an infinity that we cannot regulate. That is, the loop in this diagram contributes a diverging value 
+\begin{equation*}
+    \left[ \int \frac{d^4 p}{(2\pi)^4} \frac{1}{p^2 - m^2 + i\epsilon}    \right]^2 = \infty^2
+\end{equation*}
+
+The presence of such diagrams is an indication that we have not been careful with our constructions.\\
+
+To fix these problems, we need to study the correlation functions (Greens Functions) of the form 
+\begin{equation*}
+    \bra{\Omega} ~T\left( \phi_H(x_1),\ldots,\phi_H(x_n)  \right)~ \ket{\Omega}
+\end{equation*}
+These objects are very important to understand the theory. First of all, we will relate this to the \(S-\)matrix. But there is also an intrinsic interest in these objects because this forms a general class of observables that can be studied in a QFT.\ The formal properties of QFT often will involve these correlators. Here, we will only focus on relating these correlation functions to the \(S-\)matrix.
+
+\subsection{Calculating the Green's Functions}
+In perturbation theory, the correlation function (Green's function) above discussed can be obtained as 
+\begin{equation}
+    \bra{\Omega} ~T\left( \phi_H(x_1),\ldots,\phi_H(x_n)  \right)~ \ket{\Omega} = \frac{\bra{0} ~T\left( \phi_I(x_1),\ldots,\phi_I(x_n)  \e^{-i\int_{-\infty}^{\infty}H_I(t)dt}\right)~ \ket{0} }{\bra{0}~T\left( \e^{-i\int_{-\infty}^{\infty}H_I(t)dt}\right)~\ket{0}}
+    \label{eq:correlation_fun}
+\end{equation}
+
+\subsubsection{Diversion \ldots}
+
+Before proving the above equation, we want to quickly discuss another relation. Suppose we made the split \(H = H_0 + H_{\text{int}}\) at some time \(t_0\), then the evolution operator from \(t_1\) to \(t_2\) is given by 
+\begin{equation*}
+    U_I(t_2, t_1) = T\left( \e^{-i\int_{t_1}^{t_2}H_I(t)dt} \right) = \e^{iH_0(t_2 - t_0)} \e^{-iH(t_2 - t_1)} \e^{-iH_0(t_1-t_0)}
+\end{equation*}
+which can be written as 
+\begin{equation*}
+    U_I(t_2, t_1) = \overbrace{\e^{iH_0(t_2 - t_0)} \e^{-iH(t_2 - t_0)}}^{U_I(t_2)}  \overbrace{\e^{iH(t_1 - t_0)}\e^{-iH_0(t_1-t_0)}}^{U^\dagger_I(t_1)}
+\end{equation*}
+To see that this equation is indeed correct, check that the differential equation the LHS and RHS satisfies are the same. Suppose we differentiate RHS with respect to \(t_2\), we get 
+\begin{equation*}
+    i\frac{\del U_I(t_2, t_1)}{\del t_2} = \frac{\del U_I(t_2)}{\del t_2} U_I(t_1) = H_I(t_2) U_I(t_2)U^\dagger_I(t_1) = H_I(t_2) U_I(t_2, t_1) 
+\end{equation*}
+while LHS gives 
+\begin{equation*}
+    i\frac{\del U_I(t_2, t_1)}{\del t_2} = i\frac{\del}{\del t_2} T\left( \e^{-i\int_{t_1}^{t_2}H_I(t)dt} \right) = H_I(t_2) U_I(t_2, t_1)
+\end{equation*}
+and similarly 
+\begin{equation*}
+    i\frac{\del U_I(t_2, t_1)}{\del t_1} = - U_I(t_2, t_1)H_I^\dagger(t_1)
+\end{equation*}
+for LHS and RHS. Therefore, 
+\begin{equation*}
+    T\left( \e^{-i\int_{t_1}^{t_2}H_I(t)dt} \right)
+\end{equation*}
+and 
+\begin{equation*}
+    U_I(t_2) U^\dagger_I(t_1)
+\end{equation*}
+satisfy the same differential equation, and are hence equal. We can now extend this to have the following 
+\begin{equation*}
+    U_I(t_2, t_m)U_I(t_m, t_1) = U_I(t_2)U_I^\dagger(t_m)\cdot U_I(t_m)U_I^\dagger(t_1) = U_I(t_2, t_1),~~~t_2>t_m>t_1
+\end{equation*}
+(since \(U_I\) is unitary).\\
+
+Armed with these results, we can now proceed to prove the equation (\ref{eq:correlation_fun}).
+
+\subsubsection{Continued \ldots}
+
+Without loss of generality, let us suppose \(x_1^0 > x_2^0 > \cdots > x_n^0\). The numerator of RHS in eq (\ref{eq:correlation_fun}) becomes 
+\begin{align*}
+    &\bra{0} ~T\left( \phi_I(x_1),\ldots,\phi_I(x_n)  \e^{-i\int_{-\infty}^{\infty}H_I(t)dt}\right)~ \ket{0} \\
+    =&\bra{0} ~T\left( \e^{-i\int_{t_1}^{\infty}H_I(t)dt}\right) \phi_I(x_1)T\left( \e^{-i\int_{t_2}^{t_1}H_I(t)dt}\right)\phi_I(t_2)T\left( \e^{-i\int_{t_3}^{x_2}H_I(t)dt}\right)\phi_I(x_3) \ldots \phi(x_n)T\left( \e^{-i\int_{-\infty}^{t_n}H_I(t)dt}\right)~ \ket{0} 
+\end{align*}
+(\(t_n \equiv x_n^0\)), where we were able to split the \(T\left( \e^{-i\int_{-\infty}^{\infty}H_I(t)dt}\right)\) owing to the relation we derived above, and since each of the part in the splitting has operators at time \(t\in [x_{i-1},~x_i]\), the time ordering simply places them as above.\\
+Therefore the above term can be written as 
+\begin{align*}
+    & \bra{0} ~U_I(\infty, t_1) \phi_I(x_1)U_I(t_1, t_2)\phi_I(t_2)U_I(t_2, t_3)\phi_I(x_3) \ldots \phi(x_n) U_I(t_n, -\infty)~ \ket{0} \\
+    =&\bra{0} ~U_I(\infty)\underbrace{U_I^\dagger(t_1) \phi_I(x_1)U_I(t_1)}_{\phi_H(x_1)}\underbrace{U_I^\dagger(t_2)\phi_I(t_2)U_I(t_2)}_{\phi_H(x_2)} \underset{\ldots}{U_I^\dagger(t_3)\phi_I(x_3)} \ldots \phi(x_n) U_I(t_n)U_I^\dagger(-\infty)~ \ket{0}\\
+    = & \bra{0} U_I(\infty) \phi_H(x_1) \phi_H(x_2) \ldots \phi_H(x_n) U^\dagger(-\infty)\ket{0}
+\end{align*}
+By definition, 
+\begin{equation*}
+    U_I^\dagger(t) \equiv U_I^\dagger(t, t_0) = \e^{iH(t - t_0)}\e^{-iH_0(t-t_0)} 
+\end{equation*}
+and therefore 
+\begin{equation*}
+    U_I^\dagger (-\infty)\ket{0} = \lim_{T\to -\infty} \e^{iH(T-t_0)}\e^{-iH_0(T-t_0)}\ket{0}
+\end{equation*}
+But \(H_0\ket{0} = 0\), and therefore, 
+\begin{equation*}
+    U_I^\dagger (-\infty)\ket{0} = \lim_{T\to -\infty} \e^{iH(T-t_0)}\ket{0}
+\end{equation*}
+Now since the eigenstates of the full Hamiltonian forms a complete set of basis, we can perform the following expansion 
+\begin{equation*}
+    \ket{0} = c\ket{\Omega} + \sum c_n \ket{E_n}
+\end{equation*}
+and under the evolution
+\begin{equation*}
+    \lim_{T\to -\infty} \e^{iH(T-t_0)}\left(c\ket{\Omega} + \sum c_n \ket{E_n}\right) =c\ket{\Omega} +  \lim_{T\to \infty} \sum c_n \e^{-iE_n(T+t_0)}\ket{E_n}
+\end{equation*}
+only the \(c\ket{\Omega}\) term is not multiplied with a phase, while all other terms are multiplied a wildly oscillating phase. In particular, if you take any other state 
+\begin{equation*}
+    \ket{\psi} = k\ket{0} + \sum k_m \ket{E_m}
+\end{equation*}
+and if we look at \(\lim_{T\to -\infty} \bra{\psi}  \e^{iH(T-t_0)} \ket{0}\), then we get 
+\begin{equation*}
+    \lim_{T\to -\infty} \bra{\psi}  \e^{iH(T-t_0)} \ket{0} = ck + \lim_{T\to -\infty} \sum_{n,m}c_n k_m \e^{-iE_n(T+t_0)}
+\end{equation*}
+Now in QFT, the spectrum of energy eigenstates is always continuous, and if we start with some smooth distribution of \(k_n\), what we end up with is the same distrubution \(k_n\) but weighted with wildly oscillating phases, and when that happens, the sum (integral) is always zero. Therefore, we can ignore these rapidly oscillating phases since they do not contribute to the matrix elements (we are making a slight assumption here that we will take inner products with states which are slightly smeared in energy, i.e.\ having smooth distributions of \(k_n\). If we take \textit{a particular state}, then the inner product may or may not be zero). \\
+
+Therefore, for all effects and purposes 
+\begin{equation*}
+    U_I^\dagger (-\infty)\ket{0} = \lim_{T\to -\infty} \e^{iH(T-t_0)}\ket{0} = \ket{\Omega} \braket{\Omega|0}
+\end{equation*}
+By the same argument, 
+\begin{equation*}
+    \bra{0} U_I(\infty) = \lim_{T\to \infty} \bra{0}\e^{-iH(T-t_0)} = \braket{0|\Omega} \bra{\Omega}
+\end{equation*}
+Therefore, we get 
+\begin{equation*}
+    \bra{0} T\left( \phi_I(x_1),\ldots,\phi_I(x_n)  \e^{-i\int_{-\infty}^{\infty}H_I(t)dt}\right) \ket{0} = \braket{0|\Omega} \bra{\Omega}T\left(  \phi_H(x_1)\phi_H(x_2)\ldots\phi_H(x_n) \right)\ket{\Omega} \braket{\Omega|0}
+\end{equation*}
+
+Now the denominator of RHS in eq (\ref{eq:correlation_fun}) is simple, it is just the above derivation, but without the \(\phi(x_i)\)s, and therefore simply gives 
+\begin{equation*}
+    \bra{0}~T\left( \e^{-i\int_{-\infty}^{\infty}H_I(t)dt}\right)~\ket{0} = \braket{0|\Omega}\braket{\Omega|0}
+\end{equation*}
+which cancels out with the factors in the numerator, and hence proved.\\
+
+We know exactly how to calculate the objects in the RHS, which is simply using the Wick's theorem. As an example, if we want to compute the four point function in \(\phi^4\) theory,
+\begin{equation*}
+    \bra{\Omega} T\left( \phi_H(x_1)\phi_H(x_2)\phi_H(x_3)\phi_H(x_4) \right)\ket{\Omega} = \bra{0}T\left( \phi_I(x_1)\phi_I(x_2)\phi_I(x_3)\phi_I(x_4) \e^{-i\int_{-\infty}^{\infty}H_I(t) dt } \right) \ket{0}
+\end{equation*}
+In first order in perturbation theory the above is 
+\begin{equation*}
+    \bra{0}T\left( \phi_I(x_1)\phi_I(x_2)\phi_I(x_3)\phi_I(x_4) \left(-i\int_{-\infty}^{\infty}H_I(t) dt \right) \right) \ket{0}
+\end{equation*}
+when Wick contracting, the only term that is non-zero is 
+\begin{equation*}
+    -i\lambda\int d^4x~ G(x_1, x)G(x_2, x)G(x_3, x)G(x_4, x)
+\end{equation*}
+where \(G\) is the propagator. (We do not pick up the disconnected pieces where two \(x_i\)s contract with each other leaving a disconnected leg). This is calculated using a feynman diagram where now we also add a propagator to the external legs.
+
+\begin{figure}[h]
+    \centering 
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a);
+            \vertex[below right=of a]  (i2);
+            \vertex[below left=of a]  (f2);
+            \vertex[above right=of a]  (i1);
+            \vertex[above left=of a]  (f1);
+            \diagram*{
+                (i1) --[scalar] (a) --[scalar] (f2);
+                (i2) -- [scalar] (a) -- [scalar] (f1);
+            };
+            \draw[fill=black] (a) circle(0.7mm);
+            \draw[fill=black] (i1) circle(0.7mm);
+            \draw[fill=black] (i2) circle(0.7mm);
+            \draw[fill=black] (f1) circle(0.7mm);
+            \draw[fill=black] (f2) circle(0.7mm);
+        \end{feynman}
+    \end{tikzpicture}
+\end{figure}
+
+ In momentum space, this looks like 
+\begin{equation*}
+    -i\lambda \left(  \frac{i}{k_1^2 - m^2 + i\epsilon}  \right)\left(  \frac{i}{k_2^2 - m^2 + i\epsilon}  \right)\left(  \frac{i}{k_3^2 - m^2 + i\epsilon}  \right)\left(  \frac{i}{k_4^2 - m^2 + i\epsilon}  \right) (2\pi)^4 \delta^4\left(\sum_i k_i \right)
+\end{equation*}
+The Feynman rules is similar to the one we used to calculate scattering amplitudes where we are now also adding a propagator for the external legs. LSZ formula simply gives a way to calculate the \(S-\)matrix elements from these correlation functions by stripping off the external propagators.\\
+
+Let us see how this ``corrects'' the issue we had with the disconnected diagrams. Suppose we wanted to calculate the four point function in the \(\phi^4\) theory as before. The numerator on the RHS of the equation (\ref{eq:correlation_fun}) can be calculated via Feynman diagrams as discussed above. The relevant Feynman diagrams are \\
+
+\textbf{First order: }
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[scale=0.5, transform shape]
+        \begin{feynman}
+            \vertex (a);
+            \vertex[below right=of a]  (i2);
+            \vertex[below left=of a]  (f2);
+            \vertex[above right=of a]  (i1);
+            \vertex[above left=of a]  (f1);
+            \diagram*{
+                (i1) --[scalar] (a) --[scalar] (f2);
+                (i2) -- [scalar] (a) -- [scalar] (f1);
+            };
+            \draw[fill=black] (a) circle(0.7mm);
+            \draw[fill=black] (i1) circle(0.7mm);
+            \draw[fill=black] (i2) circle(0.7mm);
+            \draw[fill=black] (f1) circle(0.7mm);
+            \draw[fill=black] (f2) circle(0.7mm);
+        \end{feynman}
+    \end{tikzpicture}
+\end{figure}
+
+\textbf{Second order:}
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[scale=0.5, transform shape]
+        \begin{feynman}
+            \vertex (a);
+            \vertex[right = of a] (b);
+            \vertex[above left = of a] (f1);
+            \vertex[below left = of a] (f2);
+            \vertex[above right = of b] (i1);
+            \vertex[below right = of b] (i2);
+            \diagram*{
+                (i1) --[scalar] (b);
+                (a) --[scalar] (f1);
+                (i2) --[scalar] (b);
+                (a) --[scalar] (f2);
+                (a) --[scalar, half left] (b);
+                (a) --[scalar, half right] (b);
+            };
+            \draw[fill=black] (a) circle(0.7mm);
+            \draw[fill=black] (b) circle(0.7mm);
+            \draw[fill=black] (i1) circle(0.7mm);
+            \draw[fill=black] (i2) circle(0.7mm);
+            \draw[fill=black] (f1) circle(0.7mm);
+            \draw[fill=black] (f2) circle(0.7mm);
+        \end{feynman}
+            \node at (4.7,0) {\Huge $+$};
+        \begin{scope}[xshift=8cm]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[left = of a] (plus);
+                \vertex[above left = of a] (f1);
+                \vertex[below left = of a] (f2);
+                \vertex[above right = of a] (i1);
+                \vertex[below right = of a] (i2);
+                \vertex[right = of a] (a1);
+                \vertex[right = of a1] (b);
+                \vertex[above = of b] (c);
+                \vertex[below = of b] (d);
+                \diagram*{
+                    (i1) --[scalar] (a);
+                    (a) --[scalar] (f1);
+                    (i2) --[scalar] (a);
+                    (a) --[scalar] (f2);
+                    (b) --[scalar, half left] (c) --[scalar, half left] (b) --[scalar, half left] (d) --[scalar, half left] (b);
+                };
+                \draw[fill=black] (a) circle(0.7mm);
+                \draw[fill=black] (b) circle(0.7mm);
+                \draw[fill=black] (i1) circle(0.7mm);
+                \draw[fill=black] (i2) circle(0.7mm);
+                \draw[fill=black] (f1) circle(0.7mm);
+                \draw[fill=black] (f2) circle(0.7mm);
+            \end{feynman}
+        \end{scope}
+    \end{tikzpicture}
+\end{figure}
+
+\textbf{Third order:}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.5, transform shape]
+        \begin{feynman}
+            \vertex (a);
+            \vertex[right = of a] (b);
+            \vertex[right = of b] (c);
+            \vertex[above left = of a] (f1);
+            \vertex[below left = of a] (f2);
+            \vertex[above right = of c] (i1);
+            \vertex[below right = of c] (i2);
+            \diagram*{
+                (i1) --[scalar] (c);
+                (a) --[scalar] (f1);
+                (i2) --[scalar] (c);
+                (a) --[scalar] (f2);
+                (a) --[scalar, half left] (b);
+                (b) --[scalar, half left] (c);
+                (a) --[scalar, half right] (b);
+                (b) --[scalar, half right] (c);
+            };
+            \draw[fill=black] (a) circle(0.7mm);
+            \draw[fill=black] (b) circle(0.7mm);
+            \draw[fill=black] (c) circle(0.7mm);
+            \draw[fill=black] (i1) circle(0.7mm);
+            \draw[fill=black] (i2) circle(0.7mm);
+            \draw[fill=black] (f1) circle(0.7mm);
+            \draw[fill=black] (f2) circle(0.7mm);
+        \end{feynman}
+            \node at (6,0) {\Huge $+$};
+        \begin{scope}[xshift=10cm]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[right = of a] (b);
+                \vertex[above left = of a] (f1);
+                \vertex[below left = of a] (f2);
+                \vertex[above right = of b] (i1);
+                \vertex[below right = of b] (i2);
+                \vertex[right = of b] (b1);
+                \vertex[right = of b1] (c);
+                \vertex[above = of c] (d);
+                \vertex[below = of c] (e);
+                \diagram*{
+                    (i1) --[scalar] (b);
+                    (a) --[scalar] (f1);
+                    (i2) --[scalar] (b);
+                    (a) --[scalar] (f2);
+                    (a) --[scalar, half left] (b);
+                    (a) --[scalar, half right] (b);
+                    (c) --[scalar, half left] (d) --[scalar, half left] (c) --[scalar, half left] (e) --[scalar, half left] (c);
+
+                };
+                \draw[fill=black] (a) circle(0.7mm);
+                \draw[fill=black] (b) circle(0.7mm);
+                \draw[fill=black] (c) circle(0.7mm);
+                \draw[fill=black] (i1) circle(0.7mm);
+                \draw[fill=black] (i2) circle(0.7mm);
+                \draw[fill=black] (f1) circle(0.7mm);
+                \draw[fill=black] (f2) circle(0.7mm);
+            \end{feynman}
+        \end{scope}
+            \node at (17,0) {\Huge $+$};
+
+        \begin{scope}[xshift=20cm]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[left = of a] (plus);
+                \vertex[above left = of a] (f1);
+                \vertex[below left = of a] (f2);
+                \vertex[above right = of a] (i1);
+                \vertex[below right = of a] (i2);
+                \vertex[right = of a] (a1);
+                \vertex[right = of a1] (b);
+                \vertex[above = of b] (c);
+                \vertex[below = of b] (d);
+                \vertex[right = of b] (b1);
+                \vertex[right = of b1] (e);
+                \vertex[above = of e] (f);
+                \vertex[below = of e] (g);
+                \diagram*{
+                    (i1) --[scalar] (a);
+                    (a) --[scalar] (f1);
+                    (i2) --[scalar] (a);
+                    (a) --[scalar] (f2);
+                    (b) --[scalar, half left] (c) --[scalar, half left] (b) --[scalar, half left] (d) --[scalar, half left] (b);
+                    (e) --[scalar, half left] (f) --[scalar, half left] (e) --[scalar, half left] (g) --[scalar, half left] (e);
+                };
+                \draw[fill=black] (a) circle(0.7mm);
+                \draw[fill=black] (b) circle(0.7mm);
+                \draw[fill=black] (e) circle(0.7mm);
+                \draw[fill=black] (i1) circle(0.7mm);
+                \draw[fill=black] (i2) circle(0.7mm);
+                \draw[fill=black] (f1) circle(0.7mm);
+                \draw[fill=black] (f2) circle(0.7mm);
+            \end{feynman}
+        \end{scope}
+    \end{tikzpicture}
+\end{figure}
+
+and so on (note that there are more disconnected diagrams, but we are not listing all of them. This discussion and the conclusion will still remain valid under the presence of the other disconnected diagrams too).\\
+%  (notice that there are still other disconnected diagrams such as the following, at all orders
+% \begin{figure}[H]
+%     \centering
+%     \begin{tikzpicture}[scale=0.5, transform shape]
+%         \begin{feynman}
+%             \vertex (a);
+%             \vertex[below right=of a]  (i2);
+%             \vertex[below left=of a]  (f2);
+%             \vertex[above right=of a]  (i1);
+%             \vertex[above left=of a]  (f1);
+%             \vertex[right = of a] (a1);
+%             \vertex[right = of a1] (a2);
+%             \diagram*{
+%                 (f1) --[scalar] (f2);
+%                 (i1) -- [scalar] (a1) -- [scalar] (i2);
+%                 (a1) --[scalar, half left] (a2) --[scalar, half left] (a1);
+
+%             };
+%             \draw[fill=black] (a1) circle(0.7mm);
+%             \draw[fill=black] (i1) circle(0.7mm);
+%             \draw[fill=black] (i2) circle(0.7mm);
+%             \draw[fill=black] (f1) circle(0.7mm);
+%             \draw[fill=black] (f2) circle(0.7mm);
+%         \end{feynman}
+%     \end{tikzpicture}
+% \end{figure}
+
+% which arose from contractions of the form \(\wick{\c\phi(x_1)\c\phi(x_2)\c\phi(x_3)\c\phi(x)\c\phi(x_4)\c\phi(x)\c\phi(x)\c\phi(x)}\) . We are conveniently ignoring these diagrams right now, since the final result we are trying to demonstrate holds even with these diagrams.)\\
+
+If we call 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.5, transform shape]
+        \begin{feynman}
+            \vertex (a);
+            \vertex[right = of a] (b);
+            \vertex[right = of b] (c);
+            \vertex[above left = of a] (f1);
+            \vertex[below left = of a] (f2);
+            \vertex[above right = of c] (i1);
+            \vertex[below right = of c] (i2);
+            \diagram*{
+                (i1) --[scalar] (c);
+                (a) --[scalar] (f1);
+                (i2) --[scalar] (c);
+                (a) --[scalar] (f2);
+                (a) --[scalar, half left] (b);
+                (b) --[scalar, half left] (c);
+                (a) --[scalar, half right] (b);
+                (b) --[scalar, half right] (c);
+            };
+            \draw[fill=black] (a) circle(0.7mm);
+            \draw[fill=black] (b) circle(0.7mm);
+            \draw[fill=black] (c) circle(0.7mm);
+            \draw[fill=black] (i1) circle(0.7mm);
+            \draw[fill=black] (i2) circle(0.7mm);
+            \draw[fill=black] (f1) circle(0.7mm);
+            \draw[fill=black] (f2) circle(0.7mm);
+        \end{feynman}
+            \node at (-3,0) {\Huge $+$};
+        \begin{scope}[xshift=-7cm]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[right = of a] (b);
+                \vertex[above left = of a] (f1);
+                \vertex[below left = of a] (f2);
+                \vertex[above right = of b] (i1);
+                \vertex[below right = of b] (i2);
+                \vertex[right = of b] (b1);
+                \vertex[right = of b1] (c);
+                \vertex[above = of c] (d);
+                \vertex[below = of c] (e);
+                \diagram*{
+                    (i1) --[scalar] (b);
+                    (a) --[scalar] (f1);
+                    (i2) --[scalar] (b);
+                    (a) --[scalar] (f2);
+                    (a) --[scalar, half left] (b);
+                    (a) --[scalar, half right] (b);
+
+                };
+                \draw[fill=black] (a) circle(0.7mm);
+                \draw[fill=black] (b) circle(0.7mm);
+                \draw[fill=black] (i1) circle(0.7mm);
+                \draw[fill=black] (i2) circle(0.7mm);
+                \draw[fill=black] (f1) circle(0.7mm);
+                \draw[fill=black] (f2) circle(0.7mm);
+            \end{feynman}
+        \end{scope}
+            \node at (-9.5,0) {\Huge $+$};
+        \begin{scope}[xshift=-12cm]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[left = of a] (plus);
+                \vertex[above left = of a] (f1);
+                \vertex[below left = of a] (f2);
+                \vertex[above right = of a] (i1);
+                \vertex[below right = of a] (i2);
+                \vertex[right = of a] (a1);
+                \vertex[right = of a1] (b);
+                \vertex[above = of b] (c);
+                \vertex[below = of b] (d);
+                \vertex[right = of b] (b1);
+                \vertex[right = of b1] (e);
+                \vertex[above = of e] (f);
+                \vertex[below = of e] (g);
+                \diagram*{
+                    (i1) --[scalar] (a);
+                    (a) --[scalar] (f1);
+                    (i2) --[scalar] (a);
+                    (a) --[scalar] (f2);
+                };
+                \draw[fill=black] (a) circle(0.7mm);
+                \draw[fill=black] (i1) circle(0.7mm);
+                \draw[fill=black] (i2) circle(0.7mm);
+                \draw[fill=black] (f1) circle(0.7mm);
+                \draw[fill=black] (f2) circle(0.7mm);
+            \end{feynman}
+        \end{scope}
+        \node at (10.7,0) {\Huge $ + ~\cdots = \sum \text{connected pieces}$};
+    \end{tikzpicture}
+\end{figure}
+and 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.5, transform shape]
+        \begin{scope}[xshift=0cm]
+            \begin{feynman}
+                \vertex (c);
+                \vertex[above = of c] (d);
+                \vertex[below = of c] (e);
+                \diagram*{
+                    (c) --[scalar, half left] (d) --[scalar, half left] (c) --[scalar, half left] (e) --[scalar, half left] (c);
+
+                };
+                \draw[fill=black] (c) circle(0.7mm);
+            \end{feynman}
+        \end{scope}
+            \node at (2.4,0) {\Huge $+$};
+            \node at (-3,0) {\Huge $1~~~+$};
+
+        \begin{scope}[xshift=5cm]
+            \begin{feynman}
+                \vertex (b);
+                \vertex[above = of b] (c);
+                \vertex[below = of b] (d);
+                \vertex[right = of b] (b1);
+                \vertex[right = of b1] (e);
+                \vertex[above = of e] (f);
+                \vertex[below = of e] (g);
+                \diagram*{
+                    (b) --[scalar, half left] (c) --[scalar, half left] (b) --[scalar, half left] (d) --[scalar, half left] (b);
+                    (e) --[scalar, half left] (f) --[scalar, half left] (e) --[scalar, half left] (g) --[scalar, half left] (e);
+                };
+                \draw[fill=black] (b) circle(0.7mm);
+                \draw[fill=black] (e) circle(0.7mm);
+            \end{feynman}
+        \end{scope}
+            \node at (10.5,0) {\Huge $+$};
+        \begin{scope}[xshift=13cm]
+            \begin{feynman}
+                \vertex (b);
+                \vertex[above = of b] (c);
+                \vertex[below = of b] (d);
+                \vertex[right = of b] (b1);
+                \vertex[right = of b1] (e);
+                \vertex[above = of e] (f);
+                \vertex[below = of e] (g);
+                \vertex[right = of e] (e1);
+                \vertex[right = of e1] (h);
+                \vertex[above = of h] (i);
+                \vertex[below = of h] (j);
+                \diagram*{
+                    (b) --[scalar, half left] (c) --[scalar, half left] (b) --[scalar, half left] (d) --[scalar, half left] (b);
+                    (e) --[scalar, half left] (f) --[scalar, half left] (e) --[scalar, half left] (g) --[scalar, half left] (e);
+                    (h) --[scalar, half left] (i) --[scalar, half left] (h) --[scalar, half left] (j) --[scalar, half left] (h);
+                };
+                \draw[fill=black] (b) circle(0.7mm);
+                \draw[fill=black] (e) circle(0.7mm);
+                \draw[fill=black] (h) circle(0.7mm);
+            \end{feynman}
+        \end{scope}
+        \node at (27,0) {\Huge $ + ~\cdots = \sum \text{disconnected pieces}$};
+    \end{tikzpicture}
+\end{figure}
+
+then we see that we can factor out the disconnected diagrams from the sum over all the diagrams to give 
+\begin{equation*}
+    \bra{0}T\left( \phi_I(x_1)\ldots\phi_I(x_n) \left(\e^{-i\int_{-\infty}^{\infty}H_I(t) dt }\right) \right) \ket{0} = \left( \sum \text{connected pieces}  \right) \times \left( \sum \text{disconnected pieces}  \right)
+\end{equation*}
+The denominator 
+\begin{equation*}
+    \bra{0}T\left( \e^{-i\int_{-\infty}^{\infty}H_I(t) dt }\right) \ket{0}
+\end{equation*}
+is nothing but exactly the sum over all disconnected pieces, and therefore we get 
+\begin{equation*}
+    \bra{\Omega} T\left( \phi_H(x_1),\ldots,\phi_H(x_n)  \right) \ket{\Omega} = \sum \text{connected Feynman diagrams} 
+\end{equation*}
+
+The numerator and denominator in the RHS are not something intrinsically meaningful for the theory. It depended on how we chose our vacuum. The fact that this vacuum was not the actual vacuum of the theory is the reason why the disconnected pieces arose. In the Green's function, which is physically meaningful object, all these disconnected diagrams vanish, and only the connected diagrams remain.
+
+\subsection{Another way to calculate the Green's functions}
+Consider deforming the Hamiltonian by adding a source to the Hamiltonian 
+\begin{equation*}
+    H \to H + \int \rho(x) \phi_H(x) d^3\textbf{x}
+\end{equation*}
+which is equivalent to modifying the Hamiltonian density as 
+\begin{equation*}
+    \hd \to \hd + \rho(x) \phi_H(x)
+\end{equation*}
+What this source does is to add some energy proportional to the field, with the proportionality constant depending on spacetime. We can ask now, in the presence of this source, what is the amplitude for the vacuum \(\ket{\Omega}\) back to the original vacuum. To calculate this, we can treat the \(\int \rho(x)\phi_H(x)d^3\textbf{x}\) as the perturbation term, and obtain 
+\begin{equation*}
+    \bra{\Omega}S_\rho \ket{\Omega} = \bra{\Omega} T\left(\e^{i\int \rho(x)\phi_H(x)d^4x} \right) \ket{\Omega}  = Z[\rho]
+\end{equation*}
+This is called the vacuum persistance amplitude in the presence of the source \(\rho(x)\), and is sometimes also called the generating function for correlation functions.\\
+We can expand the above as 
+\begin{equation*}
+    Z[\rho] = \sum_n \int d^4x_1 d^4x_2 \ldots d^4x_n \frac{i^n}{n!} \rho(x_1)\rho(x_2)\ldots\rho(x_n)\bra{\Omega} T\left(  \phi_H(x_1)\phi_H(x_2)\cdots \phi_H(x_n) \right) \ket{\Omega}
+\end{equation*}
+(the time ordering doesn't care about the \(\rho\)s since they are simply functions and not operators.)\\
+
+Now if we take the functional derivative of this generating functional w.r.to the \(\rho(x_i)\)s, 
+\begin{equation*}
+    (-i)^n\frac{\delta^n Z[\rho]}{\delta \rho(x_1)\delta \rho(x_2) \ldots {\delta \rho(x_n)}} \bigg|_{\rho(x) = 0}= \bra{\Omega} T\left(  \phi_H(x_1)\phi_H(x_2)\cdots \phi_H(x_n) \right) \ket{\Omega}
+\end{equation*}
+(where the \(n!\) cancelled out since there are \(n!\) ways to act the functional derivatives on the \(n\) terms, and \(\rho(x)=0\) is important to kill off all the terms with power higher than \(n\), which are not killed by the derivative)\\
+
+Therefore, another interpretation of the Green's function is that it tells us how the theory responds to the insertion of a source. The \(Z[\rho]\) is called the ``Generating Function for Correlation Functions'', since it generates the correlation functions for us.
+
+
+
+
+
 
 \end{document}
