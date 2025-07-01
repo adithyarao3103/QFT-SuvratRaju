@@ -1170,7 +1170,7 @@
             \begin{equation*}
                 \braket{\psi | \phi(x_1) \cdots \phi(x_n)| \psi}
             \end{equation*}
-            this is very ambigous. This is because in interacting theory, there is no unambigous \textit{definition} of field. One can always redefine the fields at the cost of adding interaction terms, without altering the physical content of the theory. When the fields are free and don't interact, there is 'a' free field, and field redefinitions do not obey the equations of motions whereas the original field obeys. But in case of interacting theories, no fields obey the equation of motion, and therefore there is no more unique field.\\
+            this is very ambigous. This is because in interacting theory, there is no unambigous \textit{definition} of field. One can always redefine the fields at the cost of adding interaction terms, without altering the physical content of the theory. When the fields are free and don't interact, there is `a' free field, and field redefinitions do not obey the equations of motions whereas the original field obeys. But in case of interacting theories, no fields obey the equation of motion, and therefore it is not clear how to choose what is the \textit{unique} field that we want to talk about.\\
             There is a class of field theories called conformal field theories, where there are other principles that allows one to uniquely identify field variables even in the case of interactions, and there we can talk about the first type of questions. But in general \(S\) matrix is unambigously defined since all we talk about is free theories in far past and future.
             \item In Quantum Gravity, maybe only the \(S\) matrix makes sense. The reason for that is that the first type of questions involve some local questions about what happens in some local regions of spacetime, and when the metric itself is fluctuating and spacetime itself is fluctuating, such questions are not well defined. But when we ask the second type of questions, in far past and future, where such fluctuations are not present, it is perfectly well defined. 
         \end{itemize}
@@ -1209,7 +1209,7 @@
     \end{equation*}
     where the number of momenta in the in states need not be equal to the number of momenta in the out space. That is, we can have a one particle state going to a two particle state and so on too. \\
 
-    These two \(\mathbb{H}\) spaces should be related by unitary transformation, since we have one description that describes all degrees of freedom in far past and another description for the far future, it is necessary, for the probabilities to be conserved, that they both are related by a unitary transformation. If we tell all the matrix elements we discussed above, we know what the unitary transformation is. And it is this matrix that is called the \(S-\)matrix. The \(S-\)matrix is a particular limit of the correlation functions \(\braket{0|\phi(x_1) \cdots \phi(x_n)|0}\), with some \(t\) taken to \(-\infty\) and some to \(+\infty\), and this limit is given by the LSZ formula. \\
+    These two \(\mathbb{H}\) spaces should be related by unitary transformation, since we have one description that describes all degrees of freedom in far past and another description for the far future, it is necessary, for the probabilities to be conserved, that they both are related by a unitary transformation. If we tell all the matrix elements we discussed above, we know what the unitary transformation is. And it is this matrix that is called the \(S-\)matrix. That is, the \(S-\)matrix is the overlaps between the states in far past with the states in far future. The \(S-\)matrix is a particular limit of the correlation functions \(\braket{0|\phi(x_1) \cdots \phi(x_n)|0}\), with some \(t\) taken to \(-\infty\) and some to \(+\infty\), and this limit is given by the LSZ formula. \\
 
     To compute the \(S-\)matrix, we need the time evolution operator, \(U(-\infty, \infty)\). Obtaining this operator exactly is not possible in most interacting field theories, and therefore we need to resort to a perturbation theory. One tool we use to calculate this is called the interaction picture. 
 
@@ -2063,7 +2063,7 @@
     \begin{equation*}
         T\left(\e^{-i\int_{-\infty}^{\infty}H_I(t) dt }\right) = S
     \end{equation*}
-    since this is the matrix that relates the in-states to the out-states as required by the \(S-\)matrix. The leading order term in this is the identity. This term simply says that the initial two particles go straight through each other without nothing happening. Therefore, the convention is to calculate \(S-1\). (In some cases, in some condensed matter systems etc, it turns out that the \(1\) also gets corrected when we compute the exact \(S-\)matrices and we obtain some interesting phases.)\\
+    since this is the matrix that relates the in-states to the out-states as required by the \(S-\)matrix. (Note that this is not the \textit{actual} \(S-\)matrix, and in the naive perturbation theory, this can be called \(S\) since our in and out states we start with are from the same Hilbert space, and it is this matrix we use to evolve the in-states in time to obtain the overlap with out states. The actual \(S-\)matrix would be simply the overlap between the in-Hilbert space states and the out-Hilbert space states.) The leading order term in this is the identity. This term simply says that the initial two particles go straight through each other without nothing happening. Therefore, the convention is to calculate \(S-1\). (In some cases, in some condensed matter systems etc, it turns out that the \(1\) also gets corrected when we compute the exact \(S-\)matrices and we obtain some interesting phases.)\\
 
     Let us compute the first term. The first term is 
     \begin{equation*}
@@ -3212,7 +3212,7 @@ But there can be other disconnected diagrams of the form
 
 which are not forbidden by Wick's theorem, and therefore MUST be included in our calculations.\\
 
-This diagram is troublesome since in the loop, the momenta is not constrained at all unlike the first diagram, and we get an infinity that we cannot regulate. That is, the loop in this diagram contributes a diverging value 
+This diagram is troublesome since in the loop, the momenta is not constrained at all unlike the first diagram, and we get an infinity that we cannot regulate. That is, the loop in this diagram contributes a diverging value (which cannot be regulated)
 \begin{equation*}
     \left[ \int \frac{d^4 p}{(2\pi)^4} \frac{1}{p^2 - m^2 + i\epsilon}    \right]^2 = \infty^2
 \end{equation*}
@@ -3312,7 +3312,12 @@ and if we look at \(\lim_{T\to -\infty} \bra{\psi}  \e^{iH(T-t_0)} \ket{0}\), th
 \begin{equation*}
     \lim_{T\to -\infty} \bra{\psi}  \e^{iH(T-t_0)} \ket{0} = ck + \lim_{T\to -\infty} \sum_{n,m}c_n k_m \e^{-iE_n(T+t_0)}
 \end{equation*}
-Now in QFT, the spectrum of energy eigenstates is always continuous, and if we start with some smooth distribution of \(k_n\), what we end up with is the same distrubution \(k_n\) but weighted with wildly oscillating phases, and when that happens, the sum (integral) is always zero. Therefore, we can ignore these rapidly oscillating phases since they do not contribute to the matrix elements (we are making a slight assumption here that we will take inner products with states which are slightly smeared in energy, i.e.\ having smooth distributions of \(k_n\). If we take \textit{a particular state}, then the inner product may or may not be zero). \\
+Now in QFT, the spectrum of energy eigenstates is always continuous, and if we start with some smooth distribution of \(k_n\), what we end up with is the same distrubution \(k_n\) but weighted with wildly oscillating phases, and when that happens, the sum (integral) is always zero. This follows from the Riemann-Lebesgue lemma which says that for any well-behaved function \(f(x)\) 
+\begin{equation*}
+    \lim_{\mu\to \infty} \int_a^b dx~f(x)\e^{i\mu x} = 0
+\end{equation*}
+(Notice that in the above sum over \(n\), we are actualy integrating over \(dn\) since the spectrum is continous).\\
+Therefore, we can ignore these rapidly oscillating phases since they do not contribute to the matrix elements (we are making a slight assumption here that we will take inner products with states which are slightly smeared in energy, i.e.\ having smooth distributions of \(k_n\). If we take \textit{a particular state}, then the inner product may or may not be zero). \\
 
 Therefore, for all effects and purposes 
 \begin{equation*}
@@ -3345,7 +3350,7 @@ when Wick contracting, the only term that is non-zero is
 \begin{equation*}
     -i\lambda\int d^4x~ G(x_1, x)G(x_2, x)G(x_3, x)G(x_4, x)
 \end{equation*}
-where \(G\) is the propagator. (We do not pick up the disconnected pieces where two \(x_i\)s contract with each other leaving a disconnected leg). This is calculated using a feynman diagram where now we also add a propagator to the external legs.
+where \(G\) is the propagator. (We do not pick up the disconnected pieces where two \(x_i\)s contract with each other leaving a disconnected leg). This is calculated using a feynman diagram where now we also add a propagator to the external legs (legs which connect a 4-valent vertex (black filled dots in following diagrams) to an external field insertion (white filled dots)).
 
 \begin{figure}[h]
     \centering 
@@ -3361,10 +3366,10 @@ where \(G\) is the propagator. (We do not pick up the disconnected pieces where 
                 (i2) -- [scalar] (a) -- [scalar] (f1);
             };
             \draw[fill=black] (a) circle(0.7mm);
-            \draw[fill=black] (i1) circle(0.7mm);
-            \draw[fill=black] (i2) circle(0.7mm);
-            \draw[fill=black] (f1) circle(0.7mm);
-            \draw[fill=black] (f2) circle(0.7mm);
+            \draw[fill=white] (i1) circle(0.7mm);
+            \draw[fill=white] (i2) circle(0.7mm);
+            \draw[fill=white] (f1) circle(0.7mm);
+            \draw[fill=white] (f2) circle(0.7mm);
         \end{feynman}
     \end{tikzpicture}
 \end{figure}
@@ -3392,10 +3397,10 @@ Let us see how this ``corrects'' the issue we had with the disconnected diagrams
                 (i2) -- [scalar] (a) -- [scalar] (f1);
             };
             \draw[fill=black] (a) circle(0.7mm);
-            \draw[fill=black] (i1) circle(0.7mm);
-            \draw[fill=black] (i2) circle(0.7mm);
-            \draw[fill=black] (f1) circle(0.7mm);
-            \draw[fill=black] (f2) circle(0.7mm);
+            \draw[fill=white] (i1) circle(1mm);
+            \draw[fill=white] (i2) circle(1mm);
+            \draw[fill=white] (f1) circle(1mm);
+            \draw[fill=white] (f2) circle(1mm);
         \end{feynman}
     \end{tikzpicture}
 \end{figure}
@@ -3421,10 +3426,10 @@ Let us see how this ``corrects'' the issue we had with the disconnected diagrams
             };
             \draw[fill=black] (a) circle(0.7mm);
             \draw[fill=black] (b) circle(0.7mm);
-            \draw[fill=black] (i1) circle(0.7mm);
-            \draw[fill=black] (i2) circle(0.7mm);
-            \draw[fill=black] (f1) circle(0.7mm);
-            \draw[fill=black] (f2) circle(0.7mm);
+            \draw[fill=white] (i1) circle(0.7mm);
+            \draw[fill=white] (i2) circle(0.7mm);
+            \draw[fill=white] (f1) circle(0.7mm);
+            \draw[fill=white] (f2) circle(0.7mm);
         \end{feynman}
             \node at (4.7,0) {\Huge $+$};
         \begin{scope}[xshift=8cm]
@@ -3448,10 +3453,10 @@ Let us see how this ``corrects'' the issue we had with the disconnected diagrams
                 };
                 \draw[fill=black] (a) circle(0.7mm);
                 \draw[fill=black] (b) circle(0.7mm);
-                \draw[fill=black] (i1) circle(0.7mm);
-                \draw[fill=black] (i2) circle(0.7mm);
-                \draw[fill=black] (f1) circle(0.7mm);
-                \draw[fill=black] (f2) circle(0.7mm);
+                \draw[fill=white] (i1) circle(1mm);
+                \draw[fill=white] (i2) circle(1mm);
+                \draw[fill=white] (f1) circle(1mm);
+                \draw[fill=white] (f2) circle(1mm);
             \end{feynman}
         \end{scope}
     \end{tikzpicture}
@@ -3482,13 +3487,13 @@ Let us see how this ``corrects'' the issue we had with the disconnected diagrams
             \draw[fill=black] (a) circle(0.7mm);
             \draw[fill=black] (b) circle(0.7mm);
             \draw[fill=black] (c) circle(0.7mm);
-            \draw[fill=black] (i1) circle(0.7mm);
-            \draw[fill=black] (i2) circle(0.7mm);
-            \draw[fill=black] (f1) circle(0.7mm);
-            \draw[fill=black] (f2) circle(0.7mm);
+            \draw[fill=white] (i1) circle(1mm);
+            \draw[fill=white] (i2) circle(1mm);
+            \draw[fill=white] (f1) circle(1mm);
+            \draw[fill=white] (f2) circle(1mm);
         \end{feynman}
-            \node at (6,0) {\Huge $+$};
-        \begin{scope}[xshift=10cm]
+            \node at (5.4,0) {\Huge $+$};
+        \begin{scope}[xshift=8cm]
             \begin{feynman}
                 \vertex (a);
                 \vertex[right = of a] (b);
@@ -3513,15 +3518,15 @@ Let us see how this ``corrects'' the issue we had with the disconnected diagrams
                 \draw[fill=black] (a) circle(0.7mm);
                 \draw[fill=black] (b) circle(0.7mm);
                 \draw[fill=black] (c) circle(0.7mm);
-                \draw[fill=black] (i1) circle(0.7mm);
-                \draw[fill=black] (i2) circle(0.7mm);
-                \draw[fill=black] (f1) circle(0.7mm);
-                \draw[fill=black] (f2) circle(0.7mm);
+                \draw[fill=white] (i1) circle(1mm);
+                \draw[fill=white] (i2) circle(1mm);
+                \draw[fill=white] (f1) circle(1mm);
+                \draw[fill=white] (f2) circle(1mm);
             \end{feynman}
         \end{scope}
-            \node at (17,0) {\Huge $+$};
+            \node at (14.5,0) {\Huge $+$};
 
-        \begin{scope}[xshift=20cm]
+        \begin{scope}[xshift=17cm]
             \begin{feynman}
                 \vertex (a);
                 \vertex[left = of a] (plus);
@@ -3548,16 +3553,52 @@ Let us see how this ``corrects'' the issue we had with the disconnected diagrams
                 \draw[fill=black] (a) circle(0.7mm);
                 \draw[fill=black] (b) circle(0.7mm);
                 \draw[fill=black] (e) circle(0.7mm);
-                \draw[fill=black] (i1) circle(0.7mm);
-                \draw[fill=black] (i2) circle(0.7mm);
-                \draw[fill=black] (f1) circle(0.7mm);
-                \draw[fill=black] (f2) circle(0.7mm);
+                \draw[fill=white] (i1) circle(1mm);
+                \draw[fill=white] (i2) circle(1mm);
+                \draw[fill=white] (f1) circle(1mm);
+                \draw[fill=white] (f2) circle(1mm);
+            \end{feynman}
+        \end{scope}
+            
+        \node at (25.2,0) {\Huge $+$};
+
+        \begin{scope}[xshift=28cm]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[above left = of a] (f1);
+                \vertex[below left = of a] (f2);
+                \vertex[above right = of a] (i1);
+                \vertex[below right = of a] (i2);
+                \diagram*{
+                    (i1) --[scalar] (a);
+                    (a) --[scalar] (f1);
+                    (i2) --[scalar] (a);
+                    (a) --[scalar] (f2);
+                };
+                \draw[fill=black] (a) circle(0.7mm);
+                \draw[fill=white] (i1) circle(1mm);
+                \draw[fill=white] (i2) circle(1mm);
+                \draw[fill=white] (f1) circle(1mm);
+                \draw[fill=white] (f2) circle(1mm);
+            \end{feynman}
+        \end{scope}
+        \begin{scope}[xshift=31.5cm, yshift=0.75cm]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[above = of a] (u);
+                \vertex[below = of a] (b);
+                \vertex[below = of b] (d);
+                \diagram*{
+                    (u) --[scalar, half left] (a) --[scalar, half left] (b)--[scalar, half left] (d) --[scalar, half left] (b)--[scalar, half left] (a)--[scalar, half left] (u);
+                };
+                \draw[fill=black] (a) circle(0.7mm);
+                \draw[fill=black] (b) circle(0.7mm);
             \end{feynman}
         \end{scope}
     \end{tikzpicture}
 \end{figure}
 
-and so on (note that there are more disconnected diagrams, but we are not listing all of them. This discussion and the conclusion will still remain valid under the presence of the other disconnected diagrams too).\\
+and so on.\\
 %  (notice that there are still other disconnected diagrams such as the following, at all orders
 % \begin{figure}[H]
 %     \centering
@@ -3587,7 +3628,7 @@ and so on (note that there are more disconnected diagrams, but we are not listin
 
 % which arose from contractions of the form \(\wick{\c\phi(x_1)\c\phi(x_2)\c\phi(x_3)\c\phi(x)\c\phi(x_4)\c\phi(x)\c\phi(x)\c\phi(x)}\) . We are conveniently ignoring these diagrams right now, since the final result we are trying to demonstrate holds even with these diagrams.)\\
 
-If we call 
+If we collect together the subdiagrams which have all the lines connected to external legs and call them connected diagrams,
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}[scale=0.5, transform shape]
@@ -3612,10 +3653,10 @@ If we call
             \draw[fill=black] (a) circle(0.7mm);
             \draw[fill=black] (b) circle(0.7mm);
             \draw[fill=black] (c) circle(0.7mm);
-            \draw[fill=black] (i1) circle(0.7mm);
-            \draw[fill=black] (i2) circle(0.7mm);
-            \draw[fill=black] (f1) circle(0.7mm);
-            \draw[fill=black] (f2) circle(0.7mm);
+            \draw[fill=white] (i1) circle(1mm);
+            \draw[fill=white] (i2) circle(1mm);
+            \draw[fill=white] (f1) circle(1mm);
+            \draw[fill=white] (f2) circle(1mm);
         \end{feynman}
             \node at (-3,0) {\Huge $+$};
         \begin{scope}[xshift=-7cm]
@@ -3641,10 +3682,10 @@ If we call
                 };
                 \draw[fill=black] (a) circle(0.7mm);
                 \draw[fill=black] (b) circle(0.7mm);
-                \draw[fill=black] (i1) circle(0.7mm);
-                \draw[fill=black] (i2) circle(0.7mm);
-                \draw[fill=black] (f1) circle(0.7mm);
-                \draw[fill=black] (f2) circle(0.7mm);
+                \draw[fill=white] (i1) circle(1mm);
+                \draw[fill=white] (i2) circle(1mm);
+                \draw[fill=white] (f1) circle(1mm);
+                \draw[fill=white] (f2) circle(1mm);
             \end{feynman}
         \end{scope}
             \node at (-9.5,0) {\Huge $+$};
@@ -3671,16 +3712,16 @@ If we call
                     (a) --[scalar] (f2);
                 };
                 \draw[fill=black] (a) circle(0.7mm);
-                \draw[fill=black] (i1) circle(0.7mm);
-                \draw[fill=black] (i2) circle(0.7mm);
-                \draw[fill=black] (f1) circle(0.7mm);
-                \draw[fill=black] (f2) circle(0.7mm);
+                \draw[fill=white] (i1) circle(1mm);
+                \draw[fill=white] (i2) circle(1mm);
+                \draw[fill=white] (f1) circle(1mm);
+                \draw[fill=white] (f2) circle(1mm);
             \end{feynman}
         \end{scope}
-        \node at (10.7,0) {\Huge $ + ~\cdots = \sum \text{connected pieces}$};
+        \node at (10.7,0) {\Huge $ + ~\cdots = \sum \text{connected diagrams}$};
     \end{tikzpicture}
 \end{figure}
-and 
+and the subdiagrams where there are no external legs at all the disconnected diagrams
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}[scale=0.5, transform shape]
@@ -3717,30 +3758,36 @@ and
             \end{feynman}
         \end{scope}
             \node at (10.5,0) {\Huge $+$};
-        \begin{scope}[xshift=13cm]
+        \begin{scope}[xshift=13cm, yshift=0.75cm]
             \begin{feynman}
-                \vertex (b);
-                \vertex[above = of b] (c);
+                \vertex (a);
+                \vertex[above = of a] (u);
+                \vertex[below = of a] (b);
                 \vertex[below = of b] (d);
-                \vertex[right = of b] (b1);
-                \vertex[right = of b1] (e);
-                \vertex[above = of e] (f);
-                \vertex[below = of e] (g);
-                \vertex[right = of e] (e1);
-                \vertex[right = of e1] (h);
-                \vertex[above = of h] (i);
-                \vertex[below = of h] (j);
                 \diagram*{
-                    (b) --[scalar, half left] (c) --[scalar, half left] (b) --[scalar, half left] (d) --[scalar, half left] (b);
-                    (e) --[scalar, half left] (f) --[scalar, half left] (e) --[scalar, half left] (g) --[scalar, half left] (e);
-                    (h) --[scalar, half left] (i) --[scalar, half left] (h) --[scalar, half left] (j) --[scalar, half left] (h);
+                    (u) --[scalar, half left] (a) --[scalar, half left] (b)--[scalar, half left] (d) --[scalar, half left] (b)--[scalar, half left] (a)--[scalar, half left] (u);
                 };
+                \draw[fill=black] (a) circle(0.7mm);
                 \draw[fill=black] (b) circle(0.7mm);
-                \draw[fill=black] (e) circle(0.7mm);
-                \draw[fill=black] (h) circle(0.7mm);
             \end{feynman}
         \end{scope}
-        \node at (27,0) {\Huge $ + ~\cdots = \sum \text{disconnected pieces}$};
+        \node at (15.4,0) {\Huge $+$};
+        \begin{scope}[xshift=18.5cm, yshift=1.4cm]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[below= of a] (a1);
+                \vertex[below= of a1] (b);
+                \diagram* {
+                    (a) -- [scalar, bend left=45] (b),
+                    (a) -- [scalar, bend left=90, looseness=1.5] (b),
+                    (a) -- [scalar, bend right=45] (b),
+                    (a) -- [scalar, bend right=90, looseness=1.5] (b),
+                };
+                \draw[fill=black] (a) circle(0.7mm);
+                \draw[fill=black] (b) circle(0.7mm);
+            \end{feynman}
+        \end{scope}
+        \node at (27,0) {\Huge $ + ~\cdots = \sum \text{disconnected diagrams}$};
     \end{tikzpicture}
 \end{figure}
 
@@ -3757,9 +3804,77 @@ is nothing but exactly the sum over all disconnected pieces, and therefore we ge
     \bra{\Omega} T\left( \phi_H(x_1),\ldots,\phi_H(x_n)  \right) \ket{\Omega} = \sum \text{connected Feynman diagrams} 
 \end{equation*}
 
+(Notice that there are also diagrams of the form 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.5, transform shape]
+        \begin{feynman}
+            \vertex (a);
+            \vertex[below right=of a]  (i2);
+            \vertex[below left=of a]  (f2);
+            \vertex[above right=of a]  (i1);
+            \vertex[above left=of a]  (f1);
+            \vertex[right = of a] (a1);
+            \vertex[right = of a1] (a2);
+            \diagram*{
+                (f1) --[scalar] (f2);
+                (i1) -- [scalar] (a1) -- [scalar] (i2);
+                (a1) --[scalar, half left] (a2) --[scalar, half left] (a1);
+
+            };
+            \draw[fill=black] (a1) circle(0.7mm);
+            \draw[fill=white] (i1) circle(1mm);
+            \draw[fill=white] (i2) circle(1mm);
+            \draw[fill=white] (f1) circle(1mm);
+            \draw[fill=white] (f2) circle(1mm);
+        \end{feynman}
+        \node at (-2.5, 0) {\Huge $,$};
+        \begin{scope}[xshift=-5cm]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[below right=of a]  (i2);
+                \vertex[below left=of a]  (f2);
+                \vertex[above right=of a]  (i1);
+                \vertex[above left=of a]  (f1);
+                \diagram*{
+                    (f1) --[scalar] (f2);
+                    (i1) -- [scalar] (i2);
+                };
+                % \draw[fill=black] (a1) circle(0.7mm);
+                \draw[fill=white] (i1) circle(1mm);
+                \draw[fill=white] (i2) circle(1mm);
+                \draw[fill=white] (f1) circle(1mm);
+                \draw[fill=white] (f2) circle(1mm);
+            \end{feynman}
+        \end{scope}
+        \node at (-7.5, 0) {\Huge $,$};
+        \begin{scope}[xshift=-10cm]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[below right=of a]  (i2);
+                \vertex[below left=of a]  (f2);
+                \vertex[above right=of a]  (i1);
+                \vertex[above left=of a]  (f1);
+                \diagram*{
+                    (f1) --[scalar] (i1);
+                    (f2) -- [scalar] (i2);
+                };
+                % \draw[fill=black] (a1) circle(0.7mm);
+                \draw[fill=white] (i1) circle(1mm);
+                \draw[fill=white] (i2) circle(1mm);
+                \draw[fill=white] (f1) circle(1mm);
+                \draw[fill=white] (f2) circle(1mm);
+            \end{feynman}
+        \end{scope}
+        \node at (5, 0) {\Huge \(,\)~~ etc.};
+    \end{tikzpicture}
+\end{figure}
+
+at all orders, which might on the surface seem like disconnected diagram, but in-fact are also connected diagrams, since every line is connected to some external line. These diagrams should also be included in the calculation of Green's functions.)\\
+
 The numerator and denominator in the RHS are not something intrinsically meaningful for the theory. It depended on how we chose our vacuum. The fact that this vacuum was not the actual vacuum of the theory is the reason why the disconnected pieces arose. In the Green's function, which is physically meaningful object, all these disconnected diagrams vanish, and only the connected diagrams remain.
 
-\subsection{Another way to calculate the Green's functions}
+\subsection{Another way to interpret the Green's functions}
 Consider deforming the Hamiltonian by adding a source to the Hamiltonian 
 \begin{equation*}
     H \to H + \int \rho(x) \phi_H(x) d^3\textbf{x}
@@ -3786,6 +3901,209 @@ Now if we take the functional derivative of this generating functional w.r.to th
 (where the \(n!\) cancelled out since there are \(n!\) ways to act the functional derivatives on the \(n\) terms, and \(\rho(x)=0\) is important to kill off all the terms with power higher than \(n\), which are not killed by the derivative)\\
 
 Therefore, another interpretation of the Green's function is that it tells us how the theory responds to the insertion of a source. The \(Z[\rho]\) is called the ``Generating Function for Correlation Functions'', since it generates the correlation functions for us.
+
+\subsection{LSZ Formula}  
+Remember that in the full interacting theory, there is no notion of \textit{one field}, but one is free to redefine the field operators while introducing interaction vertices, which keeps the theory unchanged. This is why we said that the above discussed Green's function was not a good physical question to ask, but rather we should discuss the \(S-\)matrix.
+The LSZ formula relates the Greens functions which we have been discussing so far to \(S-\)matrix elements. In Layman language, this formula simply tells to normalise the \(\phi(x)\) correctly, strip off the external propagators, and then put the external momenta on-shell. In the following, we will discuss the same in precise language.\\
+
+First we will have to \textit{define carefully} what an \(S-\)matrix is. So far what we had was some matrix connecting some in-states to some out-states, but we want to make that notion more precise. First of all, let us impose that the fields we want to discuss about must satisfy  
+\begin{equation*}
+    \bra{\Omega} \phi_H(x) \ket{\Omega} = 0 ~~~~\leftarrow \text{~ subtracting off the vacuum expectation value}
+\end{equation*}
+and 
+\begin{equation*}
+    \bra{k} \phi_H(x) \ket{\Omega} = \e^{ik\cdot x}~~~~\leftarrow \text{~ normalising the field}
+\end{equation*}
+That is, if our original field operators did not satisfy this, then make a field redefinition such that the new fields \(\phi_H(x)\) satisfy the above. We consider these two conditions since the vacuum and the one particle states are special states. The vacuum is the lowest energy state, and the one particle states are also uniquely specified by the conserved energy-momentum charges, and this is true even in the interacting theory. Notice that we have not yet specified what the states \(\ket{k}\) are. The only requirement is that they satisfy \(k^2= m^2\). \\
+
+To calculate the \(S-\)matrix elements, we need some in and out states, to create which, we want to now \textit{extract} something that acts like a ``creation'' operator from the field \(\phi_H(x)\). (This ``creation'' operator will not satisfy the free field algebra, but it will be some operator that will create one particle states). We can do this by using the so-called Klein-Gordon inner product. To do this, we start with \(f(t, \textbf{x})\) that satisfies the Klein-Gordon equation, i.e. 
+\begin{equation*}
+    \left(-\frac{\del^2}{\del t^2} + \mathbf{\nabla}^2\right)f(t, \textbf{x}) = m^2f(t, \textbf{x})
+\end{equation*}
+We can now specify if this \(f(t, \textbf{x})\) has only positive or only negative frequencies, and we choose for it to have only negative frequencies. That is 
+\begin{equation*}
+    f(t, \textbf{x}) = \int \frac{d^3\textbf{k}'}{(2\w_\textbf{k}')(2\pi)^3} f({k}') \e^{-ik'\cdot x}
+\end{equation*}
+Now consider a smearing of the fields,
+\begin{equation*}
+    \phi_f(t) = i \int\left[ \phi_H(t, \textbf{x}) \del_0 f(t, \textbf{x}) - \left( \del_0 \phi_H(t, \textbf{x}) \right) f(t, \textbf{x})  \right]d^3\textbf{x}
+\end{equation*}
+This is called a Klein-Gordon inner product. \\
+
+Now see that 
+\begin{equation*}
+    \bra{k}\phi_f(t)\ket{\Omega} = i \int \left[  \e^{ik\cdot x} \del_0f(t, \textbf{x}) - i\w_\textbf{k}\e^{ik\cdot x} f(t, \textbf{x})    \right]d^3\textbf{x}
+\end{equation*}
+substituting the expansion of \(f(t, \textbf{x})\), we get 
+\begin{equation*}
+    \bra{k}\phi_f(t)\ket{\Omega} = i\int \left[ \e^{ik\cdot x} (-i\w_{\textbf{k}'}) \e^{-ik'\cdot x} + \e^{ik\cdot x} (-i\w_\textbf{k})   \e^{-ik'\cdot x} \right] f({k}') d^3\textbf{x} \frac{d^3\textbf{k}'}{(2\pi)^3(2\w_\textbf{k}')}
+\end{equation*}
+The integral over \(\textbf{x}\) gives a delta function which sets \(\textbf{k} = \textbf{k}'\). What remains in the exponents is \(\e^{i\w_\textbf{k}t - i\w_\textbf{k}t}\) which again cancel out since both \(\textbf{k}'\) and \(\textbf{k}\) are on-shell, and therefore we are left with 
+\begin{equation*}
+    \bra{k}\phi_f(t)\ket{\Omega} =  f({k}) 
+\end{equation*}
+and this is independent of time.\\
+A similar calcuation for 
+\begin{equation*}
+    \bra{\Omega}\phi_f(t)\ket{k}  = i\int \left[ \e^{-ik\cdot x} (-i\w_{\textbf{k}'}) \e^{-ik'\cdot x} + \e^{-ik\cdot x} (i\w_\textbf{k})   \e^{-ik'\cdot x} \right] f({k}') d^3\textbf{x} \frac{d^3\textbf{k}'}{(2\pi)^3(2\w_\textbf{k}')} = 0
+\end{equation*}
+
+In a sense, the \(\phi_f\) acts like a ``creation'' operator, which creates the wavepacket given by \(f(k)\). However this is not a creation operator in the sense of a free field creation operator. That is, \(\phi_f(t)\) can also create multi-particle states since the theory is an interacting theory. This is because, for an interacting field 
+\begin{equation*}
+    \bra{q} \phi_H(x) \ket{\Omega} \ne 0
+\end{equation*}
+where \(\ket{q}\) is some multiparticle state satisfying \(P_\mu\ket{q} = q_\mu \ket{q}\), since \(\phi_H(x)\) doesn't only contain creation and annihilation operators, but will also have other operators that create multiple particles. Therefore simply smearing this field with some \(f(t, \textbf{x})\) will not end up creating only single particle states, but will also create the multiparticle states.\\
+
+To be precise, let us compute
+% \begin{equation*}
+%     \bra{q} \phi_f(t) \ket{\Omega} = \int \frac{q_k^0 + \w_\textbf{k}}{2\w_\textbf{k}} \e^{i(q_k^0 - \w_\textbf{k})t}f(k) \frac{d^3\textbf{k}}{(2\pi)^3}
+% \end{equation*}
+\begin{equation*}
+    \bra{q} \phi_f(t) \ket{\Omega}
+\end{equation*}
+To calculate this, notice that 
+\begin{equation*}
+    \bra{q} \phi_H(x) \ket{\Omega} = \bra{q}\e^{iP\cdot x} \phi_H(0) \e^{-iP\cdot x}\ket{\Omega}=\e^{iq\cdot x} \bra{q} \phi_H(0) \ket{\Omega}
+\end{equation*}
+which is given from Lorentz invariance. Therefore 
+\begin{equation*}
+    \bra{q}\phi_f(t)\ket{\Omega} = i \int \left[  \e^{iq\cdot x} \del_0f(t, \textbf{x}) - iq^0\e^{ik\cdot x} f(t, \textbf{x})    \right]d^3\textbf{x}~\bra{q} \phi_H(0) \ket{\Omega}
+\end{equation*}
+which gives 
+\begin{equation*}
+    \bra{q}\phi_f(t)\ket{\Omega} = i\int \left[ \e^{iq\cdot x} (-i\w_{\textbf{k}'}) \e^{-ik'\cdot x} + \e^{iq\cdot x} (-iq^0)   \e^{-ik'\cdot x} \right] f({k}') d^3\textbf{x} \frac{d^3\textbf{k}'}{(2\pi)^3(2\w_\textbf{k}')}~\bra{q} \phi_H(0) \ket{\Omega}
+\end{equation*}
+Once again we can do the integral over \(\textbf{x}\) to get a delta function \(\textbf{q} = \textbf{k}\). However, now \(q^0 \ne \w_\textbf{q}\) and therefore we will be left with 
+\begin{equation*}
+    \bra{q}\phi_f(t)\ket{\Omega} = \frac{\w_\textbf{q} + q^0}{2\w_\textbf{q}} \e^{i(q^0 - \w_\textbf{q})t} f(q) \bra{q} \phi_H(0) \ket{\Omega}
+\end{equation*}
+Now see that this is time dependent and not time independent. Notice that \(q^0 > \w_\textbf{q}\), that is, for a given momentum, a multiparticle state has always more energy than a single particle state
+\textcolor{red}{
+    \begin{equation*}
+        q^0 = \sqrt{\textbf{q}^2 + \sum m_i^2},~~\w_\textbf{q} = \sqrt{\textbf{q}^2 + m^2}
+    \end{equation*}
+}
+and therefore, we get an oscillating phase factor which depends on time. \\
+
+Physically speaking, \(\phi_f(t)\) creates a single particle wavepacket specified by \(f(k)\), and along with that it also creates multiparticle garbage. But we can now see what happens in the limit \(t\to \pm \infty\). Suppose we take a smear the momenta states by considering a superposition of multiparticle states with different momenta and energy, 
+\begin{equation*}
+    \ket{\psi} \approx \int d^3\textbf{q} g(q) \ket{q}
+\end{equation*}
+then 
+\begin{equation*}
+    \lim_{t\to \pm\infty} \bra{\psi}\phi_f(t)\ket{\Omega} \propto \int d^3\textbf{q}~ g(q)\e^{i(q - \w_\textbf{q})t} = 0 
+\end{equation*}
+Therefore, in the far past and far future, \(\phi_f(t)\) does not create multiparticle states, and the only remaining state is the single particle wavepacket. Physically speaking, \(\phi_f(t)\) creates a wavepacket of single particle states along with some multiparticle garbage states, but if we look at the state \(\phi_f(t)\ket{\Omega}\) in some definite region in space time (i.e.,take its inner product with some definite state \(\ket\psi\)), and send the time of reaction to \(-\infty\), all the multiparticle states will run away. Of course the one particle state may run away too. We prevent this by modifying the state we create in such a way that the single particle wavepacket always has the same relationship to the observer, and that's done by the funny combination \(\phi_f(t)\). No multiparticle state has the right dispersion relation to keep the same relationship to the observer under this modification. \\
+
+To create multiparticle states, we take two different functions \(f_1\) and \(f_2\), and we define a two particle state to be 
+\begin{equation*}
+    \ket{f_1, f_2}_{\text{in}} = \lim_{t\to -\infty} \phi_{f_1}(t)\phi_{f_2}(t) \ket{\Omega}~~~~{}_{\text{out}}\bra{f_3, f_4} = \lim_{t\to \infty} \bra{\Omega}\phi_{f_3}^\dagger(t)\phi^\dagger_{f_4}(t) 
+\end{equation*}
+For most choices of \(f_1\) and \(f_2\), we find that the two wavepackets separate at far past and far future. This is because since the wavepackets are headed in different directions in space, in the far past and far future, they are separated well enough that acting \(\phi_{f_2}(t)\) on \(\phi_{f_1}(t)\ket{\Omega}\) will be the same as acting \(\phi_{f_2}(t)\) on the vacuum for a local observer. \\
+
+Notice that even if \(f_1 = f_3\) and \(f_2 = f_4\), the in-states are not the same as out states, since the limits \(t\to+\infty\) and \(t\to -\infty\) of the states are not the same. It does indeed create two particle states, but it is a different two particle states in the in-states and the out-states for the same functions are different. These are the precise in and out states in the full quantum field theory, and the \(S-\)matrix will be the overlap between the two. \\
+
+Therefore, the \(S-\)matrix elements are of the form 
+\begin{equation*}
+    {}_{\text{out}}\braket{f_3, f_4|f_1, f_2}_{\text{in}} = \lim_{t_1, t_2 \to -\infty}\lim_{t_3,t_4\to \infty} \bra{\Omega} \phi_{f_3}^\dagger(t_3)\phi_{f_4}^\dagger(t_4)\phi_{f_1}(t_1)\phi_{f_2}(t_2)\ket{\Omega}
+\end{equation*}
+Note that the time ordering is already put in the formula. There is a subtlety regarding the individual time ordering of \(t_1 ~\&~ t_2\), that is, which limit to take first, \(t_1\to -\infty\) or \(t_2\to -\infty\) (and similarly for \(t_3,~t_4\)), but this doesn't matter since the wavepackets are largely separated and therefore they commute. \\
+
+One way to do this would be to explicitly solve for this in \(t\) and take the limit \(t\to \pm \infty\). The LSZ reduction formula gives a convenient way to calculate this without having to go through all that hassle. The formula simply states (for the 4 particle state, this can be generalised to n-particle states too)
+\begin{align*}
+    &{}_{\text{out}}\braket{f_3, f_4|f_1, f_2}{}_{\text{in}} \\
+    &~~~~~~~~~~~~= \int d^4x_1 \ldots d^4x_4 ~f_3^*(x_3)f_4^*(x_4)f_1(x_1)f_2(x_2) \prod_{j=1}^4i\left(\square_j + m^2 \right) \bra{\Omega}T\left\{ \phi_H(x_1)\phi_H(x_2)\phi_H(x_3)\phi_H(x_4) \right\}\ket{\Omega}
+\end{align*}
+In momentum space 
+\begin{equation*}
+    \square_j + m^2 \equiv k_j^2 + m^2
+\end{equation*}
+which would cancel out the external propagators in the Greens function, iff it were a free theory. In the interacting theory it doesn't exactly cancel out the propagator, but the integration over the \(f\)s will put the external momenta on-shell since they are the solutions of the KG equation and they have exactly the momenta that are on-shell. \\
+See that the Greens function has poles at all \(k_i^2 = m^2\) if the \(k_i\) are on-shell, and therefore the above procedure simply tells to pick up the residues at these poles. Therefore, \(S-\)matrix is the residue at the poles of the Greens function when the momenta are put on-shell.\\
+
+\underline{Proof}—\\
+Before proceeding to the proof, we will prove some intermediate results. First, we want to simplify the following
+\begin{align*}
+    i\int f(x) (\square + m^2) \phi_H(x) d^4x &= i\int f(x) \left(\del_0^2 - \mathbf{\nabla}^2 + m^2\right)\phi_H(x) d^4x\\
+    &=i\int f(x) \del_0^2\phi_H(x) - \left(\mathbf{\nabla}^2 f(x)\right) \phi_H(x) + m^2f(x)\phi_H(x)d^4x
+\end{align*}
+We are allowed to do this since we assume that \(f(x)\) is a wavepacket of finite extent, and therefore has no support at infinity, therefore the boundary terms are zero.\\
+But \(f(x)\) satisfies
+\begin{equation*}
+    \left(\del_0^2 - \mathbf{\nabla}^2 +m^2\right)f(x) = 0 \implies \left(\mathbf{\nabla}^2 \right)f(x) = (\del_0^2 + m^2)f(x)
+\end{equation*}
+Therefore, 
+\begin{align*}
+    i\int f(x) (\square + m^2) \phi_H(x) d^4x &= i\int f(x) \del_0^2\phi_H(x) - \left(\del_0^2 f(x)\right) \phi_H(x)d^4x\\
+    &=i\int \del_0\left(f(x) \del_0\phi_H(x)\right) - \del_0\left(\phi_H(x)\del_0 f(x)\right) d^4x\\
+    &=\int_{-\infty}^{\infty}\del_0\left(i\int \left(f(x) \del_0\phi_H(x)- \phi_H(x)\del_0 f(x)\right) d^3\textbf{x}\right)dt\\
+    &= \int_{-\infty}^{\infty} \del_0\left(- \phi_f(t)\right) dt\\
+    &= \phi_f(-\infty) - \phi_f(\infty)
+\end{align*}
+
+We have a similar result for \(f^*(x)\),
+\begin{equation*}
+    i\int f^*(x) (\square + m^2) \phi_H(x) d^4x = \phi_f^\dagger(\infty) - \phi_f^\dagger(-\infty)
+\end{equation*}
+Notice that the different sign is due to the \(i\to -i\) when \(\phi_f\to \phi^\dagger_f\).\\
+
+With these results, we now proceed to prove the LSZ formula. 
+\begin{align*}
+    &{}_{\text{out}}\braket{f_3, f_4|f_1, f_2}{}_{\text{in}} \\
+    &~~~~~~~~~~~~= \int d^4x_1 \ldots d^4x_4 ~f_3^*(x_3)f_4^*(x_4)f_1(x_1)f_2(x_2) \prod_{j=1}^4i\left(\square_j + m^2 \right) \bra{\Omega}T\left\{ \phi_H(x_1)\phi_H(x_2)\phi_H(x_3)\phi_H(x_4) \right\}\ket{\Omega}
+\end{align*}
+First, we want to move the \(\square + m^2\) in the LHS into the time ordering. But this is a subtle step since the time ordering has theta functions in time, and the box operator has derivatives w.r.to time.\\
+
+Remember that the difference between one time ordering and another time ordering (i.e. \(\phi(x)\phi(y)\) and \(\phi(y)\phi(x)\)) is just the commutator, and it vanishes as long as the points are spacelike separated, and therefore approximately gives a delta function in \(x-y\). Therefore, when we take the box operator into the time ordering, we will get some terms where the box operator is acting on the fields, and the other terms will form commutators of the above kind, giving \(\delta^4(x_i - x_j)\). These delta functions will end up contracting the \(f_i\)s and \(f_j\)s, and in the limit where the \(f\)s are orthogonal to each other (i.e. they do not overlap), these terms will give \(0\). And therefore, in this limit, it is fine to move the derivatives into the time ordering. \\
+
+After moving the box operators inside and using the above derived relations, we get the following
+\begin{align*}
+    &{~}_{\text{out}}\braket{f_3, f_4|f_1, f_2}{}_{\text{in}} \\
+    &~~~~~= \bra{\Omega} T\left\{  \left(  \phi_{f_1}(-\infty) - \phi_{f_1}(\infty)  \right) \left(  \phi_{f_2}(-\infty) - \phi_{f_2}(\infty)  \right) \left(  \phi^\dagger_{f_3}(\infty) - \phi^\dagger_{f_3}(-\infty)  \right) \left(  \phi^\dagger_{f_4}(\infty) - \phi^\dagger_{f_4}(-\infty)  \right)   \right\} \ket{\Omega}    
+\end{align*}
+The product will expand to give \(2^4 = 16\) terms, and for each term the time ordering pushes all the \(+\infty\)s to the left and \(-\infty\)s to the right. Let us consider one term of our interest, 
+\begin{equation*}
+    \bra{\Omega} \phi^\dagger_{f_3}(\infty)\phi_{f_4}^\dagger(\infty) \phi_{f_1}(-\infty)\phi_{f_2}(-\infty)\ket{\Omega}
+\end{equation*}
+which is exactly equal to 
+\begin{equation*}
+    {~}_{\text{out}}\braket{f_3, f_4|f_1, f_2}{}_{\text{in}}
+\end{equation*}
+Therefore, it should be true that all other \(15\) terms are zero. To see why, let us look at some other term 
+\begin{equation*}
+    \bra{\Omega} \phi_{f_1}(\infty)\phi_{f_2}(\infty)\phi^\dagger_{f_3}(-\infty)\phi_{f_4}^\dagger(-\infty) \ket{\Omega}
+\end{equation*}
+This term is zero, since \(\phi_f^\dagger\) is an annihilation operator, and therefore gives zero. 
+Another term would be of the form 
+\begin{equation*}
+    \bra{\Omega} \phi^\dagger_{f_3}(\infty)\phi_{f_2}(\infty) \phi_{f_1}(-\infty)\phi_{f_4}^\dagger(-\infty)\phi_{f_2}(-\infty)\ket{\Omega}    
+\end{equation*}
+There is an subtlety in this, a question if one can commute the \(\phi_{f_i}^\dagger\)s with the \(\phi_{f_j}\)s to annihilate the vacuum, and the answer is that we can indeed commute them since at \(\pm\infty\) the wavepackets are well separated, therefore giving the above term also to be 0. Similarly all other 13 terms give 0, and we have proved the LSZ formula.\\
+
+There are other ways to derive this formula, which would roughly be to start with this definition 
+\begin{equation*}
+    {~}_{\text{out}}\braket{f_3, f_4|f_1, f_2}{}_{\text{in}} = \bra{\Omega} \phi^\dagger_{f_3}(\infty)\phi_{f_4}^\dagger(\infty) \phi_{f_1}(-\infty)\phi_{f_2}(-\infty)\ket{\Omega}
+\end{equation*}
+and then argue that by taking the times to infinty, we pick the poles of the Green's function, and when we strip off the poles, we get the \(S-\)matrix. This approach can be found in Peskin and Schroeder, and we do not discuss this here. \\
+
+A very important point — in the LSZ reduction formula, what is the \(\phi_H\) that goes into its definition? There is no consensus on what should be the unique field in an interacting theory, and different field redefinitions give different interactions. In principle any redefinition is also a good definition for the theory, and in deriving the LSZ reduction formula, we never required that the \(\phi_H\) was an elementary field, i.e.\ the field that enters the free Lagrangian. The LSZ formula works with any \underline{operators \(Q(x)\)}, as long as they satisfy the normalisation condition
+\begin{equation*}
+    \bra{k}Q(x)\ket{\Omega} = \e^{ik\cdot x}
+\end{equation*} 
+For instance, lets say we want to compute the \(S-\)matrix for some bound state. We do not have ``fields'' which create these bound states, but we can still compute the \(S-\)matrix for those bound states by the virtue that if the bound state is a stable state, then there should be some operator that has the above discussed overlap with the one-particle bound state, and we can calculate the \(S-\)matrix from that. \\
+
+
+
+
+\newpage
+\section{Loop Amplitudes}
+It is common in field theories that as we go to diagrams with loops, they diverge. The reason is not that we were wrong in our definitions, but the infinities are intrinsic to the theory. Suppose there was an ultimate UV complete field theory that is the actual description at the microscopic scale, then the field theory we are discussing right now is some \textit{effective field theory} of the underlying ultimate field theory. (This statement is true in almost every physical theories, we do not model the flow of a liquid based on the movements of the individual particles in it, and similarly in the case of field theories). At long distances, the microscopic parameters combine to give us some physical observables, and the effective field theory relates one set of physical observables to another set of physical observables. Now if we try to directly relate the physical observables we have to the microscopic parameters, then the relationship will be complicated, giving infinities. Therefore the infinities arise if we not careful about relating physical observables, and if we are asking the wrong physical questions. In our case, we have written down a field theory, and we are not careful with what the limits of the validity of our field theory are. 
+
+
+
+
+
+
 
 
 
