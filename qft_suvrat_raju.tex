@@ -4239,7 +4239,7 @@ The physical requirements area
     \item \(g\) matches the scattering amplitude of some low energy scattering \(\to F\) 
 \end{itemize}
 
-Let us make some of these more formal and precise and then work out what the counter terms are. \\
+Let us make some of these more formal and precise and then work out what the counter terms are. We will oscillate between the two models \(\phi^4\) and \(\phi|\psi|^2\), using whichever is convenient to discuss the technicalities. \\
 
 First let us look at the counterterm \(A\phi\). The vertex for it would be simply a linear vertex (we are using \(\times\) to denote the \(A\) vertex)
 \begin{figure}[h]
@@ -4289,7 +4289,7 @@ The condition that \(\braket{0|\phi(x)|0}\) simply implies that
 What this means is that we never have to calculate what \(A\) actually is, all \(A\) does is sets such graphs to zero. \\ 
 
 A similar argument holds in the scalar Yukawa theory too, and in the Yukawa theory, the term sets the diagrams of the following kind to zero. (we did not give explicit example in \(\phi^4\) theory because there are no simple such diagrams in this theory)
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{feynman}
@@ -4380,10 +4380,8 @@ which contribute to the 3-point function.\\
 Without the term \(A\phi(x)\), the quantity \(\braket{0|\phi(x)|0}\) would be some infinity which is given by the sum of all the tadpole diagrams. But introducing the extra term linear in \(\phi\) allows us to set the value of \(A\) such that the extra vertex that we get from \(A\phi(x)\) exactly cancels out all these infinities, allowing us to set \(\braket{0|\phi(x)|0} = 0\). What this means for the perturbation expansion for the \(S-\)matrix is that one can conveniently ignore all the terms which have the tadpole diagrams knowing that the extra vertex due to \(A\) should also be included, and it will inevitable cancel these infinities.\\
 }
 
-Lets now consider the other two conditions \(\braket{q|\phi(x)|0} = \e^{iq\cdot x}\)
-and that the mass \(m\) should be the physical mass. \\
-
-Before discussing them, we want to reframe these conditions in terms of the propagator 
+Lets now consider the other two conditions \(\braket{q|\phi(x)|0} = \e^{iq\cdot x}\) and that the mass \(m\) should be the physical mass. 
+Before discussing this, we want to reframe these conditions in terms of the propagator 
 \begin{equation*}
     G(x,y) = \bra{0} T\left\{ \phi(x) \phi(y) \right\}\ket{0}
 \end{equation*}
@@ -4409,7 +4407,7 @@ The other terms, which would be the contribution from the multi-particle states,
 \end{equation*}
 In the free field theory such terms never arose since the field \(\phi\) had no overlap between the vacuum and multiparticle states. \(\phi\) always created only single particle states in the free theory. But this is not the case in the interacting theory. We do not know how to write this since we do not know what the measure is, and we also do not know any conditions what the elements \(\braket{0|\phi(0)|n}\) should be.\\
 
-We can put this in some nice form by looking at the Fourier transform (calling \(z=y-x\))
+We can put this in a nicer form by looking at the Fourier transform (calling \(z=y-x\))
 \begin{equation*}
     \sum_{n\notin \text{s.p.\ states}}\int d^4z ~\e^{-ipz}~ \e^{iQ_nz}|\braket{0|\phi(0)|n}|^2 = \sum_{n\notin \text{s.p.\ states}} \delta^4(p-Q_n)~|\braket{0|\phi(0)|n}|^2
 \end{equation*}
@@ -4438,7 +4436,7 @@ Now notice that (eq \ref{eq:lor_inv_meas}) the inner integral is simply an integ
 \begin{equation*}
     \int \sigma(a^2) \left(\int  \e^{ipz} ~\frac{d^3\textbf{p}}{(2\pi)^32\sqrt{\textbf{p}^2 + a^2}}\right)da^2 
 \end{equation*}
-If we now combine this with the term with the other time ordering, we get a propagator but with mass \(a\),
+Therefore, combining this with the term with the other time ordering, we get a propagator but with mass \(a\),
 \begin{equation*}
     \int \sigma(a^2) \left(\int  \e^{ipz}\frac{i}{p^2 - a^2 + i\epsilon} ~\frac{d^4p}{(2\pi)^4}\right)da^2
 \end{equation*}
@@ -4454,9 +4452,10 @@ Sometimes, this is also written in a shorthand
 \end{equation*}
 where \(\tilde \sigma(a^2) = \delta(a^2 - m^) + \sigma(a^2)\). Notice that there is only one delta function in \(\tilde\sigma(a^2)\).\\
 
-This is called the K\"all\'en-Lehmann spectral representation theorem. Our renormalisation condition basically only fixes the coefficient and location of the delta function in \(\tilde \sigma(a^2)\), it fixes that the position of the delta function to be at \(a^2 = m^2\), and the coefficient to be \(1\). Conversely \(G(p^2)\) which is propagator in momentum space has pole at \(p^2 = m^2\) with coefficient \(1\).\\
+This is called the K\"all\'en-Lehmann spectral representation theorem. Our renormalisation condition fixes the coefficient and location of the delta function in \(\tilde \sigma(a^2)\); it fixes that the position of the delta function to be at \(a^2 = m^2\), and the coefficient to be \(1\). \\
 
-Let us compute \(G(p^2) = \mathcal{M}(\braket{0|T(\phi_H(x)\phi_H(y)|0)})\) in perturbation theory. This is equal to 
+Conversely \(G(p^2)\) which is propagator in momentum space has pole at \(p^2 = m^2\) with coefficient \(1\), and we can reformulate our renormalisation conditions in terms of this too.\\
+Let us compute \(G(p^2) = \text{mom. rep. of }\braket{0|T(\phi_H(x)\phi_H(y)|0)}\) in perturbation theory in \(\phi|\psi|^2\) theory. This is equal to 
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[scale=1.25]
@@ -4528,8 +4527,8 @@ which is just as we had shown above, a free propagator plus some other terms. Th
                     (a) -- [scalar] (b) --[fermion, half left] (c) -- [scalar] (d);
                     (b) --[anti fermion, half right] (c);
                 };
-                \draw[fill=white] (a) circle(0.7mm);
-                \draw[fill=white] (d) circle(0.7mm);
+                % \draw[fill=white] (a) circle(0.7mm);
+                % \draw[fill=white] (d) circle(0.7mm);
                 \draw[fill=black] (c) circle(0.7mm);
                 \draw[fill=black] (b) circle(0.7mm);
             \end{feynman}
@@ -4537,7 +4536,7 @@ which is just as we had shown above, a free propagator plus some other terms. Th
     \end{tikzpicture}
 \end{figure}
 
-this is a 1PI diagram, but 
+This is a 1PI diagram, but 
 
 \begin{figure}[h]
     \centering
@@ -4555,8 +4554,8 @@ this is a 1PI diagram, but
                     (b) --[anti fermion, half right] (c);
                     (d) --[anti fermion, half right] (e);
                 };
-                \draw[fill=white] (a) circle(0.7mm);
-                \draw[fill=white] (f) circle(0.7mm);
+                % \draw[fill=white] (a) circle(0.7mm);
+                % \draw[fill=white] (f) circle(0.7mm);
                 \draw[fill=black] (c) circle(0.7mm);
                 \draw[fill=black] (d) circle(0.7mm);
                 \draw[fill=black] (e) circle(0.7mm);
@@ -4566,7 +4565,7 @@ this is a 1PI diagram, but
     \end{tikzpicture}
 \end{figure}
 
-is not a 1PI diagram, since we can break the internal scalar propagator to get two diagrams. We define \(-i\Sigma(p^2)\) to be the sum of all 1PI diagrams 
+is not a 1PI diagram, since we can break the internal scalar propagator to get two diagrams. (Notice that we are not including the external propagators in the 1PI diagrams). We define \(-i\Sigma(p^2)\) to be the sum of all 1PI diagrams 
 
 \begin{figure}[H]
     \centering
@@ -4581,8 +4580,8 @@ is not a 1PI diagram, since we can break the internal scalar propagator to get t
                     (c) --[scalar] (d);
                 };
                 \draw[pattern={Lines[angle=-45,distance=4pt]}, pattern color=black!30] (1.75,0) circle(0.75cm) ;
-                \draw[fill=white] (a) circle(1mm); 
-                \draw[fill=white] (d) circle(1mm); 
+                % \draw[fill=white] (a) circle(1mm); 
+                % \draw[fill=white] (d) circle(1mm); 
             \end{feynman}
             \node at (4.75,0) {\(=-i\Sigma(p^2)\)};
             \node at (1.75,0) {1PI};
@@ -4672,6 +4671,10 @@ The propagator therefore looks like
     \end{tikzpicture}
 \end{figure}
 
+\textcolor{red}{
+    Suppose the 1PI diagrams have values \(a_1, a_2, \cdots\) such that \(\sum_ia_i = S\), and let us call the pfree ropagator \(p\). Then a general diagram in the full propagator would look like \(p\cdot a_k \cdot p \cdot a_l \cdot p \cdot a_m \cdots p \). We can divide these into diagrams with one 1PI, diagrams with two 1PI, etc. The diagrams with one 1PI will all sum to give \(pSp\). The diagrams with two 2PI diagrams will sum to \(p\sum_{ij} a_i p a_j p = p S^2 p^2\), the diagrams with three 2PI diagrams will sum to \(p\sum{ijk} a_i p a_j p a_k p = pS^3p^3\) and so on.\\
+}
+
 and this can be summed to get 
 \begin{equation*}
     \frac{-i}{p^2 - m^2 + i\epsilon} + \left( \frac{-i}{p^2 - m^2 + i\epsilon}(-i\Sigma(p^2))\frac{-i}{p^2 - m^2 + i\epsilon}\right) + \left(\frac{-i}{p^2 - m^2 + i\epsilon}\left((-i\Sigma(p^2))\frac{-i}{p^2 - m^2 + i\epsilon}\right)^2 \right) + \cdots
@@ -4688,15 +4691,285 @@ Substituting this, we get the propagator to be
 \begin{equation*}
     \frac{1}{\displaystyle(p^2 - m^2) - (p^2 - m^2)\frac{d}{dp^2}\Sigma(m^2) + \text{hots} + i\epsilon} = \frac{1}{p^2 - m^2}\frac{1}{\displaystyle 1-\frac{d}{dp^2}\Sigma(m^2) + \text{hots}}
 \end{equation*}
-giving the residue at \(p^2 = m^2\) to be \(\left(\displaystyle 1-\frac{d}{dp^2}\Sigma(m^2)\right)^2\). Therefore, for the residue of the pole to be unchanged, we require 
+giving the residue at \(p^2 = m^2\) to be \((\displaystyle 1-\frac{d}{dp^2}\Sigma(m^2)\). Therefore, for the residue of the pole to be unchanged, we require 
 \begin{equation*}
     \frac{d}{dp^2}\Sigma(p^2)\bigg|_{p^2 = m^2} = 0
 \end{equation*}
+That is, the counter terms should be chosen such that 
+\begin{equation*}
+    \Sigma(m^2) = 0 ~~~\&~~~ \frac{d}{dp^2}\Sigma(p^2)\bigg|_{p^2 = m^2} = 0
+\end{equation*}
+\vspace{10pt}
 
+Now let us consider the counterterm for the interaction \(\displaystyle \frac{D}{4!}\phi^4\). What this requires is that the scattering amplitude for some physical values is equal to \(\lambda\), i.e. 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.25,>=Latex]
+        \begin{feynman}
+            \vertex (a) at (1,1);
+            \vertex (b) at (1,-1);
+            \vertex (c) at (-1,-1);
+            \vertex (d) at (-1,1);
+            \vertex (center) at (0,0);
+            \diagram*{
+                (a) --[scalar] (center) --[scalar] (c);
+                (b) --[scalar] (center) --[scalar] (d);
+            };
+            \draw[fill=white, color=white] (0,0) circle(0.5cm);
+            \draw[pattern={Lines[angle=-45,distance=2pt]}, pattern color=black!50] (0,0) circle(0.5cm) ;
+            \draw[dotted] (0,0) circle(0.8cm);
+        \end{feynman}
+        \draw[fill=white] (a) circle(0.7mm);
+        \draw[fill=white] (b) circle(0.7mm);
+        \draw[fill=white] (c) circle(0.7mm);
+        \draw[fill=white] (d) circle(0.7mm);
+        \draw[->] (1,0) -- (1.8, 0);
+        \begin{scope}[xshift=3cm]
+            \begin{feynman}
+                \vertex (a) at (1,1);
+                \vertex (b) at (1,-1);
+                \vertex (c) at (-1,-1);
+                \vertex (d) at (-1,1);
+                \vertex (center) at (0,0);
+                \diagram*{
+                    (a) --[scalar] (center) --[scalar] (c);
+                    (b) --[scalar] (center) --[scalar] (d);
+                };
+                \draw[fill=white, color=white] (0,0) circle(0.9cm);
+                \draw[pattern={Lines[angle=-45,distance=4pt]}, pattern color=black!50] (0,0) circle(0.9cm) ;
+            \end{feynman}   
+            \node at (4,0) {\(=-i\lambda\) at some \(s=s_0\), \(t=t_0\) and \(u=u_0\)};
+        \end{scope}
+    \end{tikzpicture}
+\end{figure}
 
+(this diagram represents the full \(4-\)point Greens function summed to all orders in the perturbation series.)\\
+where in the above diagram we have considered the amputated Greens function, which is the full four point function with the external propagators stripped off. We could have considered the \(S-\)matrix, but \(S-\)matrix forces the external momenta to be on-shell. But by amputating, we are keeping the external momenta arbitrary and off-shell for our convenience. We will use this requirement to calculate the value of \(D\) in a perturbation theory in \(\lambda\), and show how this will allow us to get finite result for one loop calculations.\\
 
+At tree level, the above requirement is already met, and therefore \(D\) is zero at the leading order in lambda. Let us now consider the one loop diagrams in \(4-\)point functions for the \(\phi^4\) theory. There are three diagrams, which are 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.8]
+        \begin{feynman}
+                \vertex (a);
+                \vertex[right = of a] (b);
+                \vertex[above left = of a] (f1);
+                \vertex[below left = of a] (f2);
+                \vertex[above right = of b] (i1);
+                \vertex[below right = of b] (i2);
+                \diagram*{
+                    (i1) --[scalar, momentum'=\(k_1\)] (b);
+                    (a) --[scalar, rmomentum'=\(k_4\)] (f1);
+                    (i2) --[scalar, momentum'=\(k_2\)] (b);
+                    (a) --[scalar, rmomentum'=\(k_3\)] (f2);
+                    (a) --[scalar, half left, momentum={[arrow shorten=0.35]\(p\)}] (b);
+                    (a) --[scalar, half right, rmomentum'={[arrow shorten=0.35]\(p + k_1 + k_2\)}] (b);
+                };
+                \draw[fill=black] (a) circle(0.7mm);
+                \draw[fill=black] (b) circle(0.7mm);
+                % \draw[fill=white] (i1) circle(1mm);
+                % \draw[fill=white] (i2) circle(1mm);
+                % \draw[fill=white] (f1) circle(1mm);
+                % \draw[fill=white] (f2) circle(1mm);
+            \end{feynman}
+            \node at (4,0) {$+$};
+        \begin{scope}[xshift=8.5cm, yshift = 1cm]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[below = of a] (b);
+                \vertex[above left = of a] (f1);
+                \vertex[below left = of b] (f2);
+                \vertex[above right = of a] (i1);
+                \vertex[below right = of b] (i2);
+                \diagram*{
+                    (i1) --[scalar, momentum=\(k_1\)] (a);
+                    (a) --[scalar, rmomentum=\(k_4\)] (f1);
+                    (i2) --[scalar, momentum'=\(k_2\)] (b);
+                    (b) --[scalar, rmomentum'=\(k_3\)] (f2);
+                    (a) --[scalar, half left, rmomentum={[arrow shorten=0.35]\(p\)}] (b);
+                    (a) --[scalar, half right, momentum'={[arrow shorten=0.35]\(p + k_1 + k_4\)}] (b);
 
+                };
+                \draw[fill=black] (a) circle(0.7mm);
+                \draw[fill=black] (b) circle(0.7mm);
+                % \draw[fill=white] (i1) circle(1mm);
+                % \draw[fill=white] (i2) circle(1mm);
+                % \draw[fill=white] (f1) circle(1mm);
+                % \draw[fill=white] (f2) circle(1mm);
+            \end{feynman}
+        \end{scope}
+            \node at (10.85,0) {\(+\)};
+        \begin{scope}[xshift=15cm, yshift=1cm]
+            \begin{feynman}
+                \vertex (a);
+                \vertex[below = of a] (b);
+                \vertex[above left = of a] (f11);
+                \vertex[left=of f11] (f1);
+                \vertex[below left = of b] (f21);
+                \vertex[left=of f21] (f2);
+                \vertex[above right = of a] (i1);
+                \vertex[below right = of b] (i2);
+                \diagram*{
+                    (i1) --[scalar, momentum=\(k_1\)] (a);
+                    (a) --[scalar, rmomentum'={[xshift=-2mm, yshift=-2mm]\(k_4\)}] (f2);
+                    (i2) --[scalar, momentum'=\(k_2\)] (b);
+                    (b) --[scalar, rmomentum={[xshift=-2mm, yshift=2mm]\(k_3\)}] (f1);
+                    (a) --[scalar, half left, momentum={[arrow shorten=0.35]\(p + k_1 + k_3\)}] (b);
+                    (a) --[scalar, half right, rmomentum={[arrow shorten=0.35]\(p\)}, looseness=0.5] (b);
 
+                };
+                \draw[fill=black] (a) circle(0.7mm);
+                \draw[fill=black] (b) circle(0.7mm);
+                % \draw[fill=white] (i1) circle(1mm);
+                % \draw[fill=white] (i2) circle(1mm);
+                % \draw[fill=white] (f1) circle(1mm);
+                % \draw[fill=white] (f2) circle(1mm);
+            \end{feynman}
+        \end{scope}
+    \end{tikzpicture}
+\end{figure}
+which are the \(s,~t,\text{ and }u\) channel diagrams respectively. Let us first look at the \(s-\)channel diagram. The other two answers will be very similar to this. From the Feynman rules ths \(s-\)channel diagram is equal to 
+\begin{equation*}
+    \frac{1}{2}(-i\lambda)^2 \int \frac{d^4p}{(2\pi)^4} \frac{i}{p^2 - m^2 +i\epsilon}\frac{i}{(p+k_1+k_2)^2 - m^2 +i\epsilon}
+\end{equation*}
+where the \(1/2\) comes due to the symmetry factor in the exchange of \(p\leftrightarrow p+k_1+k_2\).\\
+To evaluate this, we will use a \textit{trick} which is one of the standard ways to evaluate this.\\
+Since the denominators are different we use the \textit{Feynman's parameter trick} which is based on
+\begin{equation*}
+    \frac{1}{ab} = \int_0^1 \frac{dx}{(ax + b(1-x))^2} =  
+\end{equation*}
+we can check that this equation is true by explicitly doing the integral to get 
+\begin{equation*}
+    \int_0^1 \frac{dx}{((a-b)x + b)^2} = \frac{1}{a-b} \left(\frac{-1}{ax + b(1-x)}\bigg|_0^1 \right) = \frac{1}{a-b}\left( \frac{-1}{a} - \frac{-1}{b}  \right) = \frac{1}{ab}
+\end{equation*}
+
+This is useful since we can write the above integral in \(p\) as 
+\begin{equation*}
+    -\frac{1}{2}(-i\lambda)^2 \int dx  \int \frac{d^4p}{(2\pi)^4} \frac{1}{\left((p^2 - m^2 + i\epsilon)x + \left((p+k_1+k_2)^2 - m^2 +i\epsilon \right)(1-x)\right)^2}
+\end{equation*}
+The denominator can be simplified to get 
+\begin{align*}
+    &p^2(x + (1-x)) - m^2(x + (1-x)) + i\epsilon(x + (1-x)) + (k_1 + k_2)^2(1-x) + 2p(k_1+k_2)(1-x)\\
+    =& p^2 - m^2 + i\epsilon +((k_1+k_2)^2 + 2p(k_1+k_2))(1-x)
+\end{align*}
+Since \((k_1 + k_2)^2 = s\), the above integral becomes (ignoring the \(dx\) integral for the time being)
+\begin{align*}
+    &-\frac{1}{2}(-i\lambda)^2  \int \frac{d^4p}{(2\pi)^4} \frac{1}{\{p^2 - m^2 + i\epsilon +(s + 2(k_1+k_2))(1-x)\}^2} \\
+    = & -\frac{1}{2}(-i\lambda)^2  \int \frac{d^4p}{(2\pi)^4} \frac{1}{\{(p + (k_1 + k_2)(1-x))^2 - m^2 + i\epsilon + s(1-x) - s(1-x)^2\}^2}
+\end{align*}
+We can now do the variable change as \(p + (k_1 + k_2)(1-x) \to p\), giving 
+\begin{equation*}
+    -\frac{1}{2}(-i\lambda)^2  \int \frac{d^4p}{(2\pi)^4} \frac{1}{\{p^2 - m^2 + i\epsilon + s(x-x^2)\}^2} = -\frac{1}{2}(-i\lambda)^2  \int \frac{d^4p}{(2\pi)^4} \frac{1}{\{p^2 + a(x) + i\epsilon\}^2}
+\end{equation*}
+where \(a(x) = -m^2 + s(x- x^2)\). Now, the integral over \(p^0\) in this would be 
+\begin{equation*}
+    -\frac{1}{2}(-i\lambda)^2  \int \frac{dp_0 d^3\textbf{p}}{(2\pi)^4} \frac{1}{\{p_0^2 - \textbf{p}^2 + a(x) + i\epsilon\}^2}
+\end{equation*}
+and we need to see where the poles are. \\
+There are two possibilities. 
+\begin{enumerate}
+    \item If \(-\textbf{p}^2 + a(x) <0\), then the poles of this integral are at \(p_0 = \sqrt{\textbf{p}^2 - a(x)} - i\epsilon,~~p_0 = -\sqrt{\textbf{p}^2 - a(x)} + i\epsilon\).
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[>=latex, scale=0.6]
+            \draw[->] (-3,0) -- (3,0);
+            \draw[->] (0, -3) -- (0,3);
+            \fill (1.5,-0.5) circle (2pt);
+            \fill (-1.5,0.5) circle (2pt);
+        \end{tikzpicture}
+    \end{figure} 
+    \item If \(-\textbf{p}^2 + a(x) >0\), then the poles are at \(p_0 = i\sqrt{a(x)-\textbf{p}^2 } - \epsilon,~~p_0 = -i\sqrt{a(x)-\textbf{p}^2} + \epsilon\). These are on the imaginary axis, but shifted by \(\epsilon\).
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[>=latex, scale=0.6]
+            \draw[->] (-3,0) -- (3,0);
+            \draw[->] (0, -3) -- (0,3);
+            \fill (-0.5,1.5) circle (2pt);
+            \fill (0.5,-1.5) circle (2pt);
+        \end{tikzpicture}
+    \end{figure} 
+\end{enumerate}
+Since we are parforming the integral over \(x\) too, in the above integral we will get both these poles. Notice that, due to the way the poles are placed, in both the above cases, we are free to rotate the contour of integration (which is the real axis with some closure in either of the half plane) to now sit on the imaginary axis, since we can do this without crossing any poles. Therefore, \(p_0\) now runs from \(-i\infty\) to \(i\infty\), and it is convenient to define \(p_4 = -ip_0\), such that when \(p_0\) goes from \(-i\infty\) to \(i\infty\), \(p_4\) runs from \(-\infty\) to \(\infty\). \\
+\(p_0^2 = - p_4^2\), and \(p^2 = p_0^2 - \textbf{p}^2 = -p_4^2 - \textbf{p}^2 = -p^2_{\text{Euclidean}}\)\\
+All the rotation manipulation we did above is called the \textit{Wick rotation} which stands for the rotation from doing the Lorentzian integral to the Euclidean integral.\\
+
+Notice that if the pole placement was different we would have gotten a different overall sign, since the allowed rotation in the case of a different pole placement would be the opposite of this case. \\
+
+The full integral now looks like 
+\begin{equation*}
+    -\frac{1}{2}(-i\lambda)^2  \int i\frac{d^4p_{E}}{(2\pi)^4} \frac{1}{\{-p_E^2 + a(x) + i\epsilon\}^2}
+\end{equation*}
+The Euclidean integral has spherical symmetry, and therefore we can go to polar coordinates in \(4D\), but with a different volume of the unit sphere pulled out (in 3D case, the volume was \(4\pi\), and in \(4D\), the volume is \(2\pi^2\)). Therefore, we get (where now \(p_E\equiv |p_E|\))
+\begin{equation*}
+    \frac{i}{2}\lambda^2  \int 2 p_E^3 \frac{dp_{E}}{16 \pi^2} \frac{1}{\{-p_E^2 + a(x) + i\epsilon\}^2}
+\end{equation*}
+Making a change of variables \(p_E^2 = z \implies 2p_Edp_E = dz\), we get 
+\begin{equation*}
+    \frac{i}{2}\lambda^2  \frac{1}{16\pi^2}\int  \frac{z dz}{\{-z + a(x) + i\epsilon\}^2}
+\end{equation*}
+So far what we did was exact manipulation, and we did not do anything to remove the divergance. This integral is still log divergant, at large \(z\). But this form is very convenient for us to fix the divergance. Since we have a Euclidean integral, this integral can be thought of as put on some discrete Euclidean lattice, and the Euclidean momentum will be dual to the lattice spacing. What we want to do is to say that we are working in some finite lattice spacing, which in the momentum space translates to a cutoff in the integral at \(z = \Lambda^2\). The motivation for the cutoff is all that we have been saying so far, which is that we don't know what the UV theory is, and that our assumption that the integral is valid all the way upto some arbitrarily high momenta is wrong since we do not know what happens at these arbitrarily high momenta. \\
+Whatever that happens at low energy should not care about what happens at high momenta, and therefore such a cutoff is completely valid in our \textit{effective calculations}. Later we see that the cutoffs will drop out of all the physical results. \\
+
+It is of importance that the cutoff is put after doing the Wick rotation. This is because in the Lorentzian integral the divergenes were not coming from some arbitrarily high momenta, but from the momenta that are very close to the light-cone. \\
+
+With the cutoff, we can do the computation of the integral 
+\begin{align*}
+    &\frac{i}{2}\lambda^2  \frac{1}{16\pi^2}\int  \frac{(z -a(x) + i\epsilon +a(x)-i\epsilon) dz}{\{-z + a(x) + i\epsilon\}^2} = \frac{i}{2}\lambda^2  \frac{1}{16\pi^2}\int  \frac{(z -a(x)-i\epsilon)}{\{-z + a(x) + i\epsilon\}^2} + \frac{a(x) +i\epsilon}{\{-z + a(x) + i\epsilon\}^2} dz\\
+    =& \frac{i}{2}\lambda^2  \frac{1}{16\pi^2} \left( \ln (z-a(x) -i\epsilon) - \frac{a(x)}{z-a(x) - i\epsilon} \right)\bigg|_0^{\Lambda^2}\\
+    =&\frac{i}{2}\lambda^2  \frac{1}{16\pi^2} \left( \ln \left(\Lambda^2-a(x) - i\epsilon \right) - \ln (-a(x) -i\epsilon) - \frac{a(x)}{\Lambda^2-a(x) - i\epsilon} - 1 \right)
+\end{align*}
+(notice that in the numerator of a fraction, the \(i\epsilon\) doesn't matter)\\
+
+Therefore, the integral for the \(s-\)channel diagram is simply 
+\begin{equation*}
+    \int_0^1 dx  \frac{i\lambda^2 }{32\pi^2} \left( \ln \left(\Lambda^2-a(x) - i\epsilon \right) - \ln (-a(x) -i\epsilon) - \frac{a(x)}{\Lambda^2-a(x) - i\epsilon} + 1 \right)
+\end{equation*}
+
+There are also integrals for the \(t\) and \(u\) channels. What we did so far did not care about what we called \(k_1\) and \(k_2\). Therefore, for the \(t\) and \(u\) channels, we get exactly the same answer, but with some different \(a(x)\)s. The full answer upto second order in perturbation theory therefore is 
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.05,>=Latex]
+        \begin{scope}[xshift=0cm]
+            \begin{feynman}
+                \vertex (a) at (1,1);
+                \vertex (b) at (1,-1);
+                \vertex (c) at (-1,-1);
+                \vertex (d) at (-1,1);
+                \vertex (center) at (0,0);
+                \diagram*{
+                    (a) --[scalar] (center) --[scalar] (c);
+                    (b) --[scalar] (center) --[scalar] (d);
+                };
+                \draw[fill=white, color=white] (0,0) circle(0.9cm);
+                \draw[pattern={Lines[angle=-45,distance=4pt]}, pattern color=black!50] (0,0) circle(0.9cm) ;
+            \end{feynman}   
+            \node at (8,0) {\(\displaystyle=-i\lambda + \sum_{c\in\{s,t,u\}} \int_0^1 dx  \frac{i\lambda^2 }{32\pi^2} \left( \ln \left(\Lambda^2-a_c(x) \right) - \ln (-a_c(x)) - \frac{a_c(x)}{\Lambda^2-a_c(x)} - 1 \right)\) + iD};
+        \end{scope}
+    \end{tikzpicture}
+\end{figure}
+where we have slightly redefined \(a_c(x)\) to be 
+\begin{equation*}
+    a_c(x) = c(x-x^2) - m^2 + i\epsilon ~~~~~\text{ for }c\in\{s,t,u\}
+\end{equation*}
+and the \(iD\) contribution is from the counterterm. Also notice that, importantly, \(\Lambda \gg a_c(x)\), since the momentum scaling of \(a_c\) is \(s,~t~\& ~u\), and we required that our description to be of low energy physics. Therefore, we can ignore the terms of the form \(\Lambda^{-2}\), and we can simply write the above result as 
+\begin{equation*}
+    -i\lambda +  \frac{i\lambda^2 }{32\pi^2} 3\ln(\Lambda^2) +  \sum_{c\in\{s,t,u\}} \int_0^1  \frac{i\lambda^2 }{32\pi^2} \left( - \ln (-a_c(x)) \right)dx -  3\frac{i\lambda^2 }{32\pi^2}+ iD + O\left(\frac{1}{\Lambda^2}\right)
+\end{equation*}
+
+Now our renormalisation condition requires that we should set \(D\) such that at some \(s=s_0,~t=t_0,~u=u_0\), 
+\begin{equation*}
+    \frac{i\lambda^2 }{32\pi^2} 3\ln(\Lambda^2) +  \sum_{c\in\{s_0,t_0,u_0\}} \int_0^1  \frac{i\lambda^2 }{32\pi^2} \left( - \ln (-a_c(x)) \right)dx -  3\frac{i\lambda^2 }{32\pi^2} + iD = 0
+\end{equation*}
+
+This does not mean that the one loop contribution is zero. At some different values of \(s,~t,\) and \(u\), we will still get one loop contributions. What \(D\) does is it will cancel out the divergant \(\ln\Lambda^2\) term in the result, but there will be a contribution from the \(a_c(x)\) which would be different for different values of \(s,~t,\) and \(u\).\\
+
+Therefore, for some other \(s,~t,~u\), the full answer will be 
+\begin{equation*}
+    -i\lambda - \sum_{c\in\{s_0,t_0,u_0\}} \int_0^1  \frac{i\lambda^2 }{32\pi^2}  \ln \left(\frac{a_c(x)}{a_c^0(x)} \right)dx
+\end{equation*}
+
+We defined the physical coupling constant at some scale, and we can calculate the amplitudes at some other scale using these physical coupling. This is in line with our philosophy that we should relate some physical observables to some other and not to the bare microscopic quantitites. That is, we do not know what are the parameters that enter the Lagrangian at the microscopic scale, and we can only get the effective parameters from low energy experiments, and we always need to compare values for different low energy experiments and never to the bare microscopic parameter.
 
 
 
