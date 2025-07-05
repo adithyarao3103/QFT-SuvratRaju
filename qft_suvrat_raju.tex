@@ -1,4 +1,4 @@
-\documentclass[11pt, notitlepage]{report}
+\documentclass[11pt]{article}
 
 \usepackage[margin=0.75in]{geometry}
 \usepackage{amssymb}
@@ -13,6 +13,7 @@
 \usepackage{braket}
 \usepackage[compat=1.1.0]{tikz-feynman}
 \usetikzlibrary{patterns, decorations.markings, positioning, patterns.meta}
+\usepackage{pgfplots}
 
 \usepackage{xcolor}
 \usepackage[colorlinks=true, urlcolor=blue, linkcolor=blue]{hyperref}
@@ -65,8 +66,6 @@
     \newpage
     \setcounter{page}{1}
     \pagenumbering{arabic}
-
-    \addcontentsline{toc}{chapter}{Introduction — The Machinery of QFT}
 
     
     \section{The Need for Fields}
@@ -4158,6 +4157,7 @@ It is common in field theories that as we go to diagrams with loops, they diverg
 An important question one would therefore ask is how would the various parameters in the Lagrangian grow and decay with energy. As said, there might be some parameters in the complete theory, and what we see in the experiments will be some low energy effective parameters. Some basic dimensional analysis will allow us to determine what are the possible low energy effective parameters that we can consider in our field theories.
 
 \subsection{Dimensional Analysis}
+\label{sec:dimensionalanalysis}
 In the units we have chosen, \(\hbar = c = 1\), since action has the same dimensions as \(\hbar\), we have 
 \begin{equation*}
     [S] = 1 \implies [L] = M^{-1}
@@ -4239,9 +4239,20 @@ The physical requirements area
     \item \(g\) matches the scattering amplitude of some low energy scattering \(\to F\) 
 \end{itemize}
 
-Let us make some of these more formal and precise and then work out what the counter terms are. We will oscillate between the two models \(\phi^4\) and \(\phi|\psi|^2\), using whichever is convenient to discuss the technicalities. \\
+\textcolor{red}{
+    At the heart of this procedure is the idea that you split the bare parameters as 
+    \begin{equation*}
+        x_{\text{bsare}} = x_{\text{ren}} + x_{\text{C.T}}
+    \end{equation*}
+    and we impose physical conditions on \(x_{\text{ren}}\) which will give us also \(x_{\text{C.T}}\). When we compute loops and include both the renormalised and C.T vertices, the divergent parts of the loop integrals are exactly canceled by the divergences in the CT insertions, leaving a finite result.\\
+    In the following text, unless explicitly specified, \(\lambda,~m,~g\) etc. are renormalised parameters.\\
+}
 
-First let us look at the counterterm \(A\phi\). The vertex for it would be simply a linear vertex (we are using \(\times\) to denote the \(A\) vertex)
+Let us make some of these more formal and precise and then work out what the counter terms are. We will oscillate between the two models \(\phi^4\) and \(\phi|\psi|^2\), using whichever is convenient to discuss the technicalities. 
+
+\subsubsection{Condition on v.e.v. of \(\phi(x)\)}
+
+This condition lets us set the counterterm \(A\). To do this, see that the vertex for it would be simply a linear vertex (we are using \(\times\) to denote the \(A\) vertex)
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
@@ -4257,7 +4268,7 @@ First let us look at the counterterm \(A\phi\). The vertex for it would be simpl
 \end{figure}
 
 The condition that \(\braket{0|\phi(x)|0}\) simply implies that 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{feynman}
@@ -4286,7 +4297,7 @@ The condition that \(\braket{0|\phi(x)|0}\) simply implies that
     \end{tikzpicture}
 \end{figure}
 
-What this means is that we never have to calculate what \(A\) actually is, all \(A\) does is sets such graphs to zero. \\ 
+What this means is that we never have to calculate what \(A\) actually is, all \(A\) does is sets such graphs with only one external leg to zero. \\ 
 
 A similar argument holds in the scalar Yukawa theory too, and in the Yukawa theory, the term sets the diagrams of the following kind to zero. (we did not give explicit example in \(\phi^4\) theory because there are no simple such diagrams in this theory)
 \begin{figure}[H]
@@ -4379,6 +4390,8 @@ Such diagrams, which have only one external point and have multiple internal ver
 which contribute to the 3-point function.\\
 Without the term \(A\phi(x)\), the quantity \(\braket{0|\phi(x)|0}\) would be some infinity which is given by the sum of all the tadpole diagrams. But introducing the extra term linear in \(\phi\) allows us to set the value of \(A\) such that the extra vertex that we get from \(A\phi(x)\) exactly cancels out all these infinities, allowing us to set \(\braket{0|\phi(x)|0} = 0\). What this means for the perturbation expansion for the \(S-\)matrix is that one can conveniently ignore all the terms which have the tadpole diagrams knowing that the extra vertex due to \(A\) should also be included, and it will inevitable cancel these infinities.\\
 }
+
+\subsubsection{Normalisation and Mass Condition - I}
 
 Lets now consider the other two conditions \(\braket{q|\phi(x)|0} = \e^{iq\cdot x}\) and that the mass \(m\) should be the physical mass. 
 Before discussing this, we want to reframe these conditions in terms of the propagator 
@@ -4701,7 +4714,53 @@ That is, the counter terms should be chosen such that
 \end{equation*}
 \vspace{10pt}
 
-Now let us consider the counterterm for the interaction \(\displaystyle \frac{D}{4!}\phi^4\). What this requires is that the scattering amplitude for some physical values is equal to \(\lambda\), i.e. 
+These conditions will allow us to set the counterterms \(\displaystyle \frac{B}{2}(\del_\mu\phi)^2\) and \(\displaystyle \frac{C}{2}\phi^2\).\\
+
+We will not compute the counterterms in the \(\phi^4\) theory since these terms do not appear at the first non-trivial order, since in \(\phi^4\), the first order loop correction to the propagator would be 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a) at (-0.5,0);
+            \vertex (b) at (2,0);
+            \vertex (c) at (0.75, 0);
+            \vertex (d) at (0.75, 0.75);
+            \diagram*{
+                (a) --[scalar] (b);
+                (c) --[scalar, half left] (d) --[scalar, half left] (c);
+            };
+            \draw[fill=white] (a) circle(0.7mm);
+            \draw[fill=white] (b) circle(0.7mm);
+            \fill[black] (c) circle(0.7mm);
+        \end{feynman}
+    \end{tikzpicture}
+\end{figure}
+which is trivial since it has no dependence on the external kinematics. To get a non-trivial dependance, we need to go to the two loop diagrams of the form 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a) at (0,0);
+            \vertex (b) at (1,0);
+            \vertex (c) at (2,0);
+            \vertex (d) at (3,0);
+            \diagram*{
+                (a) --[scalar] (d);
+                (b) --[scalar, half left] (c) --[scalar, half left] (b);
+            };
+            \draw[fill=white] (a) circle(0.7mm);
+            \draw[fill=white] (d) circle(0.7mm);
+            \fill[black] (b) circle(0.7mm);
+            \fill[black] (c) circle(0.7mm);
+        \end{feynman}
+    \end{tikzpicture}
+\end{figure}
+
+We can indeed calculate these counterterms in the \(\phi|\psi|^2\) theory, where it has non-trivial one-loop contributions, and we will do it later in section \ref{subsubsec:BCterms}
+
+\subsubsection{Condition on Interaction Coupling}
+
+This lets us fix the counterterm for the interaction \(\displaystyle \frac{D}{4!}\phi^4\). What this requires is that the scattering amplitude for some physical values is equal to \(\lambda\), i.e. 
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}[scale=1.25,>=Latex]
@@ -4873,7 +4932,7 @@ There are two possibilities.
         \centering
         \begin{tikzpicture}[>=latex, scale=0.6]
             \draw[->] (-3,0) -- (3,0);
-            \draw[->] (0, -3) -- (0,3);
+            \draw[->, color=black!30] (0, -3) -- (0,3);
             \fill (1.5,-0.5) circle (2pt);
             \fill (-1.5,0.5) circle (2pt);
         \end{tikzpicture}
@@ -4883,7 +4942,7 @@ There are two possibilities.
         \centering
         \begin{tikzpicture}[>=latex, scale=0.6]
             \draw[->] (-3,0) -- (3,0);
-            \draw[->] (0, -3) -- (0,3);
+            \draw[->, color=black!30] (0, -3) -- (0,3);
             \fill (-0.5,1.5) circle (2pt);
             \fill (0.5,-1.5) circle (2pt);
         \end{tikzpicture}
@@ -4953,9 +5012,9 @@ where we have slightly redefined \(a_c(x)\) to be
     a_c(x) = c(x-x^2) - m^2 + i\epsilon ~~~~~\text{ for }c\in\{s,t,u\}
 \end{equation*}
 and the \(iD\) contribution is from the counterterm. \\
-\textcolor{red}{We only included tree level contribution from the \(D\) vertex, since we calculate \(D\) order by order. This means that we will set \(D\) such that the tree level contribution from \(D\) cancels the one-loops divergences in \(\lambda\), one-loops contribution in \(D\) cancels the two-loop divergences in \(\lambda\) and so on.\\ }
+\textcolor{red}{We only included tree level contribution from the \(D\) vertex, since we calculate \(D\) order by order in \(\lambda\). We already said that \(D = \sum_{i=2}^{\infty} D^{(i)}\), \(D^{(i)} \sim \lambda^i\), and the \(D\) we calculated above was just \(D^{(2)}\). In regulating the diverging 3-vertex integrals, we will use diagrams with single \(D^{(2)}\) insertion and tree level diagrams in \(D^{(3)}\), and in regulating 4-vertex integrals in \(\lambda\), we will use one-loop diagrams in \(D^{(2)}\) and tree level diagram in \(D^{(4)}\), and so on.\\ }
 
-Notice that, importantly, \(\Lambda \gg a_c(x)\), since the momentum scaling of \(a_c\) is \(s,~t~\& ~u\), and we required that our description to be of low energy physics. Therefore, we can ignore the terms of the form \(\Lambda^{-2}\), and we can simply write the above result as 
+Notice that, importantly, \(\Lambda \gg a_c(x)\), since the momentum scaling of \(a_c\) is \(s,~t~\& ~u\), and we required that our description to be of low energy physics. Therefore, we can ignore the terms of the form \(a_c(x)\Lambda^{-2}\), and we can simply write the above result as 
 \begin{equation*}
     -i\lambda +  \frac{i\lambda^2 }{32\pi^2} 3\ln(\Lambda^2) +  \sum_{c\in\{s,t,u\}} \int_0^1  \frac{i\lambda^2 }{32\pi^2} \left( - \ln (-a_c(x)) \right)dx -  3\frac{i\lambda^2 }{32\pi^2}+ iD + O\left(\frac{1}{\Lambda^2}\right)
 \end{equation*}
@@ -4973,6 +5032,237 @@ Therefore, for some other \(s,~t,~u\), the full answer will be
 \end{equation*}
 
 We defined the physical coupling constant at some scale, and we can calculate the amplitudes at some other scale using these physical coupling. This is in line with our philosophy that we should relate some physical observables to some other and not to the bare microscopic quantitites. That is, we do not know what are the parameters that enter the Lagrangian at the microscopic scale, and we can only get the effective parameters from low energy experiments, and we always need to compare values for different low energy experiments and never to the bare microscopic parameter.
+
+\subsubsection{Interlude — Regularisation methods}
+In the above calculation, we regularised our diverging loop integral by introducing a momentum cutoff. Introducing a momentum cutoff is the most simplest and the most physical way of regularising. But this is not the only way one can regularise divergances, and here we will discuss some other methods and schemes for regularising divergances. \\
+
+One method of regularising is called the Pauli-Villars regularisation, in which we simply replace the free propagator by 
+\begin{equation*}
+    \frac{1}{p^2 - m^2 + i\epsilon} \longrightarrow \frac{1}{p^2 - m^2 + i\epsilon} - \frac{1}{p^2 - \Lambda^2 + i\epsilon}
+\end{equation*}
+We are introducing another (ficticious) particle with mass \(\Lambda\) that propagates with a negative sign, and this has the same effect of cutting off the divergences at large \(p^2\). Physically what this does is that if we go to very large value of \(p^2\), the two terms will cancel out, and the propagator is basically zero, and therefore this regularisation does not allow the high momenta modes to propagate at all. When \(p^2 \ll \Lambda^2\), the propagator is the usual propagator.\\
+
+Another method is called dimensional regularisation, and this also corresponds to a cutoff. Suppose we have a log divergent integral of the form as we had before 
+\begin{equation*}
+    \sim \int d^4p\frac{1}{(p^2 - \ldots)(p^2 - \ldots)}
+\end{equation*}
+we replace \(d^4p\) with \(d^{4-\epsilon}p\). This is a trick that says that instead of working with \(4\) dimensions, let us work with some fractional \(4-\epsilon\) dimensions. Practically what this means is that if we Wick rotate the above integral and write in the spherical coordinates in \(4D\), we get 
+\begin{equation*}
+    \sim \int p^{3-\epsilon}dp\frac{1}{(p^2 - \ldots)(p^2 - \ldots)}
+\end{equation*}
+We see that at some fininte value of \(\epsilon\) this is not divergant, since the integrand will now look like 
+\begin{equation*}
+    \sim \frac{1}{p^{1+\epsilon}}
+\end{equation*}
+and this integral has a divergance at \(\epsilon = 0\), but there is no divergance if \(\epsilon>0\)
+
+\textcolor{red}{
+    \begin{equation*}
+        \int_{p_0}^\infty \frac{1}{p^{1+\epsilon}} dp = \frac{p^{-\epsilon}}{-\epsilon} \bigg|_{p_0}^\infty = \frac{p_0^{-\epsilon} - \infty^{-\epsilon}}{\epsilon}
+    \end{equation*}
+    and this is finite since \(\infty^{-\epsilon} = 0\) for \(\epsilon>0\). If \(\epsilon = 0\), then the above integral is rather 
+    \begin{equation*}
+        \int_{p_0}^\infty \frac{dp}{p} = \ln{\infty} - \ln p_0
+    \end{equation*}
+    which is diverging.\\
+}
+
+This looks like some mathematical trick, but this is also equivalent to introducing a momentum cutoff. When we replace \(d^4p \to d^{4-\epsilon}p\), we need to ensure that we are dimensionally consistent, and therefore we need to multiply by a scale \(\mu^\epsilon\)
+\begin{equation*}
+     \int \mu^{\epsilon} p^{3-\epsilon}dp\frac{1}{(p^2 - \ldots)(p^2 - \ldots)} \sim \left(\frac{1}{\epsilon} + \text{ finite terms }\right)\mu^{\epsilon}
+\end{equation*}
+(open Peskin and Schroeder for a more detailed calculation).\\
+Now, the divergant part looks like 
+\begin{equation*}
+    \frac{\mu^{\epsilon}}{\epsilon} = \frac{\e^{\epsilon \ln\mu}}{\epsilon} \simeq \frac{1}{\epsilon} + \ln\mu = \ln\left(\mu \e^{\frac{1}{\epsilon}}\right) = \ln\Lambda^2
+\end{equation*}
+Which is exactly a cutoff \(\Lambda^2 = \mu \e^{\frac{1}{\epsilon}}\). 
+
+\subsubsection{Normalisation and Mass Condition - II}
+\label{subsubsec:BCterms}
+In the previous discussion, we fixed \(A\phi\) and \(\displaystyle\frac{D}{4!}\phi^4\) terms, but we did not discuss \(\displaystyle \frac{B}{2}(\del_\mu\phi)^2\) and \(\displaystyle \frac{C}{2}\phi^2\) terms. This is because in the \(\phi^4\), these terms do not have any contribution at one loop order, so we will look at the \(\phi|\psi|^2\) theory to see how to fix these counterterms. 
+
+\begin{equation*}
+    \ld_{\text{CT}} = A\phi + \frac{B}{2}(\del_\mu \phi)^2 + \frac{C}{2}\phi^2 + D|\del_\mu \psi|^2  + E|\psi|^2 - F\phi|\psi|^2
+\end{equation*}
+
+In this model, the lowest order correction to the amputated two-point function of the \(\phi\) field is at \(O(g^2)\) and is the following, 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{feynman}
+                \vertex (a) at (-0.75,0);
+                \vertex (b) at (0.5, 0);
+                \vertex (c) at (1.75, 0);
+                \vertex (d) at (3, 0);
+                \diagram*{
+                    (a) -- [scalar, momentum=\(k\)] (b) --[fermion, half left, rmomentum=\(p\)] (c) -- [scalar, momentum=\(k\)] (d);
+                    (b) --[anti fermion, half right, momentum'=\(p+k\)] (c);
+                };
+                % \draw[fill=white] (a) circle(0.7mm);
+                % \draw[fill=white] (d) circle(0.7mm);
+                \draw[fill=black] (c) circle(0.7mm);
+                \draw[fill=black] (b) circle(0.7mm);
+            \end{feynman}
+    \end{tikzpicture}
+\end{figure}
+
+This is a 1PI diagram, and it evaluates to
+\begin{equation*}
+    -i\Sigma(k^2) =(-ig)(-ig) \int\frac{d^4p}{(2\pi)^4} \frac{i}{p^2 - M^2 + i\epsilon}\frac{i}{(p+k)^2 - M^2 + i\epsilon}
+\end{equation*}
+This integral is the same as the one we did before.\\
+
+The counterterms \(B\) and \(C\) give the following vertices 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \begin{feynman}
+            \vertex (a) at (0,0);
+            \vertex (b) at (0.75,0);
+            \vertex (c) at (1.5,0);
+            \vertex (d) at (2.5,0);
+            \vertex (e) at (3.25,0);
+            \vertex (f) at (4,0);
+            \diagram*{
+                (a) --[scalar, momentum=\(k\)] (b) --[scalar, momentum=\(k\)] (c);
+                (d) --[scalar, momentum=\(k\)] (e) --[scalar, momentum=\(k\)] (f);
+            };
+            \node at (b) {\(\times\)};
+            \node at (0.75, -0.3) {\(iBk^2\)};
+            \node at (e) {\(\bigstar\)}; 
+            \node at (3.25, -0.3) {\(iC\)};
+        \end{feynman}
+    \end{tikzpicture}.
+\end{figure}
+
+We get an extra \(k^2\) in the \(B\) vertex since there is a square of derivative which pulls down a factor of \(k^2\).\\
+
+Therefore the total corrections to the propagator at one loop would be 
+\begin{equation*}
+    -i\Sigma(k^2) =(-ig)(-ig) \int\frac{d^4p}{(2\pi)^4} \frac{i}{p^2 - M^2 + i\epsilon}\frac{i}{(p+k)^2 - M^2 + i\epsilon} + iC + iBk^2
+\end{equation*}
+
+To fix \(B\) and \(C\), we demand the requirements we derived above, i.e.\begin{equation*}
+    \Sigma(m^2) = 0, ~~~\frac{d}{dk^2}\Sigma(k^2)\bigg|_{k^2 = m^2} = 0
+\end{equation*}
+A slight aside — The first condition came from the requirement that the physical propagator has pole at \(p^2 = m^2\), and is stringent and cannot be traded for. But the second condition can be rephrased slightly. We could rather say that we want to work with a propagator of the form 
+\begin{equation*}
+    \frac{Z}{p^2 - m^2 + i\epsilon}
+\end{equation*}
+Now this is equivalent to demanding that the field \(\phi\) be such that \(\braket{k|\phi(0)|0} = \sqrt{Z}\). This is called wavefunction renormalisation, and this kind of modification will change the LSZ formula by some factors too. We will not work with this, but we will rather demand that the field be normalised correctly, but that will require the above condition in derivative to be true. \\
+
+The above integral, after introducing a cutoff \(\Lambda\) is (where we have removed the terms of form \(a(x)\Lambda^{-2}\), and have absorbed the constant term into \(C\)) 
+\begin{equation}
+    -i\Sigma(k^2) = \frac{ig^2}{16\pi^2} \int_0^1 dx \ln\left(\frac{\Lambda^2}{-a(x)}\right) + ik^2B + iC
+    \label{eq:Sigmak^2}
+\end{equation}
+where \(a(x) = k^2(x-x^2) - M^2 + i\epsilon\)\\
+
+What follows is some algebra to set the values of \(B\) and \(C\). \\
+The first condition is 
+\begin{align*}
+    & m^2B + C + \frac{g^2}{16\pi^2} \int_0^1 dx\ln\left( \frac{\Lambda^2}{-m^2(x-x^2) + M^2 - i\epsilon}  \right) = 0\\
+    \implies &   C = -m^2B - \frac{g^2}{16\pi^2} \int_0^1 dx\ln\left( \frac{\Lambda^2}{-m^2(x-x^2) + M^2 - i\epsilon}  \right) \\
+    \implies & k^2B + C = (k^2 -m^2)B - \frac{g^2}{16\pi^2} \int_0^1 dx\ln\left( \frac{\Lambda^2}{-m^2(x-x^2) + M^2 - i\epsilon}\right)
+\end{align*}
+The second condition directly gives us \(B\) 
+\begin{align*}
+    &B + \frac{g^2}{16\pi^2} \int_0^1 dx \frac{-k^2(x-x^2) + M^2 - i\epsilon}{\Lambda^2}\frac{\Lambda^2}{\{-k^2(x-x^2) + M^2 - i\epsilon\}^2}(x - x^2) \bigg|_{k^2 = m^2} = 0\\
+    \implies &B  = -\frac{g^2}{16\pi^2} \int_0^1 dx \frac{(x - x^2)}{-m^2(x-x^2) + M^2 - i\epsilon}
+\end{align*}
+We get 
+\begin{equation*}
+    k^2B + C = -\frac{g^2}{16\pi^2}\left( (k^2-m^2)\int_0^1 dx \frac{(x - x^2)}{-m^2(x-x^2) + M^2 - i\epsilon} + \int_0^1 dx\ln\left( \frac{\Lambda^2}{-m^2(x-x^2) + M^2 - i\epsilon}\right) \right)
+\end{equation*}
+If we substitute this back in eq \(\ref{eq:Sigmak^2}\), we see tha the \(\ln \Lambda^2\)s cancel, and what we are left with is some finite terms. We can write down the final answer for the self energy as 
+\begin{equation*}
+    i\Sigma(k^2) = i\frac{g^2}{16\pi^2}\int_0^1 dx \ln\left(\frac{-m^2(x-x^2) + M^2 - i\epsilon}{-k^2(x-x^2) + M^2 - i\epsilon}\right) -i\frac{g^2}{16\pi^2}(k^2-m^2) \int_0^1 dx \frac{(x - x^2)}{-m^2(x-x^2) + M^2 - i\epsilon}
+\end{equation*}
+which is a perfectly finite quantity. Notice that the momentum cutoff that we imposed drop out of the final answer.\\
+
+When we have external legs, we never have to worry about the \(\Sigma(k^2)\), since for the external legs, \(k^2\) is on shell, i.e. \(k^2 = m^2\), and therefore \(\Sigma\) is guaranteed to be zero. We only have to worry about the self-energy when we are considering internal legs. Even for the internal line, at leading order the propagator is 
+\begin{equation*}
+    \frac{1}{p^2 - m^2 + i\epsilon}
+\end{equation*}
+but if we go to higher orders, we will have to consider 
+\begin{equation*}
+    \frac{1}{p^2 - m^2 - \Sigma(p^2) + i\epsilon}
+\end{equation*}
+The \(\Sigma\) we calculated above is already pretty ugly even with only one-loop correction, and this is the reason why perturbation theory is hard, even with computers, and therefore is a reason why a lot of research is done on how to efficiently calculate them.
+
+\subsection{Loss of Scale Invariance}
+What we have done so far is defined a renormalisation perturbation theory using a scale. In the \(\phi^4\) theory, classically, we saw that the coupling constant was of the order \([\lambda] = M^0\) (see section \ref{sec:dimensionalanalysis}). We might have concluded that the coupling constant has the same strength at high and low energies. But this is not true, since to define the quantum theory we had to introduce a cutoff. In fact, the strength of the coupling does vary as a function of the cutoff, and lets see how the variation happens, and to this extent lets define the beta function.\\
+
+Lets work, for a moment, with the bare parameters \(\lambda\). \textcolor{red}{This \(\lambda\) is not the coupling constant of the \textit{UV complete microscopic theory}, but rather the non-renormalised coupling constant in some theory with a cutoff \(\Lambda\). If it were the bare parameter of a UV complete microscopic theory, then it would not depend on scale.}  \\
+Say we define our theory at some lattice scale, i.e.\ lets say we have a lattice, we put our theory on the lattice, and then with the help of a computer solve the integrals numerically on the lattice, and got some long-distance physics. Now if I want to work on a finer or a coarser lattice, the question is how do I scale my coupling constant such that the new lattice with the new scale gives the same answers as the old lattice. In terms of the bare parameters, we can see this as following — \\
+When we computed the \(2-2\) scattering in \(\phi^4\), we found the answer to be 
+\begin{equation*}
+    G_4 \sim -i\lambda + 3\frac{i\lambda^2}{32\pi^2}\ln\Lambda^2 - \frac{i\lambda^2}{32\pi^2}\sum_c \int_0^1 \ln(-a_c(x))dx 
+\end{equation*}
+As we change \(\Lambda\), how should we change \(\lambda\) to get the same predictions. To do this, see that \(G_4\) is a physical thing, and therefore it is necessary that 
+\begin{equation*}
+    \frac{dG_4}{d(\ln\Lambda)} = 0
+\end{equation*}
+and what this means is that 
+\begin{equation*}
+    -i\frac{d\lambda}{d\ln\Lambda} + 6\frac{i\lambda^2}{32\pi^2} +6\frac{i2\lambda}{32\pi^2}\ln\Lambda^2 \frac{d\lambda}{d\ln\Lambda}  = 0
+\end{equation*}
+see that when we solve this perturbatively, at leading order, we don't have to consider the third term, i.e.\ first we will solve the first two terms, and then we substitute it in the third term to get a better approximation and so on. Therefore, at leading order, we get 
+\begin{align*}
+    &-i\frac{d\lambda}{d\ln\Lambda} + 6\frac{i\lambda^2}{32\pi^2} = 0 
+\end{align*}
+which we can solve as 
+\begin{align*}
+    & \frac{d\lambda}{\lambda^2} = \frac{3}{16\pi^2}d\ln\Lambda\\
+    \implies & \frac{1}{\lambda_i}-\frac{1}{\lambda_f} = \frac{3}{16\pi^2}\left(  \ln \Lambda_f - \ln \Lambda_i  \right)\\
+    \implies & \frac{1}{\lambda_i}-\frac{1}{\lambda_f} = \frac{3}{16\pi^2}  \ln \left( \frac{\Lambda_f}{\Lambda_i} \right)\\
+    \implies & \lambda_f = \frac{\lambda_i}{1 - \lambda_i\displaystyle\frac{3}{16\pi^2}  \ln \left( \frac{\Lambda_f}{\Lambda_i} \right)}
+\end{align*}
+Now notice that at some point, as we move to higher cutoff, the denominator becomes zero. That is, the coupling constant behaves like 
+
+\begin{figure}[H]
+    \centering 
+    \begin{tikzpicture}
+        %--- pick your initial coupling here: ---
+        \pgfmathsetmacro{\lambdai}{1.0}
+        %--- alpha = lambda_i/(16*pi^2) and pole position ---
+        \pgfmathsetmacro{\alpha}{\lambdai/(16*pi^2)}
+        \pgfmathsetmacro{\pole}{1.0/\alpha}
+        %--- now plot from 0 up to 97% of the pole: ---
+        \pgfmathsetmacro{\xmax}{0.97*\pole}
+
+        \begin{axis}[
+            width=10cm, height=6cm,
+            xlabel={$\ln\Lambda$},
+            ylabel={$\lambda(\Lambda)$},
+            domain=0:\xmax,
+            samples=300,
+            ymin=-5,
+            % remove all tick values
+            xtick=\empty,
+            ytick=\empty,
+            % draw the vertical asymptote at the pole (no label)
+            extra x ticks={\pole},
+            extra x tick style={grid=major, dashed},
+            extra x tick labels={},
+            clip=false,
+        ]
+            \addplot [thick] { \lambdai / (1 - \alpha * x) };
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+This kind of pole is called a Landau pole, and it tells us that for this \(\phi^4\) theory, as we go to larger scales, the theory becomes strongly coupled, and there is no good continuum limit (unless something very subtle happens at large \(\Lambda\)). We can still define an \textit{effective field theory} that we did so far, but what this tells is that the theory does not have a UV completion, i.e.\ it is not valid even at UV scale.\\
+
+The equation that defines the rate of change of \(\lambda\) with \(\ln\Lambda\)
+\begin{equation*}
+    \frac{d\lambda}{d\ln\Lambda} = \frac{3\lambda^2}{16\pi^2}
+\end{equation*}
+is called the beta function. \\
+
+The beta functions of many other theories had Landau poles, and this is the reason why people initially thought that QFTs were not good theories. Famously, in the case of QCD, the beta function has the opposite sign, and therefore they have a good continuum limit, where as we go to larger scales, the coupling constant gets weaker. There are some theories, the beta function vanishes, and the coupling constant does not change as a function of scale at all. These are called conformal field theories.
+
 
 
 
