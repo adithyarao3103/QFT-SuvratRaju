@@ -12,8 +12,10 @@
 \usepackage{setspace}
 \usepackage{braket}
 \usepackage[compat=1.1.0]{tikz-feynman}
-\usetikzlibrary{patterns, decorations.markings, positioning, patterns.meta}
+\usetikzlibrary{patterns, decorations.markings, positioning, patterns.meta, decorations.pathmorphing}
 \usepackage{pgfplots}
+
+\usepackage{tikz-3dplot}
 
 \usepackage{xcolor}
 \usepackage[colorlinks=true, urlcolor=blue, linkcolor=blue]{hyperref}
@@ -189,8 +191,7 @@
     \end{equation}
     and one can write equations similar to the Hamiltonian equations of motion for the field and its conjugate momenta.
 
-    \subsection{Parameterizing the Phase Space}
-    \label{sec:solution-freescalar}
+    \subsection{Parameterizing the Phase Space}\label{sec:solution-freescalar}
     Given the phase space, the usual parameterization is using \(\Pi\) and \(\Phi\). But we can also parameterize the phase space using different variables — the set of solutions to the equations of motion. This is true because given a point in phase space, we can use it as initial conditions and obtain a solution to the equations of motion. Therefore, there is a one-to-one map between points in phase space and solutions to the equations of motion, and we can see the set of solutions to the equations of motion as parameterizing the phase space. That is, a point corresponds to a solution, and a solution provided a section corresponds to a point.\\
     In other words, the \textit{parameterization} of all solutions to the equations of motion is the same as parameterization of the whole phase space. \\
 
@@ -530,7 +531,7 @@
     \end{equation*}
     and therefore, the projector to \(n\)-particle state would be 
     \begin{equation*}
-        P_n = \frac{1}{n!}\int  \frac{d^3\mathbf{p_1}\cdots d^3\mathbf{p_n}}{(2\pi)^{3n}} \ket{\mathbf{p_1},\cdots, \mathbf{p_n}}\bra{\mathbf{p_1},\cdots, \mathbf{p_n}} 
+        P_n = \frac{1}{n!}\int  \frac{d^3\mathbf{p_1}\cdots d^3\mathbf{p_n}}{(2\pi)^{3n}} \ket{\mathbf{p_1},\ldots, \mathbf{p_n}}\bra{\mathbf{p_1},\ldots, \mathbf{p_n}} 
     \end{equation*}
 
     The identity therefore would be 
@@ -550,7 +551,7 @@
     \begin{equation}
         [\phi(0, \textbf{x}), \Pi(0, \textbf{x}')] = i\delta^3(\textbf{x} - \textbf{x}')
     \end{equation}
-    There is also a natural way to also represent states, which is to think of wavefunctions on the different degrees of freedom, i.e. in this case it will become a wavefunctional 
+    There is also a natural way to also represent states, which is to think of wavefunctions on the different degrees of freedom, i.e.\ in this case it will become a wavefunctional 
     \begin{equation}
         \psi[\phi(0,\textbf{x})]
     \end{equation}
@@ -5262,6 +5263,182 @@ The equation that defines the rate of change of \(\lambda\) with \(\ln\Lambda\)
 is called the beta function. \\
 
 The beta functions of many other theories had Landau poles, and this is the reason why people initially thought that QFTs were not good theories. Famously, in the case of QCD, the beta function has the opposite sign, and therefore they have a good continuum limit, where as we go to larger scales, the coupling constant gets weaker. There are some theories, the beta function vanishes, and the coupling constant does not change as a function of scale at all. These are called conformal field theories.
+
+
+\newpage
+\section{An Aside — Dualities in Quantum Field Theories}
+(The following is the notes for two lectures by Prof. Subhro Bhattacharjee which are complementary to the other lectures given by Prof. Suvrat Raju)\\
+
+To discuss dualities in quantum field theories, let us first re-discuss how a quantum field theory is defined. Quantum field theory is about trying to understand how laws of QM apply for \textit{many degrees of freedom}, which might be interacting with each other. These many degrees of freedom could be, in-principle, anything, they could be particle fields, or electric and magentic fields, or even spacetime itself, OR it could be some bunch of electrons and ions which condensed matter physicists study. And here, we will try to get a point of view from the condensed matter side, which is often called ``Many-Body Physics''. This is essentially a different name for quantum field theory, where now the degrees of freedom are particular objects like electrons, etc.\\
+
+To define a QFT, we need to specify the degrees of freedom. The question, how do we go on to define degrees of freedom, is a very intricate question and is at the heart of QFT. Once we know the degrees of freedom, we can put some quantum mechanics in these degrees of freedom, which we already know how to do, and therefore, the fundamental question is how to define these degrees of freedom. One way to define many-body degrees of freedom is to take the space that contains these many-body degrees of freedom (which might be a box of gas, or a box of electromagnetic radiation, etc.) and divide it into small parts \(a_i\) at length scale \(a\) which defines the smallest length scale for the theory (this is equivalent to introducing a largest momentum scale, and as we discussed in the previous sections, one requires to specify a cutoff to define a QFT)
+
+\begin{figure}[h]
+    \centering 
+    \begin{tikzpicture}
+        % Define grid spacing
+        \def\a{1}
+        % Clip to a wavy boundary
+        \begin{scope}
+        \clip
+            (-0.5,-0.5) -- (2.7,-0.5) -- (2.5,2.7) -- (-0.7,2.5) -- cycle;
+        % Dotted grid, clipped to above region
+        \draw[dotted] (-0.5,-0.5) grid[xstep=\a, ystep=\a] (3,3);
+        \end{scope}
+        % Draw the wavy boundary (on top of grid)
+        \draw[thick, decorate, decoration={random steps, segment length=4pt, amplitude=2pt}]
+            (-0.5,-0.5) -- (2.7,-0.5) -- (2.5,2.7) -- (-0.7,2.5) -- cycle;
+        % Arrow for 'a' (grid spacing)
+        \draw[<->, thick] (0,1.2) -- node[above] {\(a\)} (\a,1.2);
+        % Arrow for 'L' (total width)
+        \draw[<->, thick] (-0.5,-1) -- node[below] {\(L\)} (2.8,-1);
+    \end{tikzpicture}   
+\end{figure}
+Once we define these parts, we can define Hilbert spaces associated with each part 
+\begin{equation*}
+    \mathbf{H}_i = \{\ket{\alpha^i_j} ~|~ j = 1,\cdots, n_i  \}
+\end{equation*}
+where \(n\) is the dimension of the Hilbert space associated with \(i^{\text{th}}\) part, and we can have a quantum mechanics in each part. We can get the complete Hilbert space as 
+\begin{equation*}
+    \mathbf{H} = \otimes \mathbf{H}_i
+\end{equation*}
+
+The length scale \(a\) (also called the UV scale) can be ad-hoc and be dictated by experiments what we want to work with, or in some theories like spin lattice systems they can also be fundamental to the theory itself. There is another length scale associated with the system which is \(L\) that denotes the system size, and this is called the IR length scale.\\
+
+Once we define the length scale \(a\)and \(L\) and do the above procedure, we have defined the degrees of freedom \textit{at the scale a and L}. Given two length scales \(a\ll L\), there is a length scale \(a\ll l \ll L\) at which we are probing the system. The whole richness of QFT comes due to the fact that the description of the physical system can change depending on the length scale \(l\). This is the non-trivial part that never occurs in Quantum Mechanics. Most Quantum Field Theories are best described in the regime 
+\begin{equation*}
+    \frac{l}{a} \gg 1,~~~~\frac{l}{L}\ll 1
+\end{equation*}
+which is called the scaling limit. There are two ways of taking this limit for a given theory. In the case of field theories or electromagnetic systems, we take \(a\to 0\) while keeping \(L\) fixed to get the entire limit, and this is called the continuum limit. In the other case, we take \(L\to \infty\) while keeping \(a\) fixed, and this is called Thermodynamic limit, and this is done in statistical mechanics and condensed matter studies.\\
+
+A very interesting fact is that even at the same length scale, QFTs may have two different representation, i.e.\ there may be two different actions with completely different set of variables describing the same quantum field theory. Suppose I have an action 
+\begin{equation*}
+    S_{[a, L,l]}[\phi]
+\end{equation*}
+It turns out that there can be a completely different action in completely different fields 
+\begin{equation*}
+    \tilde{S}_{[a,L,l]}[\tilde\phi]
+\end{equation*}
+such that for every correlation function I can calculate in \(S\), there is a corresponding correlation function in \(\tilde S\) with a one-to-one mapping, although these QFTs are quite different. These mappings are extremely useful especially in the cases where calculating correlation functions in one theory might be difficult, but will be extremely easy in the other. Such mappings are called dualities, and it is these that we will be discussing here.
+
+\subsection{Ising Model - Ising Electromagnetism Duality}
+This model consists of a lattice of spacing \(a\), with a spin-1/2 particle placed at each lattice point. Therefore, at each lattice point, there are basis states \(\ket{\uparrow} ~\&~\ket{\downarrow}\), with the operators \(S^z,~S^x,~S^y\). The Hamiltonian is given by 
+\begin{equation*}
+    \hd = -\sum_{i,j\in \text{neighbours}} S_i^z S_j^z - \Gamma\sum_i S_i^x
+\end{equation*}
+where \(i\equiv\vec{i} = (i_x, i_y)\).\\
+The model with \(\Gamma = 0 \) has a phase transition at some temperature \(T_c\) such that \(T<T_c\implies \langle S^z \rangle \ne 0\) and \(T>T_c \implies \braket{S^z} = 0\). At  \(\Gamma = 0 ~\&~ T=0\), the state of the system is \(\ket{\uparrow, \uparrow,\ldots,\uparrow}\) or \(\ket{\downarrow,\downarrow,\ldots,\downarrow}\) while at higher temperature there will be some spins flipped, and beyond the critical temperature the spins are 50-50 up/down.\\
+We are interested in what happens if we increase \(\Gamma\) with \(T=0\). At \(\Gamma\to \infty\), we can neglect the first term in Hamiltonian, and therefore the state at \(T=0\) is \(\ket{\uparrow_x,\uparrow_x,\ldots,\uparrow_x}\). Therefore, as we increase \(\Gamma\), there is another phase transition. \\
+
+One can study the phase transition, etc.\ for this model, but we won't do that here. Rather, we will write down an action, and we show that there is a completely different action that will describe the same system. In this case, it turns out that the dual theory is \textit{Ising Gauge Theory/Ising Electromagnetism}. There aren't many examples of such dualities, and here we will work out in-detail the transformations that will take us from one theory to the other.
+
+\subsubsection{Deriving the Action}
+We can derive the action by making use of the fact that the partition function \(\mathcal{Z} = \mathrm{Tr}\left( \e^{-\beta H} \right)\) is equivalent to a path integral in imaginary time. 
+\begin{equation*}
+    \mathcal{Z} = \mathrm{Tr}\left( \e^{-\beta H} \right) = \sum_{\{s^z\}} \bra{\{s^z\}} \e^{-\beta H} \ket{\{s^z\}}
+\end{equation*}
+where \(\{s^z\}\) is the basis vector for the entire lattice in \(z-\)basis. Writing \(\beta = \epsilon N\), where \(N\to \infty, \epsilon\to 0\) gives the continuum limit, 
+\begin{equation*}
+    \mathcal{Z} =  \sum_{\{s^z\}} \bra{\{s^z\}} \prod_{1}^{N}\e^{-\epsilon H} \ket{\{s^z\}} = \sum_{\{s^z\}} \bra{\{s^z\}}\e^{-\epsilon H} ~\e^{-\epsilon H}\cdots \e^{-\epsilon H}\ket{\{s^z\}}
+\end{equation*}
+Inserting identity in the basis between every \(\e^{-\epsilon H}\), we get 
+\begin{align*}
+    \mathcal{Z} =  \sum_{\{s_1^z\}}\sum_{\{s_2^z\}}\cdots\sum_{\{s_{n}^z\}}  \bra{\{s_1^z\}}\e^{-\epsilon H} \ket{\{s_2^z\}}\bra{\{s_2^z\}} ~\e^{-\epsilon H} \ket{\{s_3^z\}}\cdots \bra{\{s_{n}^z\}}\e^{-\epsilon H}\ket{\{s_1^z\}}
+\end{align*}
+One of the terms in the above equation looks like 
+\begin{equation*}
+    \bra{\{s_\tau^z\}} \e^{-\epsilon H} \ket{\{s_{\tau+1}^z\}}
+\end{equation*}
+If \(\Gamma\) was zero, then the above term would be easy to calculate, since the identity insertion would be eigenbasis of \(\hd\). It is the \(\Gamma\) term that makes the problem quantum, since it is this term that brings a non-trivial commutation relation.
+\begin{equation*}
+    \bra{\{s_\tau^z\}} \e^{-\epsilon H} \ket{\{s_{\tau+1}^z\}} = \e^{\epsilon \sum_{ij} s^z_{i\tau}s^z_{j\tau}}\bra{\{s_\tau^z\}} \e^{-\epsilon \Gamma\sum_i s^x_i} \ket{\{s_{\tau+1}^z\}}
+\end{equation*}
+where we could ignore the commutator terms in splitting the exponential since they are of the order \(\epsilon^2\). Now, we can introduce an identity in \(s^x\) basis as 
+\begin{align*}
+    &\sum_{\{s_\tau^x\}} \e^{\epsilon \sum_{ij} s^z_{i\tau}s^z_{j\tau}} \bra{\{s_\tau^z\}}\ket{\{s_\tau^x\}}\bra{\{s_\tau^x\}} \e^{-\epsilon \Gamma\sum_i s^x_i} \ket{\{s_{\tau+1}^z\}}\\
+    =& \sum_{\{s_\tau^x\}} \e^{\epsilon \sum_{ij} s^z_{i\tau}s^z_{j\tau}} \braket{\{s_\tau^z\} | \{s_\tau^x\}}\e^{-\epsilon \Gamma\sum_i s^x_i} \braket{\{s_\tau^x\} | \{s_{\tau+1}^z\}}
+\end{align*}
+
+To calculate the inner products that are left, see that 
+\begin{equation*}
+    \begin{array}{ll}
+        \braket{\uparrow_x|\uparrow} =\frac{1}{\sqrt{2}}& \braket{\downarrow_x|\uparrow} =\frac{1}{\sqrt{2}}\\
+        \braket{\uparrow_x|\downarrow}=\frac{1}{\sqrt{2}} & \braket{\downarrow_x|\downarrow}  = -\frac{1}{\sqrt{2}}
+    \end{array}
+\end{equation*}
+which can be written in a compact form as 
+\begin{equation*}
+    \braket{s^x | s^z} =  \e^{i\frac{\pi}{4} (1-s^x)(1-s^z)}
+\end{equation*}
+(see that the exponent is \(1\) when either \(s^x\) or \(s^z\) is \textit{up}(+1), and is \(-1\) only when both are \(down\)).\\
+
+Therefore we have 
+\begin{align*}
+    \bra{\{s_\tau^z\}} \e^{-\epsilon H} \ket{\{s_{\tau+1}^z\}} =& \sum_{\{s_\tau^x\}} \e^{\epsilon \sum_{ij} s^z_{i\tau}s^z_{j\tau}} \e^{-\epsilon \Gamma\sum_i s^x_i}  \e^{i\frac{\pi}{4}\sum_i (1-s_{i\tau}^x)(1-s_{i\tau}^z)} \e^{-i\frac{\pi}{4}\sum_i (1-s_{i\tau}^x)(1-s_{i(\tau+1)}^z)} \\
+    =& \sum_{\{s_\tau^x\}} \exp\left(\epsilon \sum_{ij} s^z_{i\tau}s^z_{j\tau}-\epsilon \Gamma\sum_i s^x_i + i\frac{\pi}{4}\sum_i (1-s_{i\tau}^x)(s_{i(\tau+1)}^z-s_{i\tau}^z)\right) 
+\end{align*}
+where now everything in the exponent is simply a number, and there are no operators.\\
+We can add and subtract \(1\) to the \(\Gamma\) term to make it match the last term as (not worrying about any constants we add/subtract since it doesn't change the physics)
+\begin{align*}
+    =&\sum_{\{s_\tau^x\}} \exp\left(\epsilon \sum_{ij} s^z_{i\tau}s^z_{j\tau}+\epsilon \Gamma\sum_i (1-s^x_i) + i\frac{\pi}{4}\sum_i (1-s_{i\tau}^x)(s_{i(\tau+1)}^z-s_{i\tau}^z)\right) \\
+    =&\sum_{\{s_\tau^x\}} \exp\left(\epsilon \sum_{ij} s^z_{i\tau}s^z_{j\tau}+\sum_i \frac{(1-s^x_i)}{2} \left(2\epsilon \Gamma + i\frac{\pi}{2}(s_{i(\tau+1)}^z-s_{i\tau}^z)\right)\right) 
+\end{align*}
+The second term is diagonal in \(i\) and therefore we can write it as 
+\begin{equation*}
+    \prod_i \sum_{\{s_\tau^x\}} \exp\left(\frac{(1-s^x_i)}{2} \left(2\epsilon \Gamma + i\frac{\pi}{2}(s_{i(\tau+1)}^z-s_{i\tau}^z)\right)\right)
+\end{equation*}
+and this sum over \(s^x = \{1,-1\}\), we can do explicitly. All these manipulations were done with a sole purpose of reaching a form where we can perform the sum explicitly.\\
+
+Notice that when \(s^x_i = +1\), the exponential is simply \(1\), and therefore the above sum is simply 
+\begin{equation*}
+    \prod_i \left(1 +  \exp\left(2\epsilon \Gamma + i\frac{\pi}{2}(s_{i(\tau+1)}^z-s_{i\tau}^z)\right) \right)
+\end{equation*}
+
+Now 
+\begin{equation*}
+    \exp\left( i\frac{\pi}{2}(s_{i(\tau+1)}^z - s_{i\tau}^z) \right) = 
+    \begin{cases}
+        +1 & \text{if } s_{i(\tau+1)}^z = \pm 1 \text{ and } s_{i\tau}^z = \pm 1 \\
+        -1 & \text{if } s_{i(\tau+1)}^z = \pm 1 \text{ and } s_{i\tau}^z = \mp 1
+    \end{cases}
+    = s_{i(\tau+1)}^z s_{i\tau}^z
+\end{equation*}
+
+Rewriting 
+\begin{equation*}
+    \e^{2\epsilon \Gamma} = \tanh J_\tau = \frac{\sinh J_\tau}{\cosh J_\tau}
+\end{equation*}
+we get the above term as 
+\begin{equation*}
+    \prod_i \left(1 +  \exp\left(2\epsilon \Gamma + i\frac{\pi}{2}(s_{i(\tau+1)}^z-s_{i\tau}^z)\right) \right)
+    = \frac{1}{\cosh J_\tau}\prod_i \left(\cosh J_\tau +  \sinh J_\tau s_{i(\tau+1)}^z s_{i\tau}^z \right)  
+\end{equation*}
+Again 
+\begin{equation*}
+    \cosh J_\tau +  \sinh J_\tau s_{i(\tau+1)}^z s_{i\tau}^z = \begin{cases}
+        \e^{J_\tau} & \text{if } s_{i(\tau+1)}^z s_{i\tau}^z = 1 \\
+        \e^{-J_\tau} & \text{if } s_{i(\tau+1)}^z s_{i\tau}^z = -1 \\
+    \end{cases} = \e^{J_\tau s_{i(\tau+1)}^z s_{i\tau}^z}
+\end{equation*}
+Putting all this together, for a single time slice we get
+\begin{equation*}
+    \bra{\{s_\tau^z\}} \e^{-\epsilon H} \ket{\{s_{\tau+1}^z\}} = \exp\left(\epsilon \sum_{ij} s^z_{i\tau}s^z_{j\tau}+\sum_i J_\tau s_{i(\tau+1)}^z s_{i\tau}^z \right) 
+\end{equation*}
+where in the last term we conveted the product of exponentials to exponential of sum.\\
+
+Now using this, we get the partition function as 
+\begin{equation*}
+    \mathcal{Z} = \sum_{\{s_1^z\}}\sum_{\{s_2^z\}}\cdots\sum_{\{s_{n}^z\}} \exp\left(\epsilon \sum_{\tau,ij} s^z_{i\tau}s^z_{j\tau}+J_\tau\sum_{\tau,i}  s_{i(\tau+1)}^z s_{i\tau}^z \right) 
+\end{equation*}
+
+Notice that the sum in the above equation is equivalent to a sum over all possible configurations in a 3D lattice with the third dimension as \(\tau\), this is a path integral. Further, see that the first term in the exponential has the coupling between sites on a same time slice, while the second term has the coupling between sites on neighbouring time slice on a same spatial point. Therefore, we can write the above equation compactly as 
+\begin{equation*}
+    \mathcal{Z} = \sum_{\{\{s^z\}\}} \exp\left(  \sum_{IJ\in \{\text{nearest neighbours}\}} J_{IJ} S_I^z S_J^z \right) =  \sum_{\{\{s^z\}\}} \exp\left(  -\mathcal{S}  \right)
+\end{equation*}
+where now \(I \equiv (i, j, \tau)\). We have made the coupling index dependent since depending on temporal or spatial coupling, we have \(J_\tau\) or \(\epsilon\) as the coupling. Therefore, the action for the 2D Ising model is simply 
+\begin{equation*}
+    \mathcal{S} =  \sum_{IJ\in \{\text{nearest neighbours}\}} -J_{IJ} S_I^z S_J^z
+\end{equation*} 
 
 
 
