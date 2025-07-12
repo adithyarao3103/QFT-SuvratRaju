@@ -4173,7 +4173,7 @@ should be dimensionless, and the first term gives
 \end{equation*}
 Given this, we can now ask what are the dimensions of the various parameters that arise in the Lagrangian density. See that 
 \begin{equation*}
-    [m] = [M]
+    [m] = M
 \end{equation*}
 and
 \begin{equation*}
@@ -4243,7 +4243,7 @@ The physical requirements area
 \textcolor{red}{
     At the heart of this procedure is the idea that you split the bare parameters as 
     \begin{equation*}
-        x_{\text{bsare}} = x_{\text{ren}} + x_{\text{C.T}}
+        x_{\text{bare}} = x_{\text{ren}} + x_{\text{C.T}}
     \end{equation*}
     and we impose physical conditions on \(x_{\text{ren}}\) which will give us also \(x_{\text{C.T}}\). When we compute loops and include both the renormalised and C.T vertices, the divergent parts of the loop integrals are exactly canceled by the divergences in the CT insertions, leaving a finite result.\\
     In the following text, unless explicitly specified, \(\lambda,~m,~g\) etc. are renormalised parameters.\\
@@ -5262,7 +5262,72 @@ The equation that defines the rate of change of \(\lambda\) with \(\ln\Lambda\)
 \end{equation*}
 is called the beta function. \\
 
-The beta functions of many other theories had Landau poles, and this is the reason why people initially thought that QFTs were not good theories. Famously, in the case of QCD, the beta function has the opposite sign, and therefore they have a good continuum limit, where as we go to larger scales, the coupling constant gets weaker. There are some theories, the beta function vanishes, and the coupling constant does not change as a function of scale at all. These are called conformal field theories.
+The beta functions of many other theories had Landau poles, and this is the reason why people initially thought that QFTs were not good theories. Famously, in the case of QCD, the beta function has the opposite sign, and therefore they have a good continuum limit, where as we go to larger scales, the coupling constant gets weaker. There are some theories, the beta function vanishes, and the coupling constant does not change as a function of scale at all. These are called conformal field theories.\\
+
+\textcolor{red}{
+    Even when doing counterterm renormalisation, the renormalised parameters do change when chaning the cutoff. To see why, consider the following —\\
+    The UV complete theory has the Lagrangian \(\ld = \sum_i g_i O_i\) where \(g_i\) are the bare parameters, and \(O_i\) are the local operators. In doing counterterm renormalisation, we split the \(g_i\) as \(g_i = g_i^{ren} + g_i^{ct}\), and fine tuned the \(g_i^{ct}\) such that they cancel out the infinities that arise from \(g_i^{ren}\). As we saw in the previous discussion, the counterterms depended on the cutoff \(\Lambda\). But since the bare parameters should be independent of this artificial cutoff we introduced, the \(g_i^{ren}\) should also be a function of \(\Lambda\) such that \(g_i^{ren}(\Lambda) + g_i^{ct}(\Lambda) = g_i^{bare}\) is not a function of \(\Lambda\). Therefore, we see that the renormalisable parameters also vary with the cutoff. But it is necessary that low energy observables that do not depend on high momentum modes should not change when we shift the cutoff \(\Lambda\), and it is this exact requirement that lead to the \(\beta\) function.
+}
+
+
+
+
+\subsection{The Wilsonian Perspective of Renormalisation}
+(A good reference — \href{https://arxiv.org/abs/hep-th/9210046}{arXiv:9210046})\\
+
+To understand the physics behind the procedure of renormalisation, and why the renormalisibility of an interaction depended on the mass dimension of the coupling constant, it is instructive to look at the Wilsonian perspective.\\
+
+The Wilsonian perspective is to consider a Lagrangian 
+
+\begin{equation*}
+    \ld = \sum_ig_iO_i
+\end{equation*}
+and take seriously the idea that we have a cutoff \(\Lambda\). When there is cutoff, by construction, there are no infinities, however we can now ask how the parameters \(g_i\) change as we \textit{flow} the cutoff. 
+% Some parts of this answer are fixed by dimensional analysis. Suppose we start with the scalar field theory which has \([\phi] = M = L^{-1}\), and in this we consider some operator \(O_i\) that has \(M\) \(\phi\)'s and \(N\) derivatives, the dimension of \(O_i\) would be \([O_i] = M+N = \delta_i\), and therefore the \(g_i\) should have \([g_i] = 4- \delta_i\). From dimensional analysis we see that the contribution of \(O_i\) to some process at some energy \(E\) should be \textcolor{red}{(since the amplitudes are dimensionless)} of the form 
+% \begin{equation*}
+%     g_i E^{\delta_i-4}
+% \end{equation*}
+% Now instead of this kind of coupling constant, it makes sense to ask what happens to the values of 
+To answer this in a more formal way, we need to consider the path integral approach (which will be discussed in the upcoming sections). The path integral approach to calculating expectation value of some operator \(A\) is to calculate the integral (this is in Euclidean space)
+\begin{equation*}
+    \int \e^{-S_\Lambda}A~\mathfrak{D}\phi_{<\Lambda}
+\end{equation*}
+The integral measure \(\mathfrak{D}\phi\) can be written in momentum space too, in which it forms an integral over fields of different momentum modes, and we impose a cutoff \(\Lambda\) by simply integrating over modes that have momentum less than \(\Lambda\). Now let us say we do a part of the integral over the modes that lie between \(\Lambda\) and \(\Lambda'<\Lambda\). I.e. we can decompose our fields as \(\phi_{<\Lambda'} + \phi_{>\Lambda', <\Lambda}\), in which case the measure factors too, giving 
+\begin{equation*}
+    \int \int e^{-S_\Lambda}A ~\mathfrak{D}\phi_{>\Lambda', <\Lambda}\mathfrak{D}\phi_{<\Lambda'} 
+\end{equation*}
+If the observale \(A\) does not depend on modes between \(\Lambda'\) and \(\Lambda\), then one can write the above integral equivalently as 
+\begin{equation*}
+    \int \e^{-S_{\Lambda'}}A \mathfrak{D}\phi_{<\Lambda'}
+\end{equation*}
+where 
+\begin{equation*}
+    \e^{-S_{\Lambda'}} = \int e^{-S_\Lambda} ~\mathfrak{D}\phi_{>\Lambda', <\Lambda}
+\end{equation*}
+(Notice that we can only flow the cutoff inwards, we can never flow it outwards.)\\
+
+The action at cutoff \(\Lambda'\) is not necessarily the same as the action at cutoff \(\Lambda\), and therefore, at a lower cutoff, we need different parameters in the action so as to obtain the same physical answers. This process defines a flow in the space of parameters as a function of \(\Lambda\), and this is the renormalisation group flow.\\ 
+
+For a scalar field theory which has \([\phi] = M = L^{-1}\), some operator \(O_i\) that has \(M\) \(\phi\)'s and \(N\) derivatives, has dimensions \([O_i] = M+N = \delta_i\), and therefore the \(g_i\) should have \([g_i] = 4- \delta_i\). For this, we write the flow equation in the form 
+\begin{equation*}
+    \Lambda \frac{dg_i}{d\Lambda} = \Lambda^{4 - \delta_i} \beta_i(g_i\Lambda^{\delta_i-4})
+\end{equation*}
+where the factors of \(\Lambda\) are set to make everything dimensionally consistent. Now suppose we consider a dimensionless parameter, 
+\begin{equation*}
+    \lambda_i = g_i \Lambda^{\delta_i - 4}
+\end{equation*}
+this will satisfy the equation
+\begin{equation}
+    \Lambda \frac{d\lambda_i}{d\Lambda} = (\delta_i - 4) \lambda_i + \beta_i(\lambda_i)
+    \label{eq:rgflow}
+\end{equation}
+
+\(\beta\) will be a perturbative function of, in principle, all \(\lambda_i\)s, and therefore the leading term would be the first term. In the case \(O_i\) has dimension \(\delta_i > 4\), we get a leading term term that damps the flow of \(\lambda_i\) as we lower the cutoff, and vice versa for \(\delta_i < 4\). That is, the flow of relevant parameters grow in size as we lower the cutoff and vice versa for irrelevant. Therefore, what remains at low energies are only marginal and relevant parameters, the irrelevant parameters flow to zero as we go to lower energies. At low cutoffs, we always see effective field theories with only marginal and relevant parameters. The surprising fact that the standard model is renormalisable is a consequence of this statement. \\
+
+One might think that if we start with irrelevant parameters at very high energies, and then flow to lower energies, these irrelevant parameters do not matter at all. But this is not the case, since the irrelevant parameters can still alter the flow of the other parameters. As an example, consider a theory with \(\lambda_4\) and \(\lambda_6\) interactions. At low energies, the \(\lambda_6\) goes to zero, and one might assume that a theory where we started off with only \(\lambda_4\) will match the theory we have. But this is not the case since at high energies \(\lambda_6\) is large and will therefore affect the flow of \(\lambda_4\) at high energies, and therefore the theory that we get from flowing the complete theory to some low energy will be manifestly different from the theory that we get if we started off with only \(\lambda_4\).\\
+
+For a marginal coupling, the leading order term in eq (\ref{eq:rgflow}) is already zero, and the behaviour as we increase the cutoff or decrease the cutoff wholly depends on the \(\beta\) function. To calculate the \(\beta\) function for the marginal coupling, it is \textit{easy} to calculate as we did in the previous section, using the non-renormalised Lagrangian as opposed to using the counter-term renormalised Lagrangian. We could of course use the renormalised Lagrangian, but it is easier without it. 
+
 
 
 \newpage
@@ -5433,14 +5498,97 @@ Now using this, we get the partition function as
 
 Notice that the sum in the above equation is equivalent to a sum over all possible configurations in a 3D lattice with the third dimension as \(\tau\), this is a path integral. Further, see that the first term in the exponential has the coupling between sites on a same time slice, while the second term has the coupling between sites on neighbouring time slice on a same spatial point. Therefore, we can write the above equation compactly as 
 \begin{equation*}
-    \mathcal{Z} = \sum_{\{\{s^z\}\}} \exp\left(  \sum_{IJ\in \{\text{nearest neighbours}\}} J_{IJ} S_I^z S_J^z \right) =  \sum_{\{\{s^z\}\}} \exp\left(  -\mathcal{S}  \right)
+    \mathcal{Z} = \sum_{\{\{s^z\}\}} \exp\left(  \sum_{IJ\in \{\text{nearest neighbours}\}} J_{IJ} s_I^z s_J^z \right) =  \sum_{\{\{s^z\}\}} \exp\left(  -\mathcal{S}  \right)
 \end{equation*}
-where now \(I \equiv (i, j, \tau)\). We have made the coupling index dependent since depending on temporal or spatial coupling, we have \(J_\tau\) or \(\epsilon\) as the coupling. Therefore, the action for the 2D Ising model is simply 
+where now \(I \equiv (i_x, i_y, \tau)\). We have made the coupling index dependent since depending on temporal or spatial coupling, we have \(J_\tau\) or \(\epsilon\) as the coupling. Therefore, the action for the 2D Ising model is simply 
 \begin{equation*}
-    \mathcal{S} =  \sum_{IJ\in \{\text{nearest neighbours}\}} -J_{IJ} S_I^z S_J^z
+    \mathcal{S} =  \sum_{IJ\in \{\text{nearest neighbours}\}} -J_{IJ} s_I^z s_J^z
 \end{equation*} 
 
+What we will do now, is to rewrite the same partition function as some 
+\begin{equation*}
+    \mathcal{Z} = \sum_{\{\{\}\}} \e^{-\tilde{\mathcal{S}}}
+\end{equation*}
+where the degrees of freedom and the action are different from what we were doing so far.
 
+\subsubsection{The Dual Action}
+Starting with the above derived action 
+\begin{equation*}
+    \mathcal{S} =  \sum_{IJ\in \{\text{n. n}\}} -J_{IJ} s_I^z s_J^z
+\end{equation*}
+First we will do one simplification, i.e. we assume an isotropic spacetime lattice, which means that \(J_{IJ} = J\) independent of which direction we are coupling with. With this, 
+\begin{equation*}
+    \mathcal{S} =  -J\sum_{IJ\in \{\text{n. n}\}} s_I^z s_J^z
+\end{equation*} 
+which implies 
+\begin{align*}
+    \mathcal{Z} =& \sum_{\{\{s^z\}\}} \e^{J\sum_{IJ} s_I s_J } \\
+    =& \sum_{\{\{s^z\}\}} \prod_{IJ} \left[  \cosh J + s_I s_J \sinh J  \right] = (\cosh J )^{\#}\sum_{\{\{s^z\}\}} \prod_{IJ} \left[  1 + s_I s_J \tanh J  \right]
+\end{align*}
+Suppose a new coupling constant \(K\) such that 
+\begin{equation*}
+    \e^{-2K} = \tanh J
+\end{equation*}
+then 
+\begin{equation*}
+    \mathcal{Z}= (\cosh J )^{\#}\sum_{\{\{s^z\}\}} \prod_{IJ\in \text{n.n}} \left[  1 + \e^{-2K}\e^{i\frac{\pi}{2} (1-s_I)}\e^{i\frac{\pi}{2} (1-s_J)}  \right]
+\end{equation*}
+where we have used 
+\begin{equation*}
+    s_I = \exp\left(\pm i\frac{\pi}{2} (1\mp s_I)\right) ~~\text{if }s_I\in \{-1,1\} 
+\end{equation*}
+and therefore 
+\begin{equation*}
+    \mathcal{Z}= \sum_{\{\{s^z\}\}} \prod_{IJ\in \text{n.n}} \left[  1 + \exp\left(-2K + i\frac{\pi}{2} (s_J-s_I)\right)  \right]
+\end{equation*}
+With this modification, we will now proceed to introduce the new degrees of freedom in which we will formulate the dual QFT. (notice that there are a lot of prefactors and constants dropped as they do not change the physics)\\
+
+The above can be written also as 
+\begin{equation*}
+    \mathcal{Z}= \sum_{\{\{s^z\}\}} \prod_{IJ\in \text{n.n}} \sum_{n_{IJ}=0,1} \exp\left(n_{IJ} \left(-2K + i\frac{\pi}{2} (s_J-s_I)\right)\right)
+\end{equation*}
+where we have now introduced a new bond variable \(n_{IJ}\) that connects every neighbouring sites \(I\) and \(J\), which can take values \(0\) or \(1\). Notice that in the above, the product over the neighbouring sites (i.e.\ over the bonds) can be done first and then one can perform a sum over all possible \(n_{IJ}\) configurations
+
+\textcolor{red}{
+    \begin{equation*}
+        \prod_{b=1}^{B}\Bigl(\sum_{n_{b}=0}^{1}f_{b}(n_{b})\Bigr)\;=\;\sum_{n_{1}=0}^{1}\sum_{n_{2}=0}^{1}\cdots\sum_{n_{B}=0}^{1}\;\prod_{b=1}^{B}f_{b}(n_{b}) = \sum_{\{\{n\}\}} \prod_{b=1}^{B}f_{b}(n_{b}) 
+    \end{equation*}
+}
+
+to get the same result as 
+\begin{equation*}
+    \mathcal{Z}= \sum_{\{\{s^z\}\}} \sum_{\{\{n\}\}}  \exp\left(\sum_{IJ\in \text{n.n}}n_{IJ} \left(-2K + i\frac{\pi}{2} (s_J-s_I)\right)\right)
+\end{equation*}
+
+The second term in the above exponential is a sum over all bonds of \(n_{IJ}s_J - n_{IJ}s_J\). Since we are also summing over all values of \(s_J\), and since \(s_J\in \{-1, 1\}\), we can also write this as sum over all bonds of \(n_{IJ}s_J + n_{IJ}s_J\). That is, you pick a bond, multiply it with the values at its end points, and then add them. We can also write the entire sum equivalently as, pick a lattice site, take all the bonds attached to it, multiply the site value to each bond value and add them all together, i.e.\ the above equation is equivalent to 
+\begin{equation*}
+    \mathcal{Z}= \sum_{\{\{s^z\}\}} \sum_{\{\{n\}\}}  \exp\left(-2K\sum_{IJ\in \text{n.n}}n_{IJ}\right) \times \exp\left(i\frac{\pi}{2} \sum_I s_I \sum_{J\in \{\text{n.n of } I\}} n_{IJ}\right)
+\end{equation*} 
+Now, we can perform the sum over \(\{\{s^z\}\}\). The first term is independent of \(s_I\), and therefore we can pull it out of the sum. 
+\begin{equation*}
+    \mathcal{Z}=\sum_{\{\{n\}\}}  \exp\left(-2K\sum_{IJ\in \text{n.n}}n_{IJ}\right)  \sum_{\{\{s^z\}\}} \prod_I \exp\left(i\frac{\pi}{2} s_I \sum_{J\in \{\text{n.n of } I\}} n_{IJ}\right)
+\end{equation*}
+Further note that 
+\begin{equation*}
+    \sum_{\{\{s^z\}\}} \equiv \sum_{s_1 \in \{-1, 1\}} \sum_{s_2 \in \{-1, 1\}} \cdots \sum_{s_I \in \{-1, 1\}}\cdots\sum_{s_N \in \{-1, 1\}} 
+\end{equation*}
+and therefore 
+\begin{align*}
+    \mathcal{Z}=&\sum_{\{\{n\}\}}  \exp\left(-2K\sum_{IJ\in \text{n.n}}n_{IJ}\right)  \prod_I \sum_{s_I \in \{-1, 1\}} \exp\left(i\frac{\pi}{2} s_I \sum_{J\in \{\text{n.n of } I\}} n_{IJ}\right)\\
+    =& \sum_{\{\{n\}\}}  \exp\left(-2K\sum_{IJ\in \text{n.n}}n_{IJ}\right)  \prod_I \cos\left(\frac{\pi}{2}\sum_{J\in \{\text{n.n of } I\}} n_{IJ}\right)
+\end{align*}
+The cosine term is a constraint since it vanishes for the configurations where for any site \(I\), \(\sum_{J\in \{\text{n.n of } I\}} n_{IJ} = \text{odd integer}\) and it is \(1\) for even integer sums, therefore selecting only certain configurations for the path integral. The action is only the first term.\\
+
+To see what the cosine condition actually means, consider one lattice site \(I\). The sum over \(n_{IJ}\) for the site \(I\) is a sum over all bonds that are starting from \(I\). If we consider a volume around the site \(I\), then this sum is an object similar to the flux of bond lines, and is therefore just a lattice version of the divergence. The cosine condition is simply cosine of \(\pi/2\) times the lattice divergance, and the condition simply translates as 
+\begin{equation*}
+    \forall I~\sum_{J\in \{\text{n.n of } I\}} n_{IJ} = 0 \text{(mod \(2\))}
+\end{equation*}
+This has a form of Gauss' law with some subtleties because we working with weird variables. \\
+
+THE PROCEEDING PART OF THE VIDEO HAS NO AUDIO AND THEREFORE I HAVE SKIPPED THE LECTURE.
+
+\newpage
+\section{Path Integrals}
 
 
 \end{document}
