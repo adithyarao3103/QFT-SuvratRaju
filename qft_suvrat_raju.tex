@@ -34,7 +34,7 @@
 \newcommand{\complex}{\mathbb{C}}
 \newcommand{\e}{\mathrm{e}}
 \newcommand{\w}{\omega}
-\newcommand{\D}{\mathcal{D}}
+\newcommand{\D}{\mathfrak{D}}
 \newcommand{\ld}{\mathcal{L}}
 \newcommand{\hd}{\mathcal{H}}
 \newcommand{\normord}[1]{:\mathrel{#1}:}
@@ -5589,6 +5589,132 @@ THE PROCEEDING PART OF THE VIDEO HAS NO AUDIO AND THEREFORE I HAVE SKIPPED THE L
 
 \newpage
 \section{Path Integrals}
+\subsection{Path Integrals in Quantum Mechanics}
+In quantum mechanics, the time evolution operator
 
+\begin{equation*}
+    \bra{q_f} \e^{-iHT}\ket{q_i}
+\end{equation*}
+can be written as a path integral.\\
+
+To derive the path integral representation, we can decompose the time interval in the above equation into \(N\) smaller intervals.
+\begin{equation*}
+    \bra{q_f} \underbrace{\e^{-iH\epsilon}\e^{-iH\epsilon}\cdots \e^{-iH\epsilon}}_{N+1 \text{ intervals}}\ket{q_i}
+\end{equation*}
+where \((N+1)\epsilon = T\). As we did in the previous section, we can now insert identities in complete basis between each of these intervals as 
+\begin{equation*}
+    \int dq_1 dq_2 \ldots dq_N~\bra{q_f} \e^{-iH\epsilon}\ket{q_N} \bra{q_N}\e^{-iH\epsilon}\ket{q_{N-1}} \bra{q_{N-1}}\cdots \ket{q_1} \bra{q_1}\e^{-iH\epsilon}\ket{q_i}
+\end{equation*}
+
+First let us suppose the Hamiltonian is a function of only \(q\), of the form \(g(q)\). Then, one of the terms in the above integral would be (notice that the operators and classical variables are not distinguished anywhere here. Please proceed carefully regarding the correct ones as operators)
+\begin{align*}
+    \bra{q_t}\e^{-ig(q)\epsilon} \ket{q_{t-1}} &= \e^{-ig(q_{t-1})\epsilon} \braket{q_t | q_{t-1}} \\
+    &=\e^{-ig(q_{t-1})\epsilon} \delta(q_t - q_{t-1})\\
+    &=\e^{-ig\left(\frac{q_t + q_{t-1}}{2}\right)\epsilon} \delta(q_t - q_{t-1})
+\end{align*}
+where in the last line we used the fact that tere is a delta function that sets \(q_t\) = \(q_{t-1}\) to write \(g(q_{t-1}) = \displaystyle g\left(\frac{q_t+q_{t-1}}{2}\right)\).\\
+It is also useful to write the delta function in the momentum space as 
+\begin{equation*}
+    \int \e^{-ig\left(\frac{q_t + q_{t-1}}{2}\right)\epsilon} \e^{ip(q_t - q_{t-1})}\frac{dp}{2\pi} 
+\end{equation*}
+Now let us suppose the Hamiltonian is a function only of momentum \(p\), of the form \(f(p)\). One of the terms in the above integral can be simplified by introducing a complete basis in momentum space as 
+\begin{align*}
+    \bra{q_t}\e^{-if(p)\epsilon} \ket{q_{t-1}} &= \int \frac{dp}{2\pi}\bra{q_t}\e^{-if(p)\epsilon}\ket{p}\braket{p|q_{t-1}} \\
+    &= \int \frac{dp}{2\pi}\e^{-if(p)\epsilon}\braket{q_t|p}\braket{p|q_{t-1}}\\
+    &= \int \frac{dp}{2\pi}\e^{-if(p)\epsilon}\e^{ip(q_t - q_{t-1})}
+\end{align*}
+
+From the above two, for \(H = h(p, q)\) one might assume that 
+\begin{equation*}
+    \bra{q_t}\e^{-ih(p, q)\epsilon} \ket{q_{t-1}} \overset{?}{=} \int \e^{-ih\left(p, \frac{q_t + q_{t-1}}{2}\right)\epsilon} \e^{ip(q_t - q_{t-1})}\frac{dp}{2\pi}  
+\end{equation*}
+that is, the matrix element is a simple expression involving the classical Hamiltonian evaluated at the mid point of the two \(q\)s.\\
+
+In general this is not true since \(p\) and \(q\) do not commute. To see why, see one possible form of Hamiltonian \(H = q^r p^s\). Then, at first order, 
+\begin{equation*}
+    \bra{q_t} \e^{-iq^r p^s\epsilon} -1\ket{q_{t-1}} = i\epsilon\bra{q_t} q^r p^s\ket{q_{t-1}} = i\epsilon q_t^r \bra{q_t} p^s\ket{q_{t-1}} = i\epsilon q_t^r \int p^s \e^{ip(q_t - q_{t-1})}\frac{dp}{2\pi}
+\end{equation*}
+which is asymmetric in \(q_t ~\& ~q_{t-1}\), and therefore not the same as what we would get if we simply used the mid-point prescription as assumed. One might also assume that starting with a more symmetric Hamiltonian of the form 
+\begin{equation*}
+    H = \frac{q^r p^s + p^s q^r}{2}
+\end{equation*}
+might help, but see that this evaluates at first order to 
+\begin{equation*}
+    i\epsilon \frac{(q_t^r + q_{t-1}^r)}{2} \int p^s \e^{ip(q_t - q_{t-1})}\frac{dp}{2\pi}
+\end{equation*}
+which is again not the same as the expected result which would have \(\displaystyle \frac{(q_t + q_{t-1})^r}{2}\).\\
+This is a fundamental problem, mainly due to the operator ordering issue when going from classical theory to quantum theory that we have discussed long ago.\\
+
+There is an \textit{ordering} that we can    choose for \(H\) that makes the above formula true. This is called Weyl ordering, and is defined as 
+\begin{equation*}
+    W(q^mp^r) = \frac{1}{2^m} \sum_{s=0}^m\binom{m}{s} q^{m-s} p^r q^s
+\end{equation*}
+(this is an operator equation).\\
+Suppose we have a Hamiltonian 
+\begin{equation*}
+    H = \sum_{r,s} q^r p^s
+\end{equation*}
+the Weyl ordered \(H_W\) will be of the form 
+\begin{equation*}
+    H_W = \sum_{r,s} W(q^r p^s)
+\end{equation*}
+Then, at first order 
+\begin{align*}
+    \bra{q_t}H_W \ket{q_{t-1}} &= \sum_{r,s} \bra{q_t}W(q^r p^s)\ket{q_{t-1}}\\
+    & = \sum_{r,s} \frac{1}{2^r}  \sum_{m=0}^r \binom{m}{s} \bra{q_t} q^{r-m} p^s q^m\ket{q_{t-1}}\\
+    & = \sum_{r,s} \frac{1}{2^r}  \sum_{m=0}^r \binom{m}{s} \bra{q_t} q^{r-m} p^s q^m\ket{q_{t-1}}\\
+    & = \sum_{r,s} \frac{1}{2^r}  \sum_{m=0}^r \binom{m}{s} \int \frac{dp}{2\pi} q_t^{r-m}p^s q_{t-1}^m \e^{ip(q_t - q_{t-1})}
+\end{align*}
+which is exactly equal to 
+\begin{equation*}
+    \sum_{r,s} \int \frac{dp}{2\pi}\left( \frac{q_t + q_{t-1}}{2}\right)^{r}p^s \e^{ip(q_t - q_{t-1})} = \int \frac{dp}{2\pi} H\left(p, \frac{q_t + q_{t-1}}{2}  \right)\e^{ip(q_t - q_{t-1})}
+\end{equation*}
+That is, if I have a classical Hamiltonian \(H\), then if I calculate the above matrix element for a \textit{Weyl ordered} quantum Hamiltonian \(H_W\), I recover some expression of the classical Hamiltonian evaluated at the mid point. That is, when going to a path integral we make a choice of ordering in our quantum Hamiltonian.\\
+
+Therefore, (assuming from now on that all the Hamiltonian operators are Weyl ordered), 
+\begin{align*}
+    \bra{q_f} &\e^{-iHT}\ket{q_i} \\=& \int dq_1 \ldots dq_N \frac{dp_0}{2\pi} \ldots \frac{dp_N}{2\pi} ~\e^{-iH\left(\frac{q_f + q_N}{2}, p_N\right)\epsilon}\e^{ip_N (q_f - q_N)}\e^{-iH\left(\frac{q_N + q_{N-1}}{2}, p_{N-1}\right)\epsilon}\e^{ip_{N-1} (q_N - q_{N-1})}\\
+    &~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\cdots  \e^{-iH\left(\frac{q_1 + q_{i}}{2}, p_0\right)\epsilon}\e^{ip_{0} (q_1 - q_{i})}
+\end{align*}
+Notice that there are only \(N\) integrals over \(dq\) and \(N+1\) integrals over \(dp\) since there are \(N+1\) intervals into which we have divided the integral by inserting \(N\) identities in position basis.\\
+
+We can write the above expression as
+\begin{align*}
+    \int dq_1 \ldots dq_N \frac{dp_0}{2\pi} \ldots \frac{dp_N}{2\pi} ~\exp\left\{i\epsilon \left( -H\left(\frac{q_f + q_N}{2}, p_N\right) - H\left(\frac{q_N + q_{N-1}}{2}, p_{N-1}\right) \cdots -H\left(\frac{q_1 + q_{i}}{2}, p_0\right) \right.\right. \\
+    \left.\left.+ p_N \frac{(q_f - q_N)}{\epsilon} + p_{N-1} \frac{(q_N - q_{N-1})}{\epsilon}\cdots  +  p_{0} \frac{(q_1 - q_{i})}{\epsilon} \right) \right\}
+\end{align*}
+The steps we did so far was correct upto first order in \(\epsilon\). At higher orders in \(\epsilon\), there would be exponentials of commutators coming from BCH formula. To make the above expression exact, we should take the limit \(\epsilon\to0\) along with \(N\to \infty\), such that \(T = N\epsilon\) is unchanged. Under this limit, the Hamiltonians terms sum to give an integration over the Hamiltonian, while the momentum terms sum to give an integral over \(p\dot q\), giving 
+\begin{equation*}
+    \bra{q_f} \e^{-iHT}\ket{q_i} = \int \mathfrak{D}q \mathfrak{D}p~ \e^{i \int p\dot q - H(q,p)dt}
+\end{equation*}
+where \(\mathfrak{D}q\) is a shorthand for \(\lim_{N\to \infty}dq_1 dq_2 \ldots dq_N  \) and similarly for \(\mathfrak{D}p\). This above expression is an integral over all paths in \textit{phase space}.\\
+
+To go from this expression to the usual form where we write it in terms of the action, we need to make some assumptions about the Hamiltonian. That is, we assume that the Hamiltonian is of the form 
+\begin{equation*}
+    H = \frac{p^2}{2m} + V(q)
+\end{equation*}
+In this case, we can do the \(p\) integrals which are all Gaussian integrals. The basic formula for Gaussian integral is 
+\begin{equation*}
+    \int \e^{-ax^2 + bx}dx = \e^{-\frac{b^2}{4a}}\sqrt{\frac{\pi}{a}}
+\end{equation*}
+then in our expression, \(a =\displaystyle \frac{i\epsilon}{2m}\) and \(b = i(q_t - q_{t-1})\). Notice that this substitution is not strictly convergant because the formula for the Gaussian integral assumes that \(\mathfrak{Re}(a) >0 \), which is not the case here. Therefore, to perform the integral, we need to rotate time slightly such that \(\mathfrak{Im}(\epsilon)<0 \). Amother way one could evaluate this would be to perform a Wick rotation, converting this into a Euclidean path integral, and then rotate back to Minkowski space. With this, we get each integral as 
+\begin{equation*}
+    \frac{1}{2\pi} \sqrt{\frac{2\pi m}{i\epsilon}}\exp\left( i\frac{m}{2\epsilon} (q_t - q_{t-1})^2 \right)
+\end{equation*}
+and the path integral becomes 
+\begin{align*}
+    \int \sqrt{\frac{m}{2\pi i\epsilon}} dq_1 \ldots\sqrt{\frac{m}{2\pi i\epsilon}} dq_N ~\exp\left\{i\epsilon \left( -V\left(\frac{q_f + q_N}{2}\right) - V\left(\frac{q_N + q_{N-1}}{2}\right) \cdots -V\left(\frac{q_1 + q_{i}}{2}\right) \right.\right. \\
+    \left.\left.+ \frac{m}{2}\frac{(q_f - q_N)^2}{\epsilon^2} + \frac{m}{2} \frac{(q_N - q_{N-1})^2}{\epsilon^2}\cdots  +  \frac{m}{2} \frac{(q_1 - q_{i})^2}{\epsilon^2} \right) \right\}
+\end{align*}
+See now that the measure itself has \(\epsilon\) in it.  In the limit \(\epsilon \to 0\), the term in the exponential becomes \(S\), and the path integral simply is 
+\begin{equation*}
+    \int_{q(0) = q_i}^{q(t) = q_f} \mathfrak{D}q ~\e^{iS}
+\end{equation*}
+where now \(\displaystyle \mathfrak{D}q \equiv \lim_{N\to\infty, \epsilon\to 0} \sqrt{\frac{m}{2\pi i\epsilon}} dq_1 \ldots\sqrt{\frac{m}{2\pi i\epsilon}} dq_N \).\\
+
+Now one can ask what happens to the expressions of the form 
+\begin{equation*}
+    \int \D q ~q(t_2)q(t_1) \e^{iS}
+\end{equation*}
 
 \end{document}
