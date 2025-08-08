@@ -5714,7 +5714,131 @@ where now \(\displaystyle \mathfrak{D}q \equiv \lim_{N\to\infty, \epsilon\to 0} 
 
 Now one can ask what happens to the expressions of the form 
 \begin{equation*}
-    \int \D q ~q(t_2)q(t_1) \e^{iS}
+    \int_{q(0)=q_i}^{q(t)=q_f} \D q ~q(t_2)q(t_1) \e^{iS}
 \end{equation*}
+We interpret this in the following way. Imagine \(0<t_1<t_2<t\), then we can write the above path integral as
+\begin{equation*}
+    \int dq_1 dq_2~\int_{q(t_2) = q_2}^{q(t) = q_f} \D q \e^{iS} q_2 \int_{q(t_1) = q_1}^{q(t_2) = q_2} \D q \e^{iS} q_1 \int_{q(0) = q_i}^{a(t_1) = q_1} \D q \e^{iS}
+\end{equation*}
+That is, we first integrate over all paths which start at \(q_i\) and end at some \(q_1\) at \(t_1\), then all paths that start at \(q_1\) at \(t_1\) and end at some \(q_2\) at time \(t_2\), and then all the paths that start at \(q_2\) and end at \(q_f\) at \(t\). Further, we multiply by \(q_1\) and \(q_2\), and integrate over all \(q_1\), \(q_2\) to recover the complete path integral.\\
+
+Now we know exactly how to interpret the individual pieces in the above equation, which is 
+\begin{equation*}
+    \int dq_1 dq_2~ q_1q_2 \braket{q_f|\e^{-iH(t - t_2)}|q_2}\braket{q_2|\e^{-iH(t_2 - t_1)}|q_1}\braket{q_1|\e^{-iH(t_1 - 0)}|q_i}
+\end{equation*}
+Now 
+\begin{equation*}
+    \int dq_1 ~q_1 \ket{q_1}\bra{q_1} = \hat{q_1}_S  
+\end{equation*}
+(where subscript \(S\) denotes that the operator is in Schrodinger picture)\\
+and therefore, the above path integral is 
+\begin{equation*}
+    \braket{q_f|\e^{-iH(t-t_2)} q(t_2) \e^{-iH (t_2 - t_1)} q(t_1) \e^{-iH(t_1 - 0)} |q_i}
+\end{equation*}
+Now, we can write the above in terms of operators in Heisenberg representation as
+\begin{equation*}
+    \braket{q_f|\e^{-iHt} q_H(t_2) q_H(t_1) |q_i}
+\end{equation*}
+If we had started at some time \(t_i\) instead of \(0\), the above expression would be 
+\begin{equation*}
+    \braket{q_f|\e^{-iHt_f} q_H(t_2) q_H(t_1) \e^{iHt_i}|q_i}
+\end{equation*}
+Notice that the expression is automatically time ordered.\\
+
+\subsection{Path Integrals for Field Theory}
+Field theories are naturally Quantum mechanics of variables that live in \textit{spacetime}. Therefore, path integrals for field theories are exactly the same as the path integrals for the quantum mechanics that we derived above, but now the paths are not only in time, but also in space, i.e.\ we integrate over all configurations in spacetime. That is 
+\begin{equation*}
+    \braket{\phi_f|\e^{-iHt} |\phi_i} = \int_{\phi(0, \textbf{x}) = \phi_i}^{\phi(t, \textbf{x}) = \phi_2} \D \phi ~\e^{iS}
+\end{equation*}
+Now in perturbative QFT, we were interested in calculating correlation functions of field insertions in the true vacuum. There is a way to calculate those in the path integral, and the idea is as follows. Consider 
+\begin{equation*}
+    \int_{\phi(-\infty, \textbf{x}) = \phi_i}^{\phi(\infty, \textbf{x}) = \phi_f} \D \phi~ \e^{iS} \phi(t_1, \textbf{x}_1) \ldots \phi(t_n, \textbf{x}_n)
+\end{equation*}
+We can evaluate this the same way we did in the case of quantum mechanics as 
+\begin{equation*}
+    = \bra{\phi_f} \e^{-iH(\infty)} T\left\{\phi_H(t_n) \ldots \phi_H(t_1)\right\} \e^{iH\infty} \ket{\phi_i}
+\end{equation*}
+Notice that the infinite time evolution will always project any state to the true vacuum
+\begin{equation*}
+    = \braket{\phi_f|\Omega} \bra{\Omega} T\left\{\phi_H(t_n) \ldots \phi_H(t_1)\right\}  \ket{\Omega }\braket{\Omega|\phi_i}
+\end{equation*}
+Also notice that 
+\begin{equation*}
+    \int_{\phi(-\infty, \textbf{x}) = \phi_i}^{\phi(\infty, \textbf{x}) = \phi_f} \D \phi~ \e^{iS}  = \braket{\phi_f|\Omega}\braket{\Omega|\phi_i}
+\end{equation*}
+and therefore we get 
+\begin{equation*}
+    \bra{\Omega} T\left\{\phi_H(t_n) \ldots \phi_H(t_1)\right\}  \ket{\Omega } = \displaystyle \frac{ \int_{\phi(-\infty, \textbf{x}) = \phi_i}^{\phi(\infty, \textbf{x}) = \phi_f} \D \phi~ \e^{iS} \phi(t_1, \textbf{x}_1) \ldots \phi(t_n, \textbf{x}_n)}{\int_{\phi(-\infty, \textbf{x}) = \phi_i}^{\phi(\infty, \textbf{x}) = \phi_f} \D \phi~ \e^{iS} }
+\end{equation*}
+Notice that the boundary condition is totally irrelevant, and therefore we can write the above generally as 
+\begin{equation*}
+    \bra{\Omega} T\left\{\phi_H(t_n) \ldots \phi_H(t_1)\right\}  \ket{\Omega } = \displaystyle \frac{ \int \D \phi~ \e^{iS} \phi(t_1, \textbf{x}_1) \ldots \phi(t_n, \textbf{x}_n)}{\int \D \phi~ \e^{iS} }
+\end{equation*}
+There is an important caveat here. 
+\begin{equation*}
+    \lim_{T\to \infty} \e^{iHt} \ket{\phi} = \ket{\Omega}\braket{\Omega | \phi}
+\end{equation*} 
+is not a strictly true equation. It is true only when integrated over some smooth function. Therefore, if we do the path integrals with time on the real axis, they are not well defined. We need to wither go slightly off the real axis (\(\tau = \e^{-i\theta} t\)), or we need to work with the Euclidean spacetime which one can obtain by taking \(\theta =\frac{\pi}{2} \equiv \tau =  -i t\). With this, 
+\begin{equation*}
+    \e^{iS} \to \e^{-S_E}
+\end{equation*}
+and what we actually should calculate is objects of the form 
+\begin{equation*}
+    \bra{\Omega} T\left\{\phi_H(\tau_n) \ldots \phi_H(\tau_1)\right\}  \ket{\Omega } = \displaystyle \frac{ \int \D \phi~ \e^{-S_E} \phi(\tau_1, \textbf{x}_1) \ldots \phi(\tau_n, \textbf{x}_n)}{\int \D \phi~ \e^{iS} }
+\end{equation*}
+But we are interested in the correlations in Minkowski time and not in Euclidean time, and to go from the Euclidean correlators to the Minkowski correlators, it is very important to know the analyticity properties of the correlators.\\
+
+First let us take a look at the correlation function without time ordering 
+\begin{equation*}
+    \bra{\Omega} \phi(t_1, \textbf{x}_1)\ldots\phi(t_n, \textbf{x}_n)\ket{\Omega}
+\end{equation*}
+The way to see its analyticity properties is to insert a complete set of energy eigenstates as
+\begin{align*}
+    &\sum_{E_1}\cdots\sum_{E_{n-1}}\bra{\Omega} \phi(t_1, \textbf{x}_1)\ket{E_1}\bra{E_1}\ldots\ket{E_{n-1}}\bra{E_{n-1}}\phi(t_n, \textbf{x}_n)\ket{\Omega} \\
+    =& \sum_{E_1}\cdots\sum_{E_{n-1}}\bra{\Omega} \phi(0, \textbf{x}_1)\ket{E_1} \e^{-iE_1t_1}\e^{iE_1t_2} \bra{E_1} \phi(0, \textbf{x}_2) \ldots\phi(0, \textbf{x}_{n-1})\ket{E_{n-1}}\e^{-iE_{n-1}t_{n-1}}\e^{iE_{n-1}t_n}\bra{E_{n-1}}\phi(0, \textbf{x}_n)\ket{\Omega}\\
+    =& \sum_{E_1}\cdots\sum_{E_{n-1}}\bra{\Omega} \phi(0, \textbf{x}_1)\ket{E_1} \e^{iE_1(t_2 - t_1)} \bra{E_1} \phi(0, \textbf{x}_2) \ldots\phi(0, \textbf{x}_{n-1})\ket{E_{n-1}}\e^{iE_{n-1}(t_n - t_{n-1})}\bra{E_{n-1}}\phi(0, \textbf{x}_n)\ket{\Omega}
+\end{align*}
+
+The singularities in the above function (we are only interested in the singularities along the time axis) are present only in the limit \(E_i\to \infty\). If this correlator is well defined for some value of \(t_j - t_{j-1}\), since all \(E_i\) are always positive, the correlator is always analytic in the upper half plane of \(t_j - t_{j-1}\), since giving a positive imaginary part will lead to a negative real exponential which will only improve the convergance. These correlators are called Wightman functions.\\
+
+\textcolor{red}{
+    Notice that the Wightman function in Minkowski space has no singularities on the upper half plane for each \(t_j - t_{j-1}\), while on the lower half plane there are singularities. The Wick rotation described above is a rotation by \(\frac{\pi}{2}\) in the clockwise direction, therefore one can perform a rotation of the integration contour from the real axis to imaginary axis only for the negative part of the real axis since the positive part crosses some singularities when rotated since it rotates in the lower half of the plane. Therefore, if we start with Wightman functions in Minkowski space, and want to Wick rotate it to Euclidean space, it is only possible if the Wightman function is already time ordered, i.e. only if \(t_j-t_{j-1}<0\). Conversely, if we start with a Wightman function in Euclidean space (we do not worry about how it is defined), and Wick rotate all the time differences to Minkowski space at the same time, we recover the time ordered correlation functions automatically.\\
+}
+
+\subsection{Gaussian Integrals in \(n-\)dimensions}
+When doing path integrals, we usually do only Gaussian integrals since that is the only thing which we know how to evaluate. The general formula for Gaussian integrals in \(n-\)dimensions is  
+\begin{equation*}
+    \int \exp\left\{-x_iA_{ij}x_j + B_ix_i\right\} \prod_i dx_i = \int \exp\left\{-x^TAx + Bx\right\} \prod_i dx_i= \exp\left\{-\frac{B^T A^{-1} B}{4}\right\}\sqrt{\frac{1}{\det\left(\frac{A}{\pi} \right)}}
+\end{equation*}
+You can derive this by just making an rotation of basis \(x \to \tilde x = O^T x\) where the \(A\) is diagonal in \(\tilde x\) (i.e. \(x^T A x = \tilde x^T ( O^T A O )\tilde x\) and \( O^T A O\) is diagonal), giving 
+\begin{equation*}
+    \int \exp\left\{-\tilde x_i\tilde A_{ii}\tilde x_i + \tilde B_i \tilde x_i\right\} \prod_i d\tilde x_i     = \prod_i\sqrt{\frac{\pi}{\tilde A_{ii}}}\exp\left\{ -\frac{\tilde B_i^2}{4\tilde A_{ii}}  \right\}
+\end{equation*}
+which when we transform back to the original basis is nothing but the above equation.\\
+
+One more important formula that follows by differentiating the one dimensional gaussian integral once with respect to \(a\) is 
+\begin{equation*}
+    \int \e^{-ax^2} x^2 dx = \sqrt{\frac{\pi}{a}}\frac{1}{2a}
+\end{equation*}
+The vector generalisation of this is 
+\begin{equation}
+    \int \left( \prod_i dx_i \right) x_m x_n \e^{-x_i A_{ij} x_j} = \sqrt{\frac{1}{\det\left( \frac{A}{\pi} \right)}} \frac{1}{2}A_{mn}^{-1}
+\end{equation}
+
+\newpage
+\section{Path Integrals for Free Scalar Fields}
+For a free scalar field, we have 
+\begin{equation*}
+    S=  \frac{1}{2}\int d^4x~(\del_\mu\phi)^2 - m^2 \phi^2
+\end{equation*}
+However, we can also perform integration by parts on the first term, assuming the fields at infinity die off to zero, to get 
+\begin{equation*}
+    S = \frac{1}{2}\int d^4x~ \phi (-\square - m^2) \phi    
+\end{equation*}
+The Euclidean action looks like
+\begin{equation*}
+    S_E = \frac{1}{2} \int d^4x_E \phi (-\square_E + m^2) \phi
+\end{equation*}
+The signs are due to our sign convention. Notice that upon Wick rotation, i.e. \(\tau = -it \implies \del_\tau = i\del_t \implies \del_t^2 = -\del_\tau^2\), and the measure also transforms as 
 
 \end{document}
